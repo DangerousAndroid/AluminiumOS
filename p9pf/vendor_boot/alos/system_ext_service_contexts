@@ -1,2 +1,0 @@
-android.media.audio.IHalAdapterVendorExtension/default               u:object_r:hal_audio_parameter_parser_service:s0
-com.google.edgetpu.IEdgeTpuAppService/default              u:object_r:edgetpu_app_service:s0
