@@ -1,0 +1,20 @@
+service fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint-service.fpc42_fw49
+    class late_start
+    user system
+    group system input uhid
+    onrestart chown system system /sys/devices/platform/odm/odm:fp_fpc1020/clk_enable
+    onrestart chown system system /sys/devices/platform/odm/odm:fp_fpc1020/hw_reset
+    onrestart chown system system /sys/devices/platform/odm/odm:fp_fpc1020/irq
+    onrestart chown system system /sys/devices/platform/odm/odm:fp_fpc1020/wakeup_enable
+    disabled
+
+
+on property:ro.vendor.trusty.storage.fs_ready=1
+    exec_background - system shell -- /vendor/bin/trusty_apploader /vendor/firmware/1540a.app
+    enable fps_hal
+
+on fs
+    chown system system /sys/devices/platform/odm/odm:fp_fpc1020/clk_enable
+    chown system system /sys/devices/platform/odm/odm:fp_fpc1020/hw_reset
+    chown system system /sys/devices/platform/odm/odm:fp_fpc1020/irq
+    chown system system /sys/devices/platform/odm/odm:fp_fpc1020/wakeup_enable

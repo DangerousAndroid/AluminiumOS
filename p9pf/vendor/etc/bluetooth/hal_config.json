@@ -1,0 +1,20 @@
+{
+  "transport_type_priority": [
+    100,
+    101
+  ],
+  "uart_device_port": "/dev/ttySAC18",
+  "fast_download_enabled": true,
+  "sar_backoff_high_resolution_enabled": true,
+  "ble_non_connection_sar_enabled": true,
+  "accelerated_bt_on_enabled": true,
+  "reg_on_delay_ms": 100,
+  "bt_power_controlled_by_lpp": true,
+  "low_power_mode_enabled": true,
+  "unsupported_hw_stages": [
+    "PROTO1.0",
+    "PROTO1.1",
+    "EVT1.0"
+  ],
+  "hp_uart_skip_suspend_enabled": true
+}

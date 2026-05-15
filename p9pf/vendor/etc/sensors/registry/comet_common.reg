@@ -1,0 +1,697 @@
+#
+# Comet sensor device configuration registry script for all stages after proto.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-zuma
+#
+
+?+0x60000:0xFFFF0000
+# Exclude LBox due to big IO changes between LBox and later.
+?-0x61100  # LBox
+
+#
+# Buses
+#
+
+# I2C
++/dev/i2c/0
+  bus_name=i2c0
+  bus_index=0
++/dev/i2c/2
+  bus_name=i2c2
+  bus_index=2
+
+# I3C
++/dev/i3c/0
+  bus_name=i3c0
+  bus_index=0
++/dev/i3c/1
+  bus_name=i3c1
+  bus_index=1
+
+# SPI
++/dev/spi/1
+  bus_name=spi1
+  bus_index=1
++/dev/spi/2
+  bus_name=spi2
+  bus_index=2
+
+# PDM
++/dev/pdm
+  base_clk_hz=24576000
+
+#
+# Sensors
+#
+
+# IMU 1 (ICM45631)
++/dev/icm45631/0
+  bus_name=i3c1
+  bus_freq_hz=400000
+  i3c_freq_hz=12300000
+  bus_addr=0x68
+  i3c_addr=0xa
+  intr_id=43
+  trigger_type=2
+  priority=0
+  md_threshold=200
+  md_duration=1
+  sd_threshold=200
+  sd_timeout_ms=5000
+  sd_batching_latency_ms=1000
+  lowG_peak_threshold=2048
+  lowG_detect_timeout_ms=20
+  lowG_debounce_timeout_ms=1000
++/dev/icm45631/0/accel
+  orientation_transform=1 2 3
+  avg_odr_25=25
+  name=ICM45631 Accelerometer 0
++/dev/icm45631/0/gyro
+  orientation_transform=1 2 3
+  avg_odr_25=25
+  name=ICM45631 Gyroscope 0
++/dev/icm45631/0/temp
+  name=ICM45631 Temperature 0
++/dev/icm45631/0/motion_detect
+  name=ICM45631 Motion Detect 0
++/dev/icm45631/0/stationary_detect
+  name=ICM45631 Stationary Detect 0
++/dev/icm45631/0/freefall_detect
+  name=ICM45631 FreeFall Detect
+
+# IMU 2 (ICM45631)
++/dev/icm45631/1
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=12300000
+  bus_addr=0x68
+  i3c_addr=0xa
+  intr_id=3
+  trigger_type=2
+  priority=1
+  md_threshold=200
+  md_duration=1
+  sd_threshold=200
+  sd_timeout_ms=5000
+  sd_batching_latency_ms=1000
+  lowG_peak_threshold=2048
+  lowG_detect_timeout_ms=20
+  lowG_debounce_timeout_ms=1000
++/dev/icm45631/1/accel
+  orientation_transform=1 2 3
+  avg_odr_25=25
+  name=ICM45631 Accelerometer 1
++/dev/icm45631/1/gyro
+  orientation_transform=1 2 3
+  avg_odr_25=25
+  name=ICM45631 Gyroscope 1
++/dev/icm45631/1/temp
+  name=ICM45631 Temperature 1
++/dev/icm45631/1/motion_detect
+  name=ICM45631 Motion Detect 1
++/dev/icm45631/1/stationary_detect
+  name=ICM45631 Stationary Detect 1
+
+# For MagCC
++/dev/magcc/0
+  battery_status=/sys/class/power_supply/battery/status
+  direct_charge=/sys/class/power_supply/dc-mains/online
+  usb_status=/sys/class/power_supply/usb/online
+  usb_current=/sys/class/power_supply/usb/current_now
+  usb_voltage=/sys/class/power_supply/usb/voltage_now
+  wireless_status=/sys/class/power_supply/wireless/online
+  wireless_current=/sys/class/power_supply/wireless/current_now
+  wireless_voltage=/sys/class/power_supply/wireless/voltage_now
+
+# MAG 1 (MMC5616)
++/dev/mmc5616/0
+  bus_name=i3c1
+  bus_freq_hz=400000
+  i3c_freq_hz=6500000
+  bus_addr=0x30
+  i3c_addr=0x14
++/dev/mmc5616/0/mag
+  name=MMC5616 Magnetometer 0
+
+# MAG 2 (MMC5616)
++/dev/mmc5616/1
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x30
++/dev/mmc5616/1/mag
+  name=MMC5616 Magnetometer 1
+
+# BARO (ICP20100)
++/dev/icp20100/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x63
+  intr_id=47
+  min_period_us=25000
++/dev/icp20100/0/baro
++/dev/icp20100/0/temp
+
+# ALSP 1 (TCS3720)
++/dev/tcs3720/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x39
+  intr_id=13
+  display_id=0
+  priority=1
+  anti_aliasing=1
+  start_als_on_ap_power_on=1
+
++/dev/tcs3720/0/als
+  # Number of EM cycles in a 60Hz frame.
+  EM_cycle_count_60Hz=4
+
+  # Lux Filter parameters
+  fast_filter_size=10
+  slow_filter_size=100
+  aod_fast_filter_size=3
+  aod_slow_filter_size=3
+
+  # Step-size (in EM slots) for each rotation.
+  rotation_step_size=1
+
+  # Maximum lux value to report when hitting saturation at minimum gains.
+  max_lux=200000
+
+  # Histogram Configuration.
+  histo_enable=1
+  # Display coordinates go from top left to bottom right.
+  histo_roi_left=1865
+  histo_roi_top=40
+  histo_roi_right=1940
+  histo_roi_bottom=115
+  # Weights applied to the RBG color samples to calculate luma.
+  # luma values:
+  # luma = W_R * R + W_G * G + WB * B
+  # with W_R + W_G + W_B = 1024
+  histo_weight_r=146
+  histo_weight_g=806
+  histo_weight_b=72
+
+  #
+  # Leakage calculator configuration. The general format is:
+  #   leakage = luma_term(luma, dbv) * dbv_term(dbv)
+  # The luma_term maps luma into a value and different equations may be used
+  # depending on the current DBV value.
+  # Similar, the dbv_term maps DBV into a value and may also use different
+  # equations.
+  # Each line represents one equation, and is of the format:
+  #   start-dbv end-dbv equation-type {coefficients}
+  # This means the equation applies to the DBV range [start-dbv .. end-dbv].
+  # There are two equation types currently:
+  #    0: Polynominal: c0 + c1*L + c2*L^2 + .. + ci*L^i
+  #    1: Natural Log: c0 + c1*ln(L + c2)
+  histo_luma_eq0=0 4096 0 -4.307e-01 6.527e-03
+  histo_dbv_eq0=0 764 0 4.12279743e-01 8.98494328e-04 -6.81664941e-07
+  histo_dbv_eq1=765 4096 0 -2.39677166e+00 7.75929493e-04 -1.19664850e-08
+
+  # The maximum brightness (DBV) value up to which histogram is active.
+  # This value should match one of the itime_table_brightness values.
+  histo_max_brightness=4096
+  # Minimum change needed for a leakage value to be reported, i.e.,
+  # min_change = MAX(min_change_value, current_leakage_val * min_change_rate)
+  histo_min_change_value=0.01
+  histo_min_change_rate=0.01
+  # Histogram polling interval in ms.
+  histo_polling_interval=50
+  # Fallback luma value to use when histogram returns error (e.g., due to DRM).
+  histo_fallback_luma=128.0
+
++/dev/tcs3720/0/panel-b/als
+  # Histogram Configuration.
+  histo_enable=1
+  # Display coordinates go from top left to bottom right.
+  histo_roi_left=1865
+  histo_roi_top=40
+  histo_roi_right=1940
+  histo_roi_bottom=115
+  # Weights applied to the RBG color samples to calculate luma.
+  # luma values:
+  # luma = W_R * R + W_G * G + WB * B
+  # with W_R + W_G + W_B = 1024
+  histo_weight_r=146
+  histo_weight_g=806
+  histo_weight_b=72
+
+  #
+  # Leakage calculator configuration. The general format is:
+  #   leakage = luma_term(luma, dbv) * dbv_term(dbv)
+  # The luma_term maps luma into a value and different equations may be used
+  # depending on the current DBV value.
+  # Similar, the dbv_term maps DBV into a value and may also use different
+  # equations.
+  # Each line represents one equation, and is of the format:
+  #   start-dbv end-dbv equation-type {coefficients}
+  # This means the equation applies to the DBV range [start-dbv .. end-dbv].
+  # There are two equation types currently:
+  #    0: Polynominal: c0 + c1*L + c2*L^2 + .. + ci*L^i
+  #    1: Natural Log: c0 + c1*ln(L + c2)
+  histo_luma_eq0=0 0 0 0e0
+  histo_luma_eq1=1 4096 0 5.606e-01 1.413e-02
+  histo_dbv_eq0=0 0 0 0e0
+  histo_dbv_eq1=1 1004 0 9.58514434e-02 8.19062557e-04 -3.90190922e-07
+  histo_dbv_eq2=1005 3490 0 2.57742739e+00 -1.25063922e-03 3.58280535e-07
+  histo_dbv_eq3=3491 4096 0 2.97953
+
+  # The maximum brightness (DBV) value up to which histogram is active.
+  # This value should match one of the itime_table_brightness values.
+  histo_max_brightness=4096
+  # Minimum change needed for a leakage value to be reported, i.e.,
+  # min_change = MAX(min_change_value, current_leakage_val * min_change_rate)
+  histo_min_change_value=0.01
+  histo_min_change_rate=0.01
+  # Histogram polling interval in ms.
+  histo_polling_interval=50
+  # Fallback luma value to use when histogram returns error (e.g., due to DRM).
+  histo_fallback_luma=128.0
+
+# ALSP 2 (TMD3733)
++/dev/tmd3733/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x39
+  intr_id=45
+  display_id=1
+  priority=2
+  anti_aliasing=1
+  start_als_on_ap_power_on=1
+
++/dev/tmd3733/0/als
+  # Number of EM cycles in a 60Hz frame.
+  EM_cycle_count_60Hz=4
+  # OCS TUNE golden cal value.
+  osc_tune=-1
+  # Display leakage golden cal value.
+  leakage_at_dbv=12.463 3427.0 0 575.0
+
+  # Lux Filter parameters
+  fast_filter_size=10
+  slow_filter_size=100
+  aod_fast_filter_size=3
+  aod_slow_filter_size=3
+
+  # Prox delay itime table in microsecond.
+  # Display HS mode.
+  prox_delay_120hz=3000 4800 5000 5100 5100 5100
+  prox_delay_60hz_hs=11300 12300 12400 12600 12600 12600
+
+  # Maximum lux value to report when hitting saturation at minimum gains.
+  max_lux=200000
+
+  # Histogram Configuration.
+  histo_enable=1
+  # Display coordinates go from top left to bottom right.
+  histo_roi_left=665
+  histo_roi_top=0
+  histo_roi_right=765
+  histo_roi_bottom=105
+  # Weights applied to the RBG color samples to calculate luma.
+  # luma values:
+  # luma = W_R * R + W_G * G + WB * B
+  # with W_R + W_G + W_B = 1024
+  histo_weight_r=146
+  histo_weight_g=806
+  histo_weight_b=72
+
+  #
+  # Leakage calculator configuration. The general format is:
+  #   leakage = luma_term(luma, dbv) * dbv_term(dbv)
+  # The luma_term maps luma into a value and different equations may be used
+  # depending on the current DBV value.
+  # Similar, the dbv_term maps DBV into a value and may also use different
+  # equations.
+  # Each line represents one equation, and is of the format:
+  #   start-dbv end-dbv equation-type {coefficients}
+  # This means the equation applies to the DBV range [start-dbv .. end-dbv].
+  # There are two equation types currently:
+  #    0: Polynominal: c0 + c1*L + c2*L^2 + .. + ci*L^i
+  #    1: Natural Log: c0 + c1*ln(L + c2)
+  histo_luma_eq0=0 183 0 0e0
+  histo_luma_eq1=184 4096 0 0e0 0.00303
+  histo_dbv_eq0=0 183 0 0e0
+  histo_dbv_eq1=184 909 0 -2.46902171e-01 -4.07431422e-04 1.04397792e-06
+  histo_dbv_eq2=910 3427 0 -1.18964827e+01 8.49707354e-03 -1.34657397e-06
+  histo_dbv_eq3=3428 4096 0 16
+
+  # The maximum brightness (DBV) value up to which histogram is active.
+  # This value should match one of the itime_table_brightness values.
+  histo_max_brightness=4096
+  # Minimum change needed for a leakage value to be reported, i.e.,
+  # min_change = MAX(min_change_value, current_leakage_val * min_change_rate)
+  histo_min_change_value=0.01
+  histo_min_change_rate=0.01
+  # Histogram polling interval in ms.
+  histo_polling_interval=50
+  # Fallback luma value to use when histogram returns error (e.g., due to DRM).
+  histo_fallback_luma=128.0
+
++/dev/tmd3733/0/prox
+  priority=1
+  min_fps=30
+  # Auto-baseline control:
+  # 0: Special factory mode that determines one baseline using special settings.
+  # 1: Manual baseline calculation using Prox samples from the chip.
+  # 2: On-chip baseline calculation ("AXTALK").
+  #
+  # In the cases 1 and 2 the baseline is regularly recalibrated triggered by a
+  # timer.
+  #
+  # Remove this property to completely disable any kind of baseline calibration.
+  auto_baseline=2
+  # BXTALK golden cal value.
+  bxtalk=179
+  # temp_coeff golden cal value.
+  temp_coeff=5
+
++/dev/tmd3733/0/panel-b/als
+  # Display leakage golden cal value.
+  leakage_per_device_cal_enable=1
+  leakage_at_dbv=50.15762 3628 7.74500 637
+  # Prox delay itime table in microsecond.
+  # Display HS mode.
+  prox_delay_120hz=3100 3600 3600 4800 4800 4800
+  prox_delay_60hz_hs=11800 12000 12000 12600 12680 12680
+
+  # Histogram Configuration.
+  # Disable until ready.
+  histo_enable=1
+  # Display coordinates go from top left to bottom right.
+  histo_roi_left=665
+  histo_roi_top=0
+  histo_roi_right=765
+  histo_roi_bottom=105
+  # Weights applied to the RBG color samples to calculate luma.
+  # luma values:
+  # luma = W_R * R + W_G * G + WB * B
+  # with W_R + W_G + W_B = 1024
+  histo_weight_r=146
+  histo_weight_g=806
+  histo_weight_b=72
+  #
+  # Leakage calculator configuration. The general format is:
+  #   leakage = luma_term(luma, dbv) * dbv_term(dbv)
+  # The luma_term maps luma into a value and different equations may be used
+  # depending on the current DBV value.
+  # Similar, the dbv_term maps DBV into a value and may also use different
+  # equations.
+  # Each line represents one equation, and is of the format:
+  #   start-dbv end-dbv equation-type {coefficients}
+  # This means the equation applies to the DBV range [start-dbv .. end-dbv].
+  # There are two equation types currently:
+  #    0: Polynominal: c0 + c1*L + c2*L^2 + .. + ci*L^i
+  #    1: Natural Log: c0 + c1*ln(L + c2)
+  histo_luma_eq0=0 0 0 0e0
+  histo_luma_eq1=1 4096 0 6.06737066e-02 1.17612775e-02 -4.95300514e-05 6.87088684e-08
+  histo_dbv_eq0=0 0 0 0e0
+  histo_dbv_eq1=1 1180 0 3.40982600e-01 2.38874729e-03 -2.58640555e-06 1.09446302e-09
+  histo_dbv_eq2=1181 3628 0 -2.68287099e+01 8.07754278e-02 -9.84510417e-05 6.24259957e-08 -2.16890701e-11 3.91563676e-15 -2.86759311e-19
+  histo_dbv_eq3=3629 4096 0 50
+
+  # The maximum brightness (DBV) value up to which histogram is active.
+  # This value should match one of the itime_table_brightness values.
+  histo_max_brightness=4096
+  # Minimum change needed for a leakage value to be reported, i.e.,
+  # min_change = MAX(min_change_value, current_leakage_val * min_change_rate)
+  histo_min_change_value=0.01
+  histo_min_change_rate=0.01
+  # Histogram polling interval in ms.
+  histo_polling_interval=50
+  # Fallback luma value to use when histogram returns error (e.g., due to DRM).
+  histo_fallback_luma=128.0
+
++/dev/tmd3733/0/panel-b/prox
+  # BXTALK golden cal value.
+  bxtalk=250
+
++/dev/tmd3733/0/alsp_fusion_info
+  priority=0
+
+# Display info 0.
++/dev/display_info/0
+  # Maximum panel refresh rate.
+  panel_max_rr=120
+  # Link to ALS attached to this display.
+  attached_alsp=/dev/tcs3720/0
+
+# Display info 1.
++/dev/display_info/1
+  # Maximum panel refresh rate.
+  panel_max_rr=120
+  # Link to ALS attached to this display.
+  attached_alsp=/dev/tmd3733/0
+
+# Virtual ALSP
++/dev/virtual_alsp/0
+  als_0_display_id=0
+  als_1_display_id=1
+  prox_0_display_id=1
+
+# RAINBOW (VD6282)
++/dev/vd6282/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x20
+  pdm_id=4
+  pcm_rate_hz=16000
++/dev/vd6282/0/spectral
+  auto_gain=1
+  # On-change thresholds for each color channel c: min_delta[c] ratio[c].
+  # A value of -1 disables a threshold.
+  # Change events are determined as follows:
+  #  last_count[c]: the last sample count for each channel c
+  #  count[c]: the current sample count for each channel c
+  #   => delta[c] = abs(last_count[c] - count[c])
+  #  thresh[c] = max(min_delta[c], last_count[c] * ratio[c])
+  #  if delta[c] > thresh[c] for any channel c:
+  #    Send a new sample with all current channel counts
+  r_change_thresh=-1 -1
+  g_change_thresh=100 0.1
+  b_change_thresh=-1 -1
+  c1_change_thresh=100 0.1
+  c2_change_thresh=-1 -1
+  ir_change_thresh=-1 -1
++/dev/vd6282/0/rls
+  fix_fac_cal=1
++/dev/vd6282/0/flicker
+  auto_gain=1
+  # Flicker capture modes:
+  #  0: Normal (on-chip flicker processing, PDM converting to PCM).
+  #  1: Direct1 (on-chip direct passthrough, PDM bypass, driver PCM converting).
+  #  2: Direct2 (on-chip direct passthrough, PDM converting to PCM)
+  flicker_mode=2
+# Camera VSYNC
++/dev/camera_vsync/0 # rear telephoto
+  intr_id=56
+  intr_trigger_type=2
++/dev/camera_vsync/1 # rear ultra-wide-angle
+  intr_id=57
+  intr_trigger_type=2
++/dev/camera_vsync/2 # inner front
+  intr_id=58
+  intr_trigger_type=2
++/dev/camera_vsync/3 # rear
+  intr_id=59
+  intr_trigger_type=2
++/dev/camera_vsync/4 # outer front
+  intr_id=63
+  intr_trigger_type=2
+
+# Hall Effect (DRV5032)
++/dev/drv5032/0
+  gpio_id=gpio39
+  intr_id=16
+  priority=0
+  name=DRV5032 Hall Effect Sensor 0
++/dev/drv5032/1
+  priority=1
+  name=DRV5032 Hall Effect Sensor 1
+
+# SX932X Sar.
++/dev/sx932x/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x28
+  intr_id=38
+
+  # SX932X registers' field. All of these set with decimal value
+  # GnrlCtrl0(0x10), [4:0], SCANPERIOD   #(HEX)0x16 = (Binary)10110    => 100 ms.
+  scan_period=22
+  # AfeCtrl3(0x23),  [0:0], ARANGE01     #(HEX)0x01 = (Binary)1        => Large (+/-2.65pF).
+  analog_range01=1
+  # AfeCtrl4(0x24),  [2:0], RESOLUTION01 #(HEX)0x05 = (Binary)5        => 256.
+  resolution01=5
+  # AfeCtrl6(0x26),  [0:0], ARANGE23     #(HEX)0x01 = (Binary)1        => Large (+/-2.65pF).
+  analog_range23=1
+  # AfeCtrl7(0x27),  [2:0], RESOLUTION23 #(HEX)0x05 = (Binary)5        => 256.
+  resolution23=5
+  # AfeCtrl9(0x2D),  [3:0], AGAIN        #(HEX)0x0b = (Binary)1011     => 0.768.
+  analog_gain=11
+  # ProxCtrl0(0x30), [5:3], GAIN01       #(HEX)0x10 = (Binary)1000     => x2.
+  gain01=16
+  # ProxCtrl0(0x30), [2:0], RAWFILT01    #(HEX)0x03 = (Binary)010      => 1-1/4.
+  raw_filt01=2
+  # ProxCtrl1(0x31), [5:3], GAIN23       #(HEX)0x10 = (Binary)1000     => x2.
+  gain23=16
+  # ProxCtrl1(0x31), [2:0], RAWFILT23    #(HEX)0x03 = (Binary)001      => 1-1/2.
+  raw_filt23=1
+  # ProxCtrl6(0x36), [7:0], PROXTHRESH01 #(HEX)0x19 = (Binary)00011001 => (25^2)/2 = 312.5
+  prox_threshold01=25
+  # ProxCtrl7(0x37), [7:0], PROXTHRESH23 #(HEX)0x19 = (Binary)00011001 => (25^2)/2 = 312.5
+  prox_threshold23=25
+
+  # Hall sensor ID used for phone case detection of on sx932x.
+  # TODO(b/400327608) remove hall_sensor_id after P24 AoC been updated.
+  hall_sensor_id=1
+  case_hall_sensor_id=1
+  # AdvCtrl16(0x50), [3:2], STEADYWINDOW   #(HEX)0x00 = (Binary)0    => 4 samples.
+  steady_window=0
+  # AdvCtrl17(0x51), [7:4], STEADYMAXVAR01 #(HEX)0x08 = (Binary)1000 => 128.
+  steady_max_var01=8
+  # AdvCtrl17(0x51), [3:0], STEADYMAXVAR23 #(HEX)0x08 = (Binary)1000 => 128.
+  steady_max_var23=8
++/dev/sx932x/0/ph1
+  name=SX932X SAR Sensor 0
+  priority=0
++/dev/sx932x/0/ph2
+  name=SX932X SAR Sensor 1
+  priority=1
+
+# TOUCH Outer
++/dev/s3908/0
+  bus_name=spi1
+  bus_freq_hz=10000000
+  spi_mode=0
+  spi_word_size=8
+  cs_gpio=56
+  cs_clock_delay_us=1
+  gesture_type=1
+  intr_id=15
+  intr_type=1
+  panel_height_pixel=2424
+  panel_height_mm=146
+  single_tap_min_x=910
+  single_tap_max_x=9890
+  single_tap_min_y=1790
+  single_tap_max_y=22450
+  single_tap_min_frame_count=3
+  single_tap_max_frame_count=31
+  single_press_motion_tolerance=255
+  single_press_max_touch_size=40
+  priority=0
+  hidden=1
+  name=Outer Touch Gesture Sensor
+
+# TOUCH Inner
++/dev/gtx/0
+  bus_name=spi2
+  bus_freq_hz=10000000
+  spi_mode=0
+  spi_word_size=8
+  cs_gpio=67
+  gesture_type=1
+  intr_id=14
+  intr_type=3
+  panel_height_pixel=2152
+  panel_height_mm=149
+  single_tap_min_x=74
+  single_tap_max_x=2001
+  single_tap_min_y=74
+  single_tap_max_y=2077
+  single_tap_min_frame_count=3
+  single_tap_max_frame_count=31
+  single_press_motion_tolerance=255
+  single_press_max_touch_size=50
+  super_resolution_auto_scale=1
+  priority=1
+  hidden=0
+  name=Inner Touch Gesture Sensor
+
+# TBN
++/tbn
+  tbn_mode=2
+  device_count=2
+
+# VSC.
++/vsc
+  hinge_angle_enable=1
+  hinge_angle_cover_rotation=-1 0 0 0 1 0 0 0 -1
+  virtual_alsp=1
+  single_tap_enable=1
+
+# Magnetic accessory detector.
++/vsc/magaccessory_detector
+
+# Auto brightness.
++/vsc/auto_brightness
+  dual_als=1
+  # float[3]={LuxToEnter, LuxToExit, RemappedLux}
+  lux_remap=-1.0 -1.0 -1.0
+  # float[3]={MinDelta, MaxDelta, LuxRatio}
+  lux_debounce_up=1 5000 0.15
+  lux_debounce_down=0.1 5000 0.1
+  # ALS[2], RLS[2], Fusion[2], RearALS[2] each containing <maxSampleAgeMsec> and <maxNumOfSamples>
+  filter_configs=500 60 500 30 500 90 500 60
+  # float[3]={MaxNumOfSamplesToFilter, minLuxThresh, luxRatio}, set to 0 to disable
+  als_startup_filter=0 0 0
+  # float[3]={zeroPoint, onePoint, endPoint}, set to 0 to disable
+  rear_lux_downscaling=0 0 0
+  # Select fusion algorithm.
+  # 0: Classic (old, using lower-lux scaling).
+  # 1: Simple (new, avoids issues of classic)
+  fusion_algo_select=1
+  # Configuration of simple fusion algorithm.
+  # float[3]={N, D, B}
+  #   [N]exit-night: sets the lux threshold below which is considered night.
+  #   [D]enter-day: sets the lux threshold above which is considered day.
+  #     i.e., lux <= N is night, N < lux < D is transition, lux >= D is day.
+  #   [B]very-low-light-boost: Additional boost factor, needs to be > 1.
+  simple_fusion_algo_config=20 40 1.25
+
+# Binned brightness.
++/vsc/binned_brightness
+  dual_als=1
+
+# Lift To Wake
++/vsc/lift_to_wake
+  enable_landscape_mode=1
+
++/vsc/fusion_prox_voice_call
+  # 0: Normal (fusion of Optical Prox with other sensors)
+  # 1: Optical Prox Passthrough (skips all other fusion logic)
+  # 2: Optical Prox Overwrite (runs fusion logic but outputs Optical Prox state)
+  mode=0
+
+  # Timeout when in Interactive and FalseFar state before switching to Near.
+  # Default: 1000ms
+  interactive_false_far_timeout_ms=1000
+
+  # Horizontal angle between device and earth to enter and exit Interactive
+  # state. Angles need to be less than 90 degrees, and exit >= enter.
+  # Defaults: 45 (enter) and 50 (exit)
+  interactive_thresh_angles=45 50
+
+  # Minimum horizontal angle between device and earth to qualify a valid
+  # To-Ear gesture. Should be larger than the interactive exit angle.
+  # Default: 60
+  to_ear_thresh_angle=60
+
+  # Change in horizontal angle between device and earth to trigger a From-Ear
+  # event. The initial angle to compare against is taken on a To-Ear event.
+  # Default: 30
+  from_ear_delta_thresh_angle=30
+
++/vsc/aad_prox
+  # 0: Normal (fusion of Optical Prox with ultrasound presence detector)
+  # 1: Optical Prox Passthrough (skips all other fusion logic)
+  mode=1

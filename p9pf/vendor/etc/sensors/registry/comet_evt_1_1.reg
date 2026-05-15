@@ -1,0 +1,302 @@
+#
+# Comet sensor device configuration registry script for the evt 1.1 stage.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-zuma-pro
+#
+
+?+0x63110:0xFFFFFFF0
+
+#
+# Record reg_script.
+#
+
++/
+reg_script=comet_evt_1_1.reg
+
+#
+# Sensors
+#
+
+# IMU 1 (ICM45631)
++/dev/icm45631/0/accel
+  fac_cal_transform=0.99732 -0.00487 0.00845 0.00323 0.99758 -0.00483 -0.00698 0.00482 0.99776 0.01606 -0.02746 -0.00007
+  temp=26.59049
+  temp_sensitivity=-0.00079 -0.00101 0.00054
++/dev/icm45631/0/gyro
+  fac_cal_transform=1.00098 -0.00367 0.00833 0.00520 1.00264 -0.00518 -0.00873 0.00504 0.99719 -0.00180 -0.00085 -0.00028
+  temp=26.59049
+  temp_sensitivity=0.00002 -0.00002 -0.00001
+
+# IMU 2 (ICM45631)
++/dev/icm45631/1/accel
+  fac_cal_transform=0.99720 0.00019 0.00653 -0.00169 0.99753 -0.00337 -0.00492 0.00407 0.99701 -0.02168 -0.01847 -0.06732
+  temp=25.04551
+  temp_sensitivity=0.00030 -0.00102 0.00281
++/dev/icm45631/1/gyro
+  fac_cal_transform=0.99879 0.00131 0.00564 -0.00009 1.00285 -0.00390 -0.00658 0.00356 0.99751 0.00238 0.00012 -0.00093
+  temp=25.04551
+  temp_sensitivity=0.00001 -0.00002 -0.00004
+
+# MAG 1 (MMC5616)
++/dev/mmc5616/0
+  priority=1
++/dev/mmc5616/0/mag
+  orientation_transform=1 -2 -3
+  fac_cal_transform_lid_det=0.9504 -0.0586 0.0276 -0.0371 0.9115 0.0581 -0.0269 -0.0611 1.0365 0 0 0
+  fac_cal_transform_lid_rel=0.9471 -0.0127 0.0555 -0.0590 0.8780 0.0706 -0.0395 -0.0491 1.0378 0 0 0
+  hidden=1
+  curr_comp_factors=2.04 0.36 2.79
+  curr_comp_factors_fast=0.62 0.20 0.91
+  curr_comp_factors_lid=-0.04 -0.24 1.87
+  curr_comp_factors_lid_fast=-0.37 -0.14 0.48
+
+# MAG 2 (MMC5616)
++/dev/mmc5616/1
+  priority=2
++/dev/mmc5616/1/mag
+  orientation_transform=-2 -1 -3
+  fac_cal_transform_lid_det=0.9817 -0.0128 0.0546 0.1192 0.7692 0.0067 0.0293 0.0115 1.0753 0 0 0
+  fac_cal_transform_lid_rel=0.9471 -0.0053 0.0333 0.1121 0.7798 0.0041 0.0127 -0.0175 1.0619 0 0 0
+  hidden=1
+  curr_comp_factors=-6.71 0.04 5.26
+  curr_comp_factors_fast=-2.95 -0.03 1.67
+  curr_comp_factors_lid=-8.27 -3.35 9.37
+  curr_comp_factors_lid_fast=-3.95 -1.79 3.76
+
+# BARO (ICP20100)
++/dev/icm20100/0/baro
+  fac_cal_transform=1.0 -0.11945
+  temp=30.51369
+  temp_sensitivity=-0.00256
+
+# Fusion mag.
++/dev/fusion_mag/0
+mag_cal_matrix=0.99422 0.32192 0.07930 0.00578 -0.32192 -0.07930 0.14356 0.61087 -0.03467 -0.14356 0.38913 0.03467 0.25546 0.04652 0.93506 -0.25546 -0.04652 0.06494
+
+# ALSP 1 (TCS3720)
++/dev/tcs3720/0
+  start_delay_ns=2703940
+  start_delay_2_ns=1871370
+
++/dev/tcs3720/0/als
+  lux_scale=11.15
+  c_coef=1.89815613
+  r_coef=-1.48512001
+  g_coef=1.63646298
+  b_coef=-2.93609164
+  itime_table_brightness=556 764 1438 1970 2988 4096
+  itime_table=2765600 2020000 600000 600000 600000 600000
+  max_gain_table=12 12 12 12 12 12
+
+  clear_gain12_ratio=0.26721
+  red_gain12_ratio=0.27005
+  green_gain12_ratio=0.27794
+  blue_gain12_ratio=0.28008
+
+  clear_gain11_ratio=0.50801
+  red_gain11_ratio=0.50943
+  green_gain11_ratio=0.51541
+  blue_gain11_ratio=0.51661
+
+  clear_gain10_ratio=1.0
+  red_gain10_ratio=1.0
+  green_gain10_ratio=1.0
+  blue_gain10_ratio=1.0
+
+  clear_gain9_ratio=2.00395
+  red_gain9_ratio=2.00741
+  green_gain9_ratio=1.99966
+  blue_gain9_ratio=1.99905
+
+  clear_gain8_ratio=4.01124
+  red_gain8_ratio=4.01694
+  green_gain8_ratio=3.99458
+  blue_gain8_ratio=3.99258
+
+  clear_gain7_ratio=7.72236
+  red_gain7_ratio=7.73297
+  green_gain7_ratio=7.68314
+  blue_gain7_ratio=7.67442
+
+  clear_gain6_ratio=15.59996
+  red_gain6_ratio=15.63037
+  green_gain6_ratio=15.53778
+  blue_gain6_ratio=15.5360
+
++/dev/tcs3720/0/panel-b
+  start_delay_ns=2305630
+
++/dev/tcs3720/0/panel-b/als
+  lux_scale=12.95142
+  itime_table_brightness=637 1004 2186 2774 3490 4096
+  itime_table=2765600 2020000 600000 600000 600000 600000
+  max_gain_table=12 12 12 12 12 12
+
+  clear_gain12_ratio=0.27238
+  red_gain12_ratio=0.27273
+  green_gain12_ratio=0.28264
+  blue_gain12_ratio=0.28594
+
+  clear_gain11_ratio=0.51116
+  red_gain11_ratio=0.51068
+  green_gain11_ratio=0.51764
+  blue_gain11_ratio=0.52013
+
+  clear_gain10_ratio=1.0
+  red_gain10_ratio=1.0
+  green_gain10_ratio=1.0
+  blue_gain10_ratio=1.0
+
+  clear_gain9_ratio=1.99908
+  red_gain9_ratio=2.00271
+  green_gain9_ratio=1.99351
+  blue_gain9_ratio=1.99147
+
+  clear_gain8_ratio=3.99106
+  red_gain8_ratio=4.00205
+  green_gain8_ratio=3.97522
+  blue_gain8_ratio=3.96977
+
+  clear_gain7_ratio=7.66278
+  red_gain7_ratio=7.68589
+  green_gain7_ratio=7.62050
+  blue_gain7_ratio=7.61815
+
+  clear_gain6_ratio=15.47961
+  red_gain6_ratio=15.53921
+  green_gain6_ratio=15.42210
+  blue_gain6_ratio=15.44242
+
+# ALSP 2 (TMD3733)
++/dev/tmd3733/0
+  vsync_delay_ns=3830560
+
++/dev/tmd3733/0/als
+  lux_scale=4.81126
+  c_coef=1
+  r_coef=-0.84157532
+  g_coef=0.52477267
+  b_coef=-0.64698316
+  itime_table_brightness=575 908 1115 2565 3427 4096
+  itime_table=1600000 1000000 300000 300000 300000 1600000
+  max_gain_table=11 10 10 10 10 10
+  # int{<hard_stop> <C_boost> <R_boost> <G_boost> <B_boost>}
+  # max_gain[color] = MIN(hard_stop, max_gain_table[brightness] +
+  #                                  max_gain_chan_boost[color])
+  max_gain_chan_boost=11 0 1 1 1
+  # Step-size (in EM slots) for each rotation.
+  rotation_step_size=1
+
+  clear_gain12_ratio=0.0625
+  red_gain12_ratio=0.0625
+  green_gain12_ratio=0.0625
+  blue_gain12_ratio=0.0625
+
+  clear_gain11_ratio=0.12656
+  red_gain11_ratio=0.12567
+  green_gain11_ratio=0.12607
+  blue_gain11_ratio=0.12583
+
+  clear_gain10_ratio=0.25148
+  red_gain10_ratio=0.25098
+  green_gain10_ratio=0.25127
+  blue_gain10_ratio=0.25099
+
+  clear_gain9_ratio=0.50117
+  red_gain9_ratio=0.50068
+  green_gain9_ratio=0.50089
+  blue_gain9_ratio=0.50068
+
+  clear_gain8_ratio=1.0
+  red_gain8_ratio=1.0
+  green_gain8_ratio=1.0
+  blue_gain8_ratio=1.0
+
+  clear_gain7_ratio=1.99574
+  red_gain7_ratio=1.99768
+  green_gain7_ratio=1.99804
+  blue_gain7_ratio=1.99807
+
+  clear_gain6_ratio=3.98664
+  red_gain6_ratio=3.99297
+  green_gain6_ratio=3.99254
+  blue_gain6_ratio=3.99275
+
++/dev/tmd3733/0/prox
+  pulse_count=4
+  vcsel_ma=10
+  far_threshold=25
+  near_threshold=70
+  pulse_len_us=128
+  filter_len=4
+  skip_count=0
+  pdata_scale=1.0
+  gain1=8
+  gain2=2.5
+
++/dev/tmd3733/0/panel-b
+  vsync_delay_ns=3781360
+
++/dev/tmd3733/0/panel-b/als
+  lux_scale=4.17880
+  itime_table_brightness=637 1180 1181 2565 3939 4096
+  itime_table=1600000 1600000 300000 300000 300000 1600000
+  max_gain_table=11 10 10 10 10 10
+
+  clear_gain12_ratio=0.0625
+  red_gain12_ratio=0.0625
+  green_gain12_ratio=0.0625
+  blue_gain12_ratio=0.0625
+
+  clear_gain11_ratio=0.12544
+  red_gain11_ratio=0.12505
+  green_gain11_ratio=0.12547
+  blue_gain11_ratio=0.12568
+
+  clear_gain10_ratio=0.25084
+  red_gain10_ratio=0.25034
+  green_gain10_ratio=0.25073
+  blue_gain10_ratio=0.25080
+
+  clear_gain9_ratio=0.50071
+  red_gain9_ratio=0.50027
+  green_gain9_ratio=0.50052
+  blue_gain9_ratio=0.50053
+
+  clear_gain8_ratio=1.0
+  red_gain8_ratio=1.0
+  green_gain8_ratio=1.0
+  blue_gain8_ratio=1.0
+
+  clear_gain7_ratio=1.99564
+  red_gain7_ratio=1.99823
+  green_gain7_ratio=1.99762
+  blue_gain7_ratio=1.99728
+
+  clear_gain6_ratio=3.99871
+  red_gain6_ratio=3.99448
+  green_gain6_ratio=3.99429
+  blue_gain6_ratio=3.99375
+
+# RAINBOW (VD6282)
++/dev/vd6282/0/spectral
+  # Golden values for calibration.
+  golden_rals_r=1163.646585
+  golden_rals_g=1297.843559
+  golden_rals_b=322.306958
+  golden_rals_clr1=5753.366469
+  golden_rals_ir=2875.120369
+  golden_rals_clr2=5825.006990
++/dev/vd6282/0/rls
+  lux_scale=94.995733
+
+# Hall Effect (DRV5032)
++/dev/drv5032/1
+  gpio_id=gpio89
+  intr_id=46

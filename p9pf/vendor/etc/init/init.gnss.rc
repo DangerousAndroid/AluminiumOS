@@ -1,0 +1,38 @@
+on post-fs-data
+# Exynos Data folder
+    mkdir /data/vendor/gps 0771 system system
+    mkdir /data/vendor/gps/logs 0775 gps system
+    mkdir /data/vendor/gps/overlay 0777 gps system
+
+# Directory for GPS
+    rm /data/system/gps/gps_started
+    rm /data/system/gps/glonass_started
+    rm /data/system/gps/beidou_started
+    rm /data/system/gps/smd_started
+    rm /data/system/gps/sv_cno.info
+
+on boot
+# Permissions for gnss
+    chmod 0660 /dev/gnss_ipc
+    chown system system /dev/gnss_ipc
+    chmod 0660 /dev/gnss_dump
+    chown system system /dev/gnss_dump
+    chmod 0660 /dev/gnss_boot
+    chown system system /dev/gnss_boot
+    chmod 0660 /sys/devices/platform/gnssif/coredump
+    chown system system /sys/devices/platform/gnssif/coredump
+
+on fs
+# GPS daemon
+service gnssd /vendor/bin/hw/gnssd
+    class main
+    user gps
+    group system inet net_raw wakelock sdcard_rw
+    capabilities BLOCK_SUSPEND
+    ioprio be 0
+    seclabel u:r:gnssd:s0
+
+service slsi_gnss_service /vendor/bin/hw/android.hardware.gnss-service
+    class main
+    user system
+    group system gps

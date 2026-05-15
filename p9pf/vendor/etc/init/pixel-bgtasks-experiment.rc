@@ -1,0 +1,15 @@
+# go/pixel-thermal-bgtasks-experiment
+
+# Set up the experiment.
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.thermal.bgtasks_experiment_is_running="" \
+    && property:vendor.pixel.system.phenotype.Thermal__bg_tasks_exp_enabled=true
+    setprop vendor.thermal.bgtasks_experiment_is_running 1
+    restart vendor.thermal-hal
+
+# Ramp down the experiment, but only if it was running before.
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.thermal.bgtasks_experiment_is_running=1 \
+    && property:vendor.pixel.system.phenotype.Thermal__bg_tasks_exp_enabled=""
+    setprop vendor.thermal.bgtasks_experiment_is_running ""
+    restart vendor.thermal-hal

@@ -1,0 +1,4 @@
+service vendor.google.aam /vendor/bin/hw/vendor.google.aam-service
+    class hal
+    user system
+    group system

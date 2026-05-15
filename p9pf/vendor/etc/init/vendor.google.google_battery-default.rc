@@ -1,0 +1,124 @@
+service google_battery /vendor/bin/hw/vendor.google.google_battery-service
+    class hal
+    user system
+    group system
+
+on property:vendor.all.modules.ready=1 && property:vendor.all.devices.ready=1
+
+    chown system system /sys/class/power_supply/battery/charge_deadline
+    chown system system /sys/class/power_supply/battery/charge_deadline_dryrun
+
+    chown system system /sys/class/power_supply/battery/aacr_state
+    chown system system /sys/class/power_supply/battery/aacr_cycle_max
+    chown system system /sys/class/power_supply/battery/aacr_cycle_grace
+    chown system system /sys/class/power_supply/battery/aacr_min_capacity_rate
+    chown system system /sys/class/power_supply/battery/aacr_cliff_capacity_rate
+    chown system system /sys/class/power_supply/battery/aacr_profile
+    chown system system /sys/class/power_supply/battery/aafv_state
+    chown system system /sys/class/power_supply/battery/aafv_apply_max
+    chown system system /sys/class/power_supply/battery/aafv_max_offset
+    chown system system /sys/class/power_supply/battery/aafv_cliff_cycle
+    chown system system /sys/class/power_supply/battery/aafv_cliff_offset
+    chown system system /sys/class/power_supply/battery/aafv_profile
+    chown system system /sys/class/power_supply/battery/aact_state
+    chown system system /sys/class/power_supply/battery/aact_cv_limits
+    chown system system /sys/class/power_supply/battery/aact_temp_limits
+    chown system system /sys/class/power_supply/battery/aact_chg_ecc
+    chown system system /sys/class/power_supply/battery/aact_profile
+    chown system system /sys/class/power_supply/battery/aacp_version
+    chown system system /sys/class/power_supply/battery/aacp_opt_out
+    chown system system /sys/class/power_supply/battery/aacp_opt_out_cutoff_cycles
+    chown system system /sys/class/power_supply/battery/aacc_chg_profile
+    chown system system /sys/class/power_supply/battery/bd_trickle_enable
+    chown system system /sys/class/power_supply/battery/bd_trickle_recharge_soc
+    chown system system /sys/class/power_supply/battery/bd_trickle_cnt
+    chown system system /sys/class/power_supply/battery/bd_trickle_dry_run
+    chown system system /sys/class/power_supply/battery/bd_trickle_reset_sec
+    chown system system /sys/class/power_supply/battery/bd_trickle_version
+    chown system system /sys/class/power_supply/battery/bd_trickle_rate
+    chown system system /sys/class/power_supply/battery/bd_trickle_cnt_thr
+    chown system system /sys/class/power_supply/battery/health_safety_margin
+    chown system system /sys/class/power_supply/battery/health_algo
+    chown system system /sys/class/power_supply/battery/health_set_cal_mode
+    chown system system /sys/class/power_supply/battery/health_get_cal_state
+    chown system system /sys/class/power_supply/battery/health_set_trend_points
+    chown system system /sys/class/power_supply/battery/health_set_low_boundary
+    chown system system /sys/class/power_supply/battery/csi_stats
+
+    chown system system /sys/class/power_supply/wireless/device/mitigate_threshold
+    chown system system /sys/class/power_supply/wireless/device/rx_fwupdate
+    chown system system /sys/class/power_supply/wireless/device/rx_vertag
+
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_drainto_soc
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_recharge_soc
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_recharge_voltage
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_abs_temp
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_soc
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_temp
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_resume_time
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_trigger_temp
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_trigger_time
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_trigger_voltage
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_temp_enable
+    chown system system /sys/devices/platform/soc/soc:google,charger/bd_temp_dry_run
+
+    chown system system /sys/devices/platform/google,charger/bd_drainto_soc
+    chown system system /sys/devices/platform/google,charger/bd_recharge_soc
+    chown system system /sys/devices/platform/google,charger/bd_recharge_voltage
+    chown system system /sys/devices/platform/google,charger/bd_resume_abs_temp
+    chown system system /sys/devices/platform/google,charger/bd_resume_soc
+    chown system system /sys/devices/platform/google,charger/bd_resume_temp
+    chown system system /sys/devices/platform/google,charger/bd_resume_time
+    chown system system /sys/devices/platform/google,charger/bd_trigger_temp
+    chown system system /sys/devices/platform/google,charger/bd_trigger_time
+    chown system system /sys/devices/platform/google,charger/bd_trigger_voltage
+    chown system system /sys/devices/platform/google,charger/bd_temp_enable
+    chown system system /sys/devices/platform/google,charger/bd_temp_dry_run
+
+    chown system system /sys/devices/platform/google,charger/charge_start_level
+    chown system system /sys/devices/platform/google,charger/charge_stop_level
+    chown system system /sys/devices/platform/soc/soc:google,charger/charge_start_level
+    chown system system /sys/devices/platform/soc/soc:google,charger/charge_stop_level
+
+    chown system system /sys/devices/platform/google,charger/dd_charge_start_level
+    chown system system /sys/devices/platform/google,charger/dd_charge_stop_level
+    chown system system /sys/devices/platform/google,charger/dd_settings
+    chown system system /sys/devices/platform/google,charger/dd_state
+
+    chown system system /sys/devices/platform/maxim,max77779fwu/enable_update
+    chown system system /sys/devices/platform/maxim,max77779fwu/update_firmware
+
+    chown system system /sys/class/power_supply/battery/charge_to_limit
+    chown system system /sys/class/power_supply/battery/force_fcr_update_ops
+
+    chown system system /sys/class/power_supply/maxfg/fix_cycle_count
+    chown system system /sys/class/power_supply/maxfg_base/fix_cycle_count
+
+    chown system system /sys/class/power_supply/maxfg/aafv_config
+    chown system system /sys/class/power_supply/maxfg_base/aafv_config
+    chown system system /sys/class/power_supply/max77779fg/aafv_config
+    chown system system /sys/class/power_supply/maxfg/bypass_chargelimit_fcn_delta
+    chown system system /sys/class/power_supply/maxfg_base/bypass_chargelimit_fcn_delta
+    chown system system /sys/class/power_supply/max77779fg/bypass_chargelimit_fcn_delta
+    chown system system /sys/class/power_supply/maxfg/bypass_chargelimit_cycle_delta
+    chown system system /sys/class/power_supply/maxfg_base/bypass_chargelimit_cycle_delta
+    chown system system /sys/class/power_supply/max77779fg/bypass_chargelimit_cycle_delta
+    chown system system /sys/class/power_supply/maxfg/bypass_chargelimit_ops
+    chown system system /sys/class/power_supply/maxfg_base/bypass_chargelimit_ops
+    chown system system /sys/class/power_supply/max77779fg/bypass_chargelimit_ops
+
+    chown system system /sys/class/power_supply/battery/capacity_level_drain_sample_period
+    chown system system /sys/class/power_supply/battery/capacity_level_drain_rate_threshold
+    chown system system /sys/class/power_supply/battery/capacity_level_chg_speed_threshold
+    chown system system /sys/class/power_supply/battery/capacity_level_thermal_threshold
+    chown system system /sys/class/power_supply/battery/capacity_level_bd_threshold
+
+    chown system system /sys/class/power_supply/battery/bpst_fail_threshold
+    chown system system /sys/class/power_supply/battery/bpst_chg_rate
+    chown system system /sys/class/power_supply/battery/bpst_reset
+
+    chown system system /sys/class/power_supply/battery/ttx_from_soc
+    chown system system /sys/class/power_supply/battery/ttx_to_soc
+    chown system system /sys/class/power_supply/battery/ttx_time
+
+    chown system system /sys/class/power_supply/maxfg_secondary/stuck_reset_retry

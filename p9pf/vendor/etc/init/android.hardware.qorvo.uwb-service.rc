@@ -1,0 +1,7 @@
+service vendor.uwb_hal /vendor/bin/hw/android.hardware.qorvo.uwb-service
+    class hal
+    user uwb
+    group uwb
+
+on post-fs-data
+    mkdir /data/vendor/uwb 0750 uwb uwb

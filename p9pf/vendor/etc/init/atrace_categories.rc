@@ -1,0 +1,244 @@
+# Sets permission for vendor ftrace events on late-init
+on late-init
+    # gfx trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_cmd_release_bw/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_cmd_release_bw/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_encoder_underrun/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_encoder_underrun/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_evtlog/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_evtlog/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_calc_crtc/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_calc_crtc/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_crtc_update/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_crtc_update/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_set_ot/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_set_ot/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_set_qos_luts/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_set_qos_luts/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_uidle_cntr/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_uidle_cntr/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_uidle_status/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_uidle_status/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/sde_perf_update_bus/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/sde_perf_update_bus/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/sde/tracing_mark_write/enable
+    chmod 0666 /sys/kernel/tracing/events/sde/tracing_mark_write/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dpu/tracing_mark_write/enable
+    chmod 0666 /sys/kernel/tracing/events/dpu/tracing_mark_write/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/g2d/g2d_perf_update_qos/enable
+    chmod 0666 /sys/kernel/tracing/events/g2d/g2d_perf_update_qos/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/g2d/tracing_mark_write/enable
+    chmod 0666 /sys/kernel/tracing/events/g2d/tracing_mark_write/enable
+    # memory trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/fastrpc/fastrpc_dma_stat/enable
+    chmod 0666 /sys/kernel/tracing/events/fastrpc/fastrpc_dma_stat/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dmabuf_heap/dma_heap_stat/enable
+    chmod 0666 /sys/kernel/tracing/events/dmabuf_heap/dma_heap_stat/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/cma/cma_alloc_start/enable
+    chmod 0666 /sys/kernel/tracing/events/cma/cma_alloc_start/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/cma/cma_alloc_info/enable
+    chmod 0666 /sys/kernel/tracing/events/cma/cma_alloc_info/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/cma/cma_alloc_finish/enable
+    chmod 0666 /sys/kernel/tracing/events/cma/cma_alloc_finish/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/kmem/mm_alloc_contig_migrate_range_info/enable
+    chmod 0666 /sys/kernel/tracing/events/kmem/mm_alloc_contig_migrate_range_info/enable
+    # ion trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/kmem/ion_alloc_buffer_start/enable
+    chmod 0666 /sys/kernel/tracing/events/kmem/ion_alloc_buffer_start/enable
+    # sched trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/scm/scm_call_start/enable
+    chmod 0666 /sys/kernel/tracing/events/scm/scm_call_start/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/scm/scm_call_end/enable
+    chmod 0666 /sys/kernel/tracing/events/scm/scm_call_end/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/systrace/0/enable
+    chmod 0666 /sys/kernel/tracing/events/systrace/0/enable
+    # freq trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/msm_bus/bus_rules_matches/enable
+    chmod 0666 /sys/kernel/tracing/events/msm_bus/bus_rules_matches/enable
+    # cpm trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/cpm_trace/param_set_value_cpm/enable
+    chmod 0666 /sys/kernel/tracing/events/cpm_trace/param_set_value_cpm/enable
+    # thermal_tj trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/lmh/lmh_dcvs_freq/enable
+    chmod 0666 /sys/kernel/tracing/events/lmh/lmh_dcvs_freq/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_cpu_pressure/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_cpu_pressure/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_allow_max_power/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_allow_max_power/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_acpm_bulk/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_acpm_bulk/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_acpm_high_overhead/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_acpm_high_overhead/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_arm_update/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_arm_update/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_cpu_pause/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_cpu_pause/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_hard_limit_cdev_update/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_hard_limit_cdev_update/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_power_allocator/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_power_allocator/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_power_allocator_pid/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_power_allocator_pid/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_power_cpu_get_power/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_power_cpu_get_power/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_power_cpu_limit/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_power_cpu_limit/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_power_gpu_get_power/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_power_gpu_get_power/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_power_gpu_limit/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_power_gpu_limit/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/thermal_exynos_tpu_pause/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/thermal_exynos_tpu_pause/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos/vendor_cdev_update/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos/vendor_cdev_update/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos_gpu/thermal_exynos_power_gpu_get_power/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos_gpu/thermal_exynos_power_gpu_get_power/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos_gpu/thermal_exynos_power_gpu_limit/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos_gpu/thermal_exynos_power_gpu_limit/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/thermal_exynos_gpu/vendor_cdev_update/enable
+    chmod 0666 /sys/kernel/tracing/events/thermal_exynos_gpu/vendor_cdev_update/enable
+    # camera trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/lwis/tracing_mark_write/enable
+    chmod 0666 /sys/kernel/tracing/events/lwis/tracing_mark_write/enable
+    # usb trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_alloc_request/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_alloc_request/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_complete_trb/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_complete_trb/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_ctrl_req/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_ctrl_req/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_ep_dequeue/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_ep_dequeue/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_ep_queue/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_ep_queue/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_event/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_event/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_free_request/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_free_request/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_gadget_ep_cmd/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_gadget_ep_cmd/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_gadget_ep_disable/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_gadget_ep_disable/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_gadget_ep_enable/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_gadget_ep_enable/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_gadget_generic_cmd/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_gadget_generic_cmd/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_gadget_giveback/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_gadget_giveback/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_prepare_trb/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_prepare_trb/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_set_prtcap/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_set_prtcap/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_alloc_request/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_alloc_request/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_clear_halt/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_clear_halt/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_dequeue/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_dequeue/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_disable/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_disable/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_enable/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_enable/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_fifo_flush/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_fifo_flush/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_fifo_status/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_fifo_status/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_free_request/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_free_request/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_queue/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_queue/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_set_halt/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_set_halt/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_set_maxpacket_limit/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_set_maxpacket_limit/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_ep_set_wedge/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_ep_set_wedge/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_activate/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_activate/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_clear_selfpowered/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_clear_selfpowered/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_connect/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_connect/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_deactivate/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_deactivate/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_disconnect/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_disconnect/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_frame_number/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_frame_number/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_giveback_request/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_giveback_request/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_set_remote_wakeup/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_set_remote_wakeup/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_set_selfpowered/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_set_selfpowered/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_set_state/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_set_state/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_vbus_connect/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_vbus_connect/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_vbus_disconnect/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_vbus_disconnect/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_vbus_draw/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_vbus_draw/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/gadget/usb_gadget_wakeup/enable
+    chmod 0666 /sys/kernel/tracing/events/gadget/usb_gadget_wakeup/enable
+    # usb_verbose trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_readl/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_readl/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/dwc3/dwc3_writel/enable
+    chmod 0666 /sys/kernel/tracing/events/dwc3/dwc3_writel/enable
+    # fwtp trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/fwtp_ftrace/fwtp_perfetto_counter/enable
+    chmod 0666 /sys/kernel/tracing/events/fwtp_ftrace/fwtp_perfetto_counter/enable
+# Sets permission for vendor ftrace events on boot
+on boot
+    # gfx trace points
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/gpu_power_state/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/gpu_power_state/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_alloc/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_alloc/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_free/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_free/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_report/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_report/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_report_gpu_mem/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_report_gpu_mem/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_report_pressure/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_report_pressure/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_trim/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_trim/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_jit_trim_from_region/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_jit_trim_from_region/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_job_slots_event/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_job_slots_event/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_mmu_page_fault_grow/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_mmu_page_fault_grow/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_page_fault_insert_pages/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_page_fault_insert_pages/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_pm_status/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_pm_status/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_total_alloc_pages_change/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_total_alloc_pages_change/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/sysgraph/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/sysgraph/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/sysgraph_gpu/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/sysgraph_gpu/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_KCPU_CQS_SET/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_KCPU_CQS_SET/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_KCPU_CQS_WAIT_BEGIN/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_KCPU_CQS_WAIT_BEGIN/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/mali/mali_KCPU_CQS_WAIT_END/enable
+    chmod 0666 /sys/kernel/tracing/events/mali/mali_KCPU_CQS_WAIT_END/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/power/gpu_frequency/enable
+    chmod 0666 /sys/kernel/tracing/events/power/gpu_frequency/enable
+    chmod 0666 /sys/kernel/debug/tracing/events/power/gpu_work_period/enable
+    chmod 0666 /sys/kernel/tracing/events/power/gpu_work_period/enable
+    # memory trace points
+    # ion trace points
+    # sched trace points
+    # freq trace points
+    # cpm trace points
+    # thermal_tj trace points
+    # camera trace points
+    # usb trace points
+    # usb_verbose trace points
+    # fwtp trace points

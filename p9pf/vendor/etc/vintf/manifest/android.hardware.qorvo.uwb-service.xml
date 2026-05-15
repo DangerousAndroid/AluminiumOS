@@ -1,0 +1,10 @@
+<!--
+    Input:
+        vendor/qorvo/uwb/qm35-hal/hal/android.hardware.qorvo.uwb-service.xml
+-->
+<manifest version="9.0" type="device">
+    <hal format="aidl">
+        <name>android.hardware.uwb</name>
+        <fqname>IUwb/default</fqname>
+    </hal>
+</manifest>

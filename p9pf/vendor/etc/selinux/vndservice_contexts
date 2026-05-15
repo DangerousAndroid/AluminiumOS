@@ -1,0 +1,26 @@
+#line 50 "system/sepolicy/flagging/flagging_macros"
+
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/vndservice_contexts/android_common/comet/newline"
+
+#line 1 "system/sepolicy/vendor/vndservice_contexts"
+manager                 u:object_r:service_manager_vndservice:s0
+*                       u:object_r:default_android_vndservice:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/vndservice_contexts/android_common/comet/newline"
+
+#line 1 "device/google/gs-common/display/sepolicy/exynos/vndservice_contexts"
+displaycolor          u:object_r:vendor_displaycolor_service:s0
+
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/vndservice_contexts/android_common/comet/newline"
+
+#line 1 "device/google/gs-common/gsc/sepolicy/vndservice_contexts"
+android.hardware.citadel.ICitadeld  u:object_r:citadeld_service:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/vndservice_contexts/android_common/comet/newline"
+
+#line 1 "hardware/google/pixel-sepolicy/powerstats/vndservice_contexts"
+power.stats-vendor                  u:object_r:hal_power_stats_vendor_service:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/vndservice_contexts/android_common/comet/newline"
+
+#line 1 "device/google/zumapro-sepolicy/vendor/vndservice_contexts"
+Exynos.HWCService     u:object_r:vendor_surfaceflinger_vndservice:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/vndservice_contexts/android_common/comet/newline"
+

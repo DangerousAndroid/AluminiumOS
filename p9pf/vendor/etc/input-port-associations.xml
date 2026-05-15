@@ -1,0 +1,5 @@
+<ports>
+<port display="0" input="goodix_ts0" />
+<port display="1" input="goodix_ts1" />
+<port display="1" input="synaptics_tcm/touch_input" />
+</ports>

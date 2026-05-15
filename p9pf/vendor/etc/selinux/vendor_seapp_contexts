@@ -1,0 +1,13 @@
+user=_app seinfo=platform name=com.android.ramdump domain=ramdump_app type=app_data_file levelFrom=all
+user=_app seinfo=platform name=com.google.googlecbrs domain=cbrs_setup_app type=app_data_file levelFrom=user
+user=_app isPrivApp=true seinfo=mds name=com.google.mds domain=modem_diagnostic_app type=app_data_file levelFrom=user
+user=_app isPrivApp=true seinfo=platform name=com.google.mds domain=modem_diagnostic_app type=app_data_file levelFrom=user
+user=system seinfo=platform name=com.samsung.slsi.telephony.silentlogging domain=vendor_telephony_silentlogging_app levelFrom=all
+user=system seinfo=platform name=com.samsung.slsi.telephony.silentlogging:remote domain=vendor_silentlogging_remote_app levelFrom=all
+user=system seinfo=platform name=com.samsung.slsi.sysdebugmode domain=vendor_telephony_debug_app levelFrom=all
+user=system seinfo=platform name=com.samsung.slsi.telephony.testmode domain=vendor_telephony_test_app levelFrom=all
+user=_app seinfo=platform name=com.samsung.slsi.engineermode domain=vendor_engineermode_app levelFrom=all
+user=system seinfo=platform name=com.google.android.CatEngine domain=cat_engine_service_app type=system_app_data_file levelFrom=all
+user=_app seinfo=platform name=com.android.pixellogger domain=logger_app type=app_data_file levelFrom=all
+user=_app seinfo=platform name=com.google.android.hardwareinfo domain=hardware_info_app type=app_data_file levelFrom=all
+user=_app seinfo=CameraEng name=com.google.android.apps.camera.tools.propsetter domain=camera_propsetter_app type=app_data_file levelFrom=all

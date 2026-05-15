@@ -1,0 +1,113 @@
+{
+	"pipelines": [
+		{
+			"name": "default",
+			"device": "/dev/touch_offload",
+			"algorithms": [
+				{
+					"class": "SegmentationAlgorithm",
+					"name": "segmentation",
+				},
+				{
+					"class": "TouchflowAlgorithm",
+					"name": "touchflow",
+					"parameters": {
+					    "config": "/vendor/etc/touchflow_inner.pb"
+					},
+					"blocked_by": ["segmentation"],
+				},
+				{
+					"class": "PeakTrackerAlgorithm",
+					"name": "peak_tracker",
+					"blocked_by": ["touchflow"],
+				},
+				{
+					"class": "GripSuppressionAlgorithm",
+					"name": "grip_suppression",
+					"blocked_by": ["peak_tracker"],
+					"parameters": {
+						"enableDebugLog": true
+					}
+				},
+				{
+					"class": "ReportingAlgorithm",
+					"name": "reporting",
+					"blocked_by": ["grip_suppression"],
+				},
+				{
+					"class": "TouchSuezAlgorithm",
+					"name": "touchsuez",
+					"blocked_by": ["reporting"],
+				}
+			],
+		},
+		{
+			"name": "outer",
+			"device": "/dev/touch_offload_outer",
+			"algorithms": [
+				{
+					"class": "SegmentationAlgorithm",
+					"name": "segmentation",
+				},
+				{
+					"class": "TouchflowAlgorithm",
+					"name": "touchflow",
+					"parameters": {
+					    "config": "/vendor/etc/touchflow_outer.pb"
+					},
+					"blocked_by": ["segmentation"],
+				},
+				{
+					"class": "PeakTrackerAlgorithm",
+					"name": "peak_tracker",
+					"blocked_by": ["touchflow"],
+				},
+				{
+					"class": "GripSuppressionAlgorithm",
+					"name": "grip_suppression",
+					"blocked_by": ["peak_tracker"],
+					"parameters": {
+						"enableDebugLog": true
+					}
+				},
+				{
+					"class": "EarCheekDetectionAlgorithm",
+					"name": "earcheek",
+					"parameters": {
+					        "prob_threshold_lo": 0.5,
+					        "prob_threshold_hi": 0.8,
+					        "min_frames_under_lower_th": 10,
+					        "min_frames_over_upper_th": 10,
+					},
+					"blocked_by": ["grip_suppression"],
+				},
+				{
+					"class": "ReportingAlgorithm",
+					"name": "reporting",
+					"blocked_by": ["earcheek"],
+				},
+				{
+					"class": "SensorFusionAlgorithm",
+					"name": "sensorfusion",
+					"blocked_by": ["reporting"],
+				},
+				{
+					"class": "HardwareStateDetector",
+					"name": "gril_antenna_tuning",
+					"blocked_by": ["sensorfusion"],
+					"parameters": {
+						"enableGril": true,
+					}
+				},
+				{
+					"class": "TouchSuezAlgorithm",
+					"name": "touchsuez",
+					"blocked_by": ["gril_antenna_tuning"],
+					"parameters": {
+						"latency_logger_threshold_ms": 4.1,
+					}
+				}
+			],
+		}
+	]
+}

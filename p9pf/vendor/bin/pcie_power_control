@@ -1,0 +1,31 @@
+#!/vendor/bin/sh
+
+wait_for_file() {
+    local filename="$1"
+    local timeout="${2:-5}"
+
+    expiry=$(($(date "+%s")+timeout))
+    while [[ ! -e "${filename}" ]] && [[ "$(date "+%s")" -le "${expiry}" ]]
+    do
+        sleep 0.5
+    done
+    [[ -e "${filename}" ]]
+}
+
+configure_auto() {
+    if ! wait_for_file "$1" 20
+    then
+        echo "pcie_power: failed to find file: $1" >&2
+        return 1
+    fi
+    echo auto > "$1"
+}
+
+for i in \
+    /sys/bus/pci/devices/0000:01:00.0/power/control \
+    /sys/bus/pci/devices/0001:01:00.0/power/control
+do
+    configure_auto "$i" &
+done
+
+wait
