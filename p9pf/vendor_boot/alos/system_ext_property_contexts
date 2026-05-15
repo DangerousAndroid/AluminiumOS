@@ -1,0 +1,51 @@
+#line 50 "system/sepolicy/flagging/flagging_macros"
+
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
+#line 1 "device/google/gs-common/ramdump_and_coredump/sepolicy/system_ext/private/property_contexts"
+#SSRestartDetector app
+persist.sys.ssr.last_detection_time u:object_r:system_ssrdump_prop:s0 exact uint
+#line 1 "device/google/gs-common/sota_app/sepolicy/system_ext/private/property_contexts"
+ro.boot.sota                                    u:object_r:sota_prop:s0
+ro.boot.sota.                                   u:object_r:sota_prop:s0
+persist.vendor.factoryota.                      u:object_r:sota_prop:s0
+persist.vendor.radio.bootwithlpm                u:object_r:sota_prop:s0
+persist.vendor.nfc.factoryota.                  u:object_r:sota_prop:s0
+sota.charge.stop.level                          u:object_r:sota_prop:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
+#line 1 "hardware/google/pixel-sepolicy/common/system_ext/property_contexts"
+ro.chipname             u:object_r:deprecated_soc_prop:s0 exact string
+ro.hardware.chipname    u:object_r:deprecated_soc_prop:s0 exact string
+ro.mediatek.platform    u:object_r:deprecated_soc_prop:s0 exact string
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
+#line 1 "vendor/google_devices/gs-common/proprietary/repair_mode/sepolicy/private/property_contexts"
+# repair mode prop
+repair_mode.init_completed.        u:object_r:repair_mode_init_prop:s0 prefix bool
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
+#line 1 "vendor/google_devices/gs-common/proprietary/pixelsystemservice/sepolicy/contextualawareness/property_contexts"
+# the device contextual awareness state
+pixelsystemservice.device.contextualawarenessbool        u:object_r:pixelsystemservice_contextualawareness_prop:s0 exact bool
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
+#line 1 "device/google/zumapro-sepolicy/system_ext/private/property_contexts"
+# Telephony
+telephony.TnNtn.image_switch u:object_r:telephony_modem_prop:s0    exact enum ntn tn
+telephony.ril.modem_bin_status u:object_r:telephony_modemtype_prop:s0    exact uint
+telephony.ril.silent_reset    u:object_r:telephony_ril_prop:s0    exact    bool
+telephony.ril.ntn_demo_mode   u:object_r:telephony_ntn_demo_mode_prop:s0 exact bool
+
+# HDCP setting of the display connected via USB port
+persist.sys.hdcp_checking     u:object_r:usb_control_prop:s0 exact string
+
+# System UI system propertry
+persist.vendor.pulsar    u:object_r:vendor_sysuig_prop:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
+#line 1 "device/google/comet-sepolicy/system_ext/private/property_contexts"
+# setupwizard
+setupwizard.feature.provisioning_profile_mode    u:object_r:setupwizard_feature_prop:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts.recovery/android_recovery_common/comet/newline"
+
