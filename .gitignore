@@ -7,6 +7,7 @@ p9pf/ramdisk.cpio.img.old
 p9pf/vendor_boot.img
 p9pf/vendor_stock
 p9pf/vendor.img
+p9pf/vendor/firmware
 super_alos.img
 backup
 super_disk.img
