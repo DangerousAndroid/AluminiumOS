@@ -1,0 +1,152 @@
+on property:vendor.all.modules.ready=1
+    mkdir /data/vendor/mitigation 0755 system system
+    rm /data/vendor/mitigation/thismeal_bak.bin
+    copy /data/vendor/mitigation/thismeal.bin /data/vendor/mitigation/thismeal_bak.bin
+    chown system system /data/vendor/mitigation/thismeal_bak.bin
+    chown system system /data/vendor/mitigation
+    chown system system /sys/devices/virtual/pmic/mitigation/br_stats/enable_br_stats
+    chown system system /sys/devices/virtual/pmic/mitigation/br_stats/stats
+    chown system system /sys/devices/virtual/pmic/mitigation/br_stats/max_odpm_stats
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_state/uvlo1_triggered
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_state/uvlo2_triggered
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_state/oilo1_triggered
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_state/oilo2_triggered
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_state/smpl_triggered
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/batoilo_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/batoilo2_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/ocp_cpu1_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/ocp_cpu2_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/ocp_gpu_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/ocp_tpu_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/smpl_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/soft_ocp_cpu1_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/soft_ocp_cpu2_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/soft_ocp_gpu_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/soft_ocp_tpu_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/uvlo1_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_lvl/uvlo2_lvl
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_rel/uvlo1_rel
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_rel/uvlo2_rel
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_rel/dvfs_rel
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_det/smpl_det
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_det/uvlo1_det
+    chown system system /sys/devices/virtual/pmic/mitigation/triggered_det/uvlo2_det
+    chown system system /sys/devices/virtual/pmic/mitigation/debounce_time/batoilo2_det
+    chown system system /sys/devices/virtual/pmic/mitigation/instruction/dvfs_ramp_enable
+    start vendor.battery_mitigation
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,uvlo,pmic,if,otg && property:sys.boot.reason=reboot,uvlo,pmic,if,otg
+    setprop vendor.brownout_reason "uvlo,pmic,if,otg"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,uvlo,pmic,if,usb && property:sys.boot.reason=reboot,uvlo,pmic,if,usb
+    setprop vendor.brownout_reason "uvlo,pmic,if,usb"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,uvlo,pmic,if && property:sys.boot.reason=reboot,uvlo,pmic,if
+    setprop vendor.brownout_reason "uvlo,pmic,if"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,pmic,if,otg && property:sys.boot.reason=reboot,ocp,pmic,if,otg
+    setprop vendor.brownout_reason "ocp,pmic,if,otg"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,pmic,if,usb && property:sys.boot.reason=reboot,ocp,pmic,if,usb
+    setprop vendor.brownout_reason "ocp,pmic,if,usb"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,pmic,if && property:sys.boot.reason=reboot,ocp,pmic,if
+    setprop vendor.brownout_reason "ocp,pmic,if"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp2,pmic,if,otg && property:sys.boot.reason=reboot,ocp2,pmic,if,otg
+    setprop vendor.brownout_reason "ocp2,pmic,if,otg"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp2,pmic,if,usb && property:sys.boot.reason=reboot,ocp2,pmic,if,usb
+    setprop vendor.brownout_reason "ocp2,pmic,if,usb"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp2,pmic,if && property:sys.boot.reason=reboot,ocp2,pmic,if
+    setprop vendor.brownout_reason "ocp2,pmic,if"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,uvlo,pmic,main && property:sys.boot.reason=reboot,uvlo,pmic,main
+    setprop vendor.brownout_reason "uvlo,pmic,main"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,uvlo,pmic,sub && property:sys.boot.reason=reboot,uvlo,pmic,sub
+    setprop vendor.brownout_reason "uvlo,pmic,sub"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK1M && property:sys.boot.reason=reboot,ocp,buck1m
+    setprop vendor.brownout_reason "ocp,buck1m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK2M && property:sys.boot.reason=reboot,ocp,buck2m
+    setprop vendor.brownout_reason "ocp,buck2m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK3M && property:sys.boot.reason=reboot,ocp,buck3m
+    setprop vendor.brownout_reason "ocp,buck3m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK4M && property:sys.boot.reason=reboot,ocp,buck4m
+    setprop vendor.brownout_reason "ocp,buck4m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK5M && property:sys.boot.reason=reboot,ocp,buck5m
+    setprop vendor.brownout_reason "ocp,buck5m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK6M && property:sys.boot.reason=reboot,ocp,buck6m
+    setprop vendor.brownout_reason "ocp,buck6m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK7M && property:sys.boot.reason=reboot,ocp,buck7m
+    setprop vendor.brownout_reason "ocp,buck7m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK8M && property:sys.boot.reason=reboot,ocp,buck8m
+    setprop vendor.brownout_reason "ocp,buck8m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK9M && property:sys.boot.reason=reboot,ocp,buck9m
+    setprop vendor.brownout_reason "ocp,buck9m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK10M && property:sys.boot.reason=reboot,ocp,buck10m
+    setprop vendor.brownout_reason "ocp,buck10m"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK1S && property:sys.boot.reason=reboot,ocp,buck1s
+    setprop vendor.brownout_reason "ocp,buck1s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK2S && property:sys.boot.reason=reboot,ocp,buck2s
+    setprop vendor.brownout_reason "ocp,buck2s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK3S && property:sys.boot.reason=reboot,ocp,buck3s
+    setprop vendor.brownout_reason "ocp,buck3s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK4S && property:sys.boot.reason=reboot,ocp,buck4s
+    setprop vendor.brownout_reason "ocp,buck4s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK5S && property:sys.boot.reason=reboot,ocp,buck5s
+    setprop vendor.brownout_reason "ocp,buck5s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK6S && property:sys.boot.reason=reboot,ocp,buck6s
+    setprop vendor.brownout_reason "ocp,buck6s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK7S && property:sys.boot.reason=reboot,ocp,buck7s
+    setprop vendor.brownout_reason "ocp,buck7s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK8S && property:sys.boot.reason=reboot,ocp,buck8s
+    setprop vendor.brownout_reason "ocp,buck8s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK9S && property:sys.boot.reason=reboot,ocp,buck9s
+    setprop vendor.brownout_reason "ocp,buck9s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCK10S && property:sys.boot.reason=reboot,ocp,buck10s
+    setprop vendor.brownout_reason "ocp,buck10s"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCKDS && property:sys.boot.reason=reboot,ocp,buckds
+    setprop vendor.brownout_reason "ocp,buckds"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCKAS && property:sys.boot.reason=reboot,ocp,buckas
+    setprop vendor.brownout_reason "ocp,buckas"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCKCS && property:sys.boot.reason=reboot,ocp,buckcs
+    setprop vendor.brownout_reason "ocp,buckcs"
+
+on property:vendor.all.modules.ready=1 && property:ro.boot.bootreason=reboot,ocp,BUCKBS && property:sys.boot.reason=reboot,ocp,buckbs
+    setprop vendor.brownout_reason "ocp,buckbs"
+
+on property:vendor.brownout.br.feasible=1
+    chown system system data/vendor/mitigation/lastmeal.txt
+    chown system system data/vendor/mitigation/lastmeal.csv
+
+service vendor.battery_mitigation /vendor/bin/hw/battery_mitigation
+    user system
+    group system
+    priority -20
+    capabilities WAKE_ALARM BLOCK_SUSPEND
+    writepid /dev/cpuset/system-background/tasks

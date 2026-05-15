@@ -1,0 +1,357 @@
+#
+# Comet sensor device configuration registry script for the LBox.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-zuma
+#
+
+?+0x61100
+
+#
+# Record reg_script.
+#
+
++/
+reg_script=comet_dev.reg
+
+#
+# Buses
+#
+
+# I2C
++/dev/i2c/0
+  bus_name=i2c0
+  bus_index=0
++/dev/i2c/2
+  bus_name=i2c2
+  bus_index=2
+
+# I3C
++/dev/i3c/0
+  bus_name=i3c0
+  bus_index=0
++/dev/i3c/1
+  bus_name=i3c1
+  bus_index=1
+
+# SPI
++/dev/spi/2
+  bus_name=spi2
+  bus_index=2
++/dev/spi/4
+  bus_name=spi4
+  bus_index=4
+
+# PDM
++/dev/pdm
+  base_clk_hz=24576000
+
+#
+# Sensors
+#
+
+# IMU 1 (ICM45631)
++/dev/icm45631/0
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=1230000
+  bus_addr=0x68
+  i3c_addr=0xa
+  intr_id=43
+  trigger_type=2
+  priority=0
+  md_threshold=200
+  md_duration=1
+  sd_threshold=200
+  sd_timeout_ms=5000
+  sd_batching_latency_ms=1000
+  lowG_peak_threshold=2048
+  lowG_detect_timeout_ms=20
+  lowG_debounce_timeout_ms=1000
++/dev/icm45631/0/accel
+  orientation_transform=1 2 3
+  name=ICM45631 Accelerometer 0
++/dev/icm45631/0/gyro
+  orientation_transform=1 2 3
+  name=ICM45631 Gyroscope 0
++/dev/icm45631/0/temp
+  name=ICM45631 Temperature 0
++/dev/icm45631/0/motion_detect
+  name=ICM45631 Motion Detect 0
++/dev/icm45631/0/stationary_detect
+  name=ICM45631 Stationary Detect 0
++/dev/icm45631/0/freefall_detect
+  name=ICM45631 FreeFall Detect
+
+# IMU 2 (ICM45631)
++/dev/icm45631/1
+  bus_name=i3c1
+  bus_freq_hz=400000
+  i3c_freq_hz=1230000
+  bus_addr=0x68
+  i3c_addr=0xa
+  intr_id=44
+  trigger_type=2
+  priority=1
+  md_threshold=200
+  md_duration=1
+  sd_threshold=200
+  sd_timeout_ms=5000
+  sd_batching_latency_ms=1000
+  lowG_peak_threshold=2048
+  lowG_detect_timeout_ms=20
+  lowG_debounce_timeout_ms=1000
++/dev/icm45631/1/accel
+  orientation_transform=1 2 3
+  name=ICM45631 Accelerometer 1
++/dev/icm45631/1/gyro
+  orientation_transform=1 2 3
+  name=ICM45631 Gyroscope 1
++/dev/icm45631/1/temp
+  name=ICM45631 Temperature 1
++/dev/icm45631/1/motion_detect
+  name=ICM45631 Motion Detect 1
++/dev/icm45631/1/stationary_detect
+  name=ICM45631 Stationary Detect 1
+
+# MAG 1 (MMC5633NJ)
++/dev/mmc56x3x/0
+  bus_name=i3c0
+  bus_freq_hz=400000
+  i3c_freq_hz=1230000
+  bus_addr=0x30
+  i3c_addr=0x14
+  priority=0
++/dev/mmc56x3x/0/mag
+  orientation_transform=1 2 3
+  name=MMC56X3X Magnetometer 0
+  curr_comp_factors=2.04 0.36 2.79
+  curr_comp_factors_fast=0.62 0.20 0.91
+  curr_comp_factors_lid=-0.04 -0.24 1.87
+  curr_comp_factors_lid_fast=-0.37 -0.14 0.48
+
+# MAG 2 (MMC5633NJ)
++/dev/mmc56x3x/1
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x30
+  priority=1
++/dev/mmc56x3x/1/mag
+  orientation_transform=1 2 3
+  name=MMC56X3X Magnetometer 1
+  curr_comp_factors=-6.71 0.04 5.26
+  curr_comp_factors_fast=-2.95 -0.03 1.67
+  curr_comp_factors_lid=-8.27 -3.35 9.37
+  curr_comp_factors_lid_fast=-3.95 -1.79 3.76
+
+# BARO (ICP20100)
++/dev/icp20100/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x63
+  intr_id=47
+  min_period_us=25000
++/dev/icp20100/0/baro
++/dev/icp20100/0/temp
+
+# ALSP 1 (TCS3720)
++/dev/tcs3720/0
+  bus_name=i2c2
+  bus_freq_hz=400000
+  bus_addr=0x39
+  intr_id=45
+  start_delay_ns=2700000
+  display_id=0
++/dev/tcs3720/0/als
+  lux_scale=7.36
+  c_coef=1
+  r_coef=-1.01370155
+  g_coef=4.05243633
+  b_coef=-3.26042783
+  itime_table_brightness=459 554 668 718 1308 4096
+  itime_table=3292070 2981420 2608640 2445140 499321 499321
+  max_gain_table=12 12 12 12 12 12
+
+  clear_gain12_ratio=0.25
+  red_gain12_ratio=0.25
+  green_gain12_ratio=0.25
+  blue_gain12_ratio=0.25
+
+  clear_gain11_ratio=0.5
+  red_gain11_ratio=0.5
+  green_gain11_ratio=0.5
+  blue_gain11_ratio=0.5
+
+  clear_gain10_ratio=1.0
+  red_gain10_ratio=1.0
+  green_gain10_ratio=1.0
+  blue_gain10_ratio=1.0
+
+  clear_gain9_ratio=2.0
+  red_gain9_ratio=2.0
+  green_gain9_ratio=2.0
+  blue_gain9_ratio=2.0
+
+  clear_gain8_ratio=4.0
+  red_gain8_ratio=4.0
+  green_gain8_ratio=4.0
+  blue_gain8_ratio=4.0
+
+  clear_gain7_ratio=8.0
+  red_gain7_ratio=8.0
+  green_gain7_ratio=8.0
+  blue_gain7_ratio=8.0
+
+  clear_gain6_ratio=16.0
+  red_gain6_ratio=16.0
+  green_gain6_ratio=16.0
+  blue_gain6_ratio=16.0
+
+# ALSP 2 (TMD3733)
++/dev/tmd3733/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x39
+  intr_id=17
+  vsync_delay_ns=574770
+  display_id=1
++/dev/tmd3733/0/als
+  lux_scale=4.31935
+  c_coef=1
+  r_coef=-0.765091
+  g_coef=0.986515
+  b_coef=-0.610712
+  itime_table_brightness=460 524 628 792 1136 4096
+  itime_table=3536000 3230000 2733000 1949000 300000 300000
+  max_gain_table=11 10 9 8 7 7
+  # Step-size (in EM slots) for each rotation.
+  rotation_step_size=1
+
+  clear_gain12_ratio=0.0625
+  red_gain12_ratio=0.0625
+  green_gain12_ratio=0.0625
+  blue_gain12_ratio=0.0625
+
+  clear_gain11_ratio=0.125
+  red_gain11_ratio=0.125
+  green_gain11_ratio=0.125
+  blue_gain11_ratio=0.125
+
+  clear_gain10_ratio=0.25
+  red_gain10_ratio=0.25
+  green_gain10_ratio=0.25
+  blue_gain10_ratio=0.25
+
+  clear_gain9_ratio=0.5
+  red_gain9_ratio=0.5
+  green_gain9_ratio=0.5
+  blue_gain9_ratio=0.5
+
+  clear_gain8_ratio=1.0
+  red_gain8_ratio=1.0
+  green_gain8_ratio=1.0
+  blue_gain8_ratio=1.0
+
+  clear_gain7_ratio=2.0
+  red_gain7_ratio=2.0
+  green_gain7_ratio=2.0
+  blue_gain7_ratio=2.0
+
+  clear_gain6_ratio=4.0
+  red_gain6_ratio=4.0
+  green_gain6_ratio=4.0
+  blue_gain6_ratio=4.0
+
++/dev/tmd3733/0/prox
+  pulse_count=1
+  vcsel_ma=10
+  far_threshold=40
+  near_threshold=90
+  pulse_len_us=512
+  filter_len=4
+  skip_count=0
+  pdata_scale=1.0
+  gain1=8
+  gain2=2.5
+
+# Display info 0.
++/dev/display_info/0
+  # Maximum panel refresh rate.
+  panel_max_rr=120
+  # Link to ALS attached to this display.
+  attached_alsp=/dev/tcs3720/0
+
+# Display info 1.
++/dev/display_info/1
+  # Maximum panel refresh rate.
+  panel_max_rr=120
+  # Link to ALS attached to this display.
+  attached_alsp=/dev/tmd3733/0
+
+# RAINBOW (VD6282)
++/dev/vd6282/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x20
+  pdm_id=4
+  pcm_rate_hz=16000
++/dev/vd6282/0/spectral
+  auto_gain=1
++/dev/vd6282/0/rls
+  lux_scale=58.823529
+  fix_fac_cal=1
++/dev/vd6282/0/flicker
+  auto_gain=1
+
+# FIR Temperature (MLX90632)
++/dev/mlx90632/0
+  bus_name=i2c0
+  bus_freq_hz=400000
+  bus_addr=0x3b
++/dev/mlx90632/0/temp
++/dev/mlx90632/0/ext_temp
+
+# Camera VSYNC
++/dev/camera_vsync/0 # rear telephoto
+  intr_id=56
+  intr_trigger_type=2
++/dev/camera_vsync/1 # rear ultra-wide-angle
+  intr_id=57
+  intr_trigger_type=2
++/dev/camera_vsync/2 # inner front
+  intr_id=58
+  intr_trigger_type=2
++/dev/camera_vsync/3 # rear
+  intr_id=59
+  intr_trigger_type=2
++/dev/camera_vsync/4 # outer front
+  intr_id=63
+  intr_trigger_type=2
+
+# Hall Effect (DRV5032)
++/dev/drv5032/0
+  gpio_id=gpio39
+  intr_id=16
+  priority=0
++/dev/drv5032/1
+  gpio_id=gpio93
+  intr_id=50
+  priority=1
+  name=DRV5032 Hall Effect Sensor 1
+  hidden=1
++/dev/drv5032/2
+  gpio_id=gpio12
+  intr_id=11
+  priority=2
+  name=DRV5032 Hall Effect Sensor 2
+  hidden=1
+
+# VSC.
++/vsc
+  hinge_angle_enable=1
+  hinge_angle_cover_rotation=-1 0 0 0 1 0 0 0 -1

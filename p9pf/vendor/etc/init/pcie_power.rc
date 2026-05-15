@@ -1,0 +1,10 @@
+# Configure PCIe autosuspend.
+# PCI may be enumerated asynchronously, so defer to a service.
+
+service vendor.pcie_power_control /vendor/bin/pcie_power_control
+    disabled
+    user root
+    oneshot
+
+on boot && property:vendor.pcie.power.control=1
+    start vendor.pcie_power_control

@@ -1,0 +1,14 @@
+# zram compressoin algorithm experiment - try different zram compression algorithm
+# from zuma to laguna (the device type for experiment is configured from the mendel
+# server)
+
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.pixel.system.phenotype.Perf__zram_comp_algorithm_experiment=lz4
+    setprop persist.vendor.zram_comp_algorithm lz4
+
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.pixel.system.phenotype.Perf__zram_comp_algorithm_experiment=zstd
+    setprop persist.vendor.zram_comp_algorithm zstd
+
+on property:vendor.pixel.system.phenotype.Perf__zram_comp_algorithm_experiment=default
+    setprop persist.vendor.zram_comp_algorithm ""

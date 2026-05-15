@@ -1,0 +1,8 @@
+service vendor.modem_ml_svc_sit /vendor/bin/modem_ml_svc_sit -s
+    class core
+    user radio
+    group system
+
+on post-fs-data
+    # Folder for data collection
+    mkdir /data/vendor/modem_ml 0770 radio system

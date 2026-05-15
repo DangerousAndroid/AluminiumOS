@@ -1,0 +1,321 @@
+#
+# Comet sensor device configuration registry script for the dvt stage.
+#
+# Source of truth: go/pixel-sensor-list
+#
+
+#
+# CDT Filter <CDT>:<mask>
+# CDT format: <0xPPPPSJIV> (P:Product, S:Stage, J:Major, I:Minor, V:Variant)
+# go/pixel-cdt-zuma-pro
+#
+
+?+0x60000:0xFFFF0000
+# Exclude
+?-0x61100             # LBox
+?-0x62100:0xFFFFFF00  # Proto
+?-0x63100:0xFFFFFF00  # Evt
+
+#
+# Record reg_script.
+#
+
++/
+reg_script=comet_dvt.reg
+
+#
+# Sensors
+#
+
+# IMU 1 (ICM45631)
++/dev/icm45631/0/accel
+  fac_cal_transform=0.99728 0.00661 0.00363 -0.00817 0.99752 0.00292 -0.00295 -0.00213 0.99849 -0.00081 -0.01881 0.01355
+  temp=28.43756
+  temp_sensitivity=-0.0004 -0.00119 0.00097
++/dev/icm45631/0/gyro
+  fac_cal_transform=1.00169 0.00768 0.00345 -0.006 1.00306 0.00265 -0.00456 -0.00281 0.9965 -0.00049 -0.00119 -0.00008
+  temp=28.43756
+  temp_sensitivity=0.00006 -0.00002 0
+
+# IMU 2 (ICM45631)
++/dev/icm45631/1/accel
+  fac_cal_transform=0.99709 0.00929 0.0054 -0.01079 0.99736 0.00204 -0.00313 -0.00131 0.9979 -0.02595 -0.02207 -0.0647
+  temp=26.30134
+  temp_sensitivity=0.00034 -0.00114 0.00299
++/dev/icm45631/1/gyro
+  fac_cal_transform=0.99888 0.01043 0.00346 -0.0095 1.00337 0.0019 -0.00518 -0.00198 0.99669 0.00247 0.00013 -0.0006
+  temp=26.30134
+  temp_sensitivity=0.00003 -0.00004 -0.00001
+
+# MAG 1 (MMC5616)
++/dev/mmc5616/0
+  priority=1
++/dev/mmc5616/0/mag
+  orientation_transform=1 -2 -3
+  fac_cal_transform_lid_det=0.9550 -0.0539 0.0259 -0.0325 0.9173 0.0439 -0.0261 -0.0387 1.0349 0 0 0
+  fac_cal_transform_lid_rel=0.9490 -0.0198 0.0363 -0.0584 0.8864 0.0592 -0.0249 -0.0395 1.0320 0 0 0
+  hidden=1
+  curr_comp_factors=2.04 0.36 2.79
+  curr_comp_factors_fast=0.62 0.20 0.91
+  curr_comp_factors_lid=-0.04 -0.24 1.87
+  curr_comp_factors_lid_fast=-0.37 -0.14 0.48
+  curr_comp_factors_wireless=0.0 0.0 0.0
+  curr_comp_factors_wireless_fast=0.0 0.0 0.0
+  curr_comp_factors_lid_wireless=5.85 -2.10 5.33
+  curr_comp_factors_lid_wireless_fast=5.85 -2.10 5.33
+
+# MAG 2 (MMC5616)
++/dev/mmc5616/1
+  priority=2
++/dev/mmc5616/1/mag
+  orientation_transform=-2 -1 -3
+  fac_cal_transform_lid_det=0.9861 -0.0119 0.0399 0.1096 0.7647 0.0063 0.0242 0.0124 1.0822 0 0 0
+  fac_cal_transform_lid_rel=0.9525 0.0051 0.0111 0.0883 0.7710 0.0053 0.0156 -0.0173 1.0705 0 0 0
+  hidden=1
+  curr_comp_factors=-6.71 0.04 5.26
+  curr_comp_factors_fast=-2.95 -0.03 1.67
+  curr_comp_factors_lid=-8.27 -3.35 9.37
+  curr_comp_factors_lid_fast=-3.95 -1.79 3.76
+  curr_comp_factors_wireless=0.0 0.0 0.0
+  curr_comp_factors_wireless_fast=0.0 0.0 0.0
+  curr_comp_factors_lid_wireless=-12.18 -4.33 -2.24
+  curr_comp_factors_lid_wireless_fast=-12.18 -4.33 -2.24
+
+# Fusion mag.
++/dev/fusion_mag/0
+  # Golden value of "mix" parameter in factory calibration.
+  mag_cal_matrix=0.87 0.39 0.081 0.13 -0.39 -0.081 0.043 0.834 0.027 -0.043 0.166 -0.027 0.133 0.188 0.946 -0.133 -0.188 0.054
+  panel_id=0
+
+# BARO (ICP20100)
++/fac_cal/dev/icp20100/0/baro
+  fac_cal_transform=1.0 0.02665
+  temp=30.03263
+  temp_sensitivity=-0.00255
+
+# ALSP 1 (TCS3720)
++/dev/tcs3720/0
+  start_delay_ns=2703940
+  start_delay_2_ns=1871370
+
++/dev/tcs3720/0/als
+  lux_scale=11.15
+  c_coef=1.89815613
+  r_coef=-1.48512001
+  g_coef=1.63646298
+  b_coef=-2.93609164
+  itime_table_brightness=556 764 1438 1970 2988 4096
+  itime_table=2765600 2020000 600000 600000 600000 600000
+  max_gain_table=12 12 12 12 12 12
+
+  clear_gain12_ratio=0.26721
+  red_gain12_ratio=0.27005
+  green_gain12_ratio=0.27794
+  blue_gain12_ratio=0.28008
+
+  clear_gain11_ratio=0.50801
+  red_gain11_ratio=0.50943
+  green_gain11_ratio=0.51541
+  blue_gain11_ratio=0.51661
+
+  clear_gain10_ratio=1.0
+  red_gain10_ratio=1.0
+  green_gain10_ratio=1.0
+  blue_gain10_ratio=1.0
+
+  clear_gain9_ratio=2.00395
+  red_gain9_ratio=2.00741
+  green_gain9_ratio=1.99966
+  blue_gain9_ratio=1.99905
+
+  clear_gain8_ratio=4.01124
+  red_gain8_ratio=4.01694
+  green_gain8_ratio=3.99458
+  blue_gain8_ratio=3.99258
+
+  clear_gain7_ratio=7.72236
+  red_gain7_ratio=7.73297
+  green_gain7_ratio=7.68314
+  blue_gain7_ratio=7.67442
+
+  clear_gain6_ratio=15.59996
+  red_gain6_ratio=15.63037
+  green_gain6_ratio=15.53778
+  blue_gain6_ratio=15.5360
+
++/dev/tcs3720/0/panel-b
+  start_delay_ns=2228043
+  start_delay_2_ns=4764673
+
++/dev/tcs3720/0/panel-b/als
+  lux_scale=12.85796
+  itime_table_brightness=637 1004 2186 2774 3490 4096
+  itime_table=2765600 2020000 600000 600000 600000 600000
+  max_gain_table=12 12 12 12 12 12
+
+  clear_gain12_ratio=0.27314
+  red_gain12_ratio=0.27619
+  green_gain12_ratio=0.28437
+  blue_gain12_ratio=0.28740
+
+  clear_gain11_ratio=0.51164
+  red_gain11_ratio=0.51305
+  green_gain11_ratio=0.51884
+  blue_gain11_ratio=0.52109
+
+  clear_gain10_ratio=1.0
+  red_gain10_ratio=1.0
+  green_gain10_ratio=1.0
+  blue_gain10_ratio=1.0
+
+  clear_gain9_ratio=1.99834
+  red_gain9_ratio=1.99896
+  green_gain9_ratio=1.99118
+  blue_gain9_ratio=1.99000
+
+  clear_gain8_ratio=3.98856
+  red_gain8_ratio=3.98971
+  green_gain8_ratio=3.96827
+  blue_gain8_ratio=3.96464
+
+  clear_gain7_ratio=7.66108
+  red_gain7_ratio=7.65849
+  green_gain7_ratio=7.61176
+  blue_gain7_ratio=7.60680
+
+  clear_gain6_ratio=15.48087
+  red_gain6_ratio=15.48461
+  green_gain6_ratio=15.40496
+  blue_gain6_ratio=15.41772
+
+# ALSP 2 (TMD3733)
++/dev/tmd3733/0
+  vsync_delay_ns=3830560
+  anti_aliasing=1
+
++/dev/tmd3733/0/als
+  lux_scale=4.81126
+  c_coef=1
+  r_coef=-0.84157532
+  g_coef=0.52477267
+  b_coef=-0.64698316
+  itime_table_brightness=575 908 1115 2565 3427 4096
+  itime_table=1600000 1000000 300000 300000 300000 1600000
+  max_gain_table=11 10 10 10 10 10
+  # int{<hard_stop> <C_boost> <R_boost> <G_boost> <B_boost>}
+  # max_gain[color] = MIN(hard_stop, max_gain_table[brightness] +
+  #                                  max_gain_chan_boost[color])
+  max_gain_chan_boost=11 0 1 1 1
+  # Step-size (in EM slots) for each rotation.
+  rotation_step_size=1
+
+  clear_gain12_ratio=0.0625
+  red_gain12_ratio=0.0625
+  green_gain12_ratio=0.0625
+  blue_gain12_ratio=0.0625
+
+  clear_gain11_ratio=0.12656
+  red_gain11_ratio=0.12567
+  green_gain11_ratio=0.12607
+  blue_gain11_ratio=0.12583
+
+  clear_gain10_ratio=0.25148
+  red_gain10_ratio=0.25098
+  green_gain10_ratio=0.25127
+  blue_gain10_ratio=0.25099
+
+  clear_gain9_ratio=0.50117
+  red_gain9_ratio=0.50068
+  green_gain9_ratio=0.50089
+  blue_gain9_ratio=0.50068
+
+  clear_gain8_ratio=1.0
+  red_gain8_ratio=1.0
+  green_gain8_ratio=1.0
+  blue_gain8_ratio=1.0
+
+  clear_gain7_ratio=1.99574
+  red_gain7_ratio=1.99768
+  green_gain7_ratio=1.99804
+  blue_gain7_ratio=1.99807
+
+  clear_gain6_ratio=3.98664
+  red_gain6_ratio=3.99297
+  green_gain6_ratio=3.99254
+  blue_gain6_ratio=3.99275
+
++/dev/tmd3733/0/prox
+  pulse_count=4
+  vcsel_ma=10
+  far_threshold=25
+  near_threshold=70
+  pulse_len_us=128
+  filter_len=4
+  skip_count=0
+  pdata_scale=1.0
+  gain1=8
+  gain2=2.5
+
++/dev/tmd3733/0/panel-b
+  vsync_delay_ns=3664310
+
++/dev/tmd3733/0/panel-b/als
+  lux_scale=4.365830
+  itime_table_brightness=637 1180 1181 2565 3939 4096
+  itime_table=1600000 1600000 300000 300000 300000 1600000
+  max_gain_table=11 10 10 10 10 10
+
+  clear_gain12_ratio=0.0625
+  red_gain12_ratio=0.0625
+  green_gain12_ratio=0.0625
+  blue_gain12_ratio=0.0625
+
+  clear_gain11_ratio=0.12697
+  red_gain11_ratio=0.12729
+  green_gain11_ratio=0.12732
+  blue_gain11_ratio=0.12733
+
+  clear_gain10_ratio=0.25206
+  red_gain10_ratio=0.25228
+  green_gain10_ratio=0.25233
+  blue_gain10_ratio=0.25222
+
+  clear_gain9_ratio=0.50154
+  red_gain9_ratio=0.50157
+  green_gain9_ratio=0.50156
+  blue_gain9_ratio=0.50143
+
+  clear_gain8_ratio=1.0
+  red_gain8_ratio=1.0
+  green_gain8_ratio=1.0
+  blue_gain8_ratio=1.0
+
+  clear_gain7_ratio=1.99460
+  red_gain7_ratio=1.99572
+  green_gain7_ratio=1.99598
+  blue_gain7_ratio=1.99611
+
+  clear_gain6_ratio=3.98243
+  red_gain6_ratio=3.98678
+  green_gain6_ratio=3.98749
+  blue_gain6_ratio=3.98795
+
++/dev/tmd3733/0/panel-b/prox
+  pdata_scale=1.89322
+
+# RAINBOW (VD6282)
++/dev/vd6282/0/spectral
+  # Golden values for calibration.
+  golden_rals_r=1102.385143
+  golden_rals_g=1254.360824
+  golden_rals_b=316.562872
+  golden_rals_clr1=5480.027478
+  golden_rals_ir=3063.690762
+  golden_rals_clr2=5621.005320
++/dev/vd6282/0/rls
+  lux_scale=97.505086
+
+# Hall Effect (DRV5032)
++/dev/drv5032/1
+  gpio_id=gpio89
+  intr_id=46

@@ -1,0 +1,2 @@
+on post-fs-data
+    mkdir /data/vendor/pcie 0755 root root

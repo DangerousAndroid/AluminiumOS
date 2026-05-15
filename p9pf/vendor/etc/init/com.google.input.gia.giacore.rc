@@ -1,0 +1,7 @@
+service com.google.input.gia.giacore /vendor/bin/gia -s
+    interface aidl com.google.input.gia.core.IGiaService/default
+    class hal
+    user root
+    group input
+    oneshot
+    disabled

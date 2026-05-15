@@ -1,0 +1,10 @@
+service secure_element_uicc_hal_service-sim1 /vendor/bin/hw/android.hardware.secure_element-service.uicc 1
+    class hal
+    user secure_element
+    group secure_element
+
+service secure_element_uicc_hal_service-sim2 /vendor/bin/hw/android.hardware.secure_element-service.uicc 2
+    class hal
+    user secure_element
+    group secure_element
+

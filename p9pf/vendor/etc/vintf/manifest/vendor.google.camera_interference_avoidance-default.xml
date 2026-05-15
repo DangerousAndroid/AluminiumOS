@@ -1,0 +1,5 @@
+<!--
+    Input:
+        vendor/google/services/LyricCameraHAL/src/lyric/services/camera_interference_avoidance/vendor.google.camera_interference_avoidance-default.xml
+-->
+<manifest version="9.0" type="device"/>

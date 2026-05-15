@@ -1,0 +1,17 @@
+# go/pixel-perf-ubp-experiment
+
+# Set up the experiment.
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.perf.ubp_experiment_is_running="" \
+    && property:vendor.pixel.system.phenotype.Perf__ubp_experiment=true
+    setprop vendor.perf.ubp_experiment_is_running true
+    write /proc/vendor_sched/groups/bg/use_batch_policy 0
+    write /proc/vendor_sched/groups/sys_bg/use_batch_policy 0
+
+# Ramp down the experiment, but only if it was running before.
+on property:vendor.perf.allow_experiments=1 \
+    && property:vendor.perf.ubp_experiment_is_running=true \
+    && property:vendor.pixel.system.phenotype.Perf__ubp_experiment=""
+    setprop vendor.perf.ubp_experiment_is_running ""
+    write /proc/vendor_sched/groups/bg/use_batch_policy 1
+    write /proc/vendor_sched/groups/sys_bg/use_batch_policy 1

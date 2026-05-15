@@ -1,0 +1,28 @@
+####################################
+# from generate-common-build-props
+# These properties identify this partition image.
+####################################
+ro.product.odm_dlkm.brand=google
+ro.product.odm_dlkm.device=comet
+ro.product.odm_dlkm.manufacturer=Google
+ro.product.odm_dlkm.model=Pixel 9 Pro Fold
+ro.product.odm_dlkm.name=comet
+ro.product.model_for_attestation=Pixel 9 Pro Fold
+ro.product.brand_for_attestation=google
+ro.product.name_for_attestation=comet
+ro.product.device_for_attestation=comet
+ro.product.manufacturer_for_attestation=Google
+ro.odm_dlkm.build.date=Sat Feb 14 01:51:04 UTC 2026
+ro.odm_dlkm.build.date.utc=1771033864
+ro.odm_dlkm.build.fingerprint=google/comet/comet:16/CP1A.260305.018/14887507:user/release-keys
+ro.odm_dlkm.build.id=CP1A.260305.018
+ro.odm_dlkm.build.uuid=8R0-yVfK7QoyFbqa4i9x8OJfANSvXuHHyAmlFqmdSpg
+ro.odm_dlkm.build.tags=release-keys
+ro.odm_dlkm.build.type=user
+ro.odm_dlkm.build.version.incremental=14887507
+ro.odm_dlkm.build.version.release=16
+ro.odm_dlkm.build.version.release_or_codename=16
+ro.odm_dlkm.build.version.sdk=36
+ro.odm_dlkm.build.version.sdk_full=36.1
+# end of file
+

@@ -1,0 +1,14 @@
+on boot
+    # copy persist cal and convert format
+    chmod 0444 /mnt/vendor/persist/uwb/uwb.cal
+    rm /data/vendor/uwb/uwb.cal
+    rm /data/vendor/uwb/factory_uwb.conf
+    copy /mnt/vendor/persist/uwb/uwb.cal /data/vendor/uwb/uwb.cal
+    chown uwb uwb /data/vendor/uwb/uwb.cal
+    start vendor_uwb_init
+
+service vendor_uwb_init /vendor/bin/init_uwb_calib /data/vendor/uwb/uwb.cal /data/vendor/uwb/factory_uwb.conf
+    user uwb
+    group uwb
+    oneshot
+    disabled

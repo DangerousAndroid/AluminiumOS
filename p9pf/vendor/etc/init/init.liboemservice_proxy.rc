@@ -1,0 +1,4 @@
+service liboemservice_proxy_default /vendor/bin/liboemservice_proxy_default
+    class main
+    user system
+    group system
