@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ -f super_alos.img ]; then
  if [ ! -d backup ]; then
    mkdir backup
