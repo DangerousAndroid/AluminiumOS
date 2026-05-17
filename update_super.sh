@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo losetup -Pf super_disk.img
 LOOP_DEV=$(losetup -a | grep "super_disk.img" | awk -F: '{print $1}' | head -n 1)
 if [ -z "$LOOP_DEV" ]; then
