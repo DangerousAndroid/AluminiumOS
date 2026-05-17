@@ -1,18 +1,4 @@
-<!--
-    Input:
-        device/google/zumapro/manifest.xml
-        device/google/zumapro/manifest_media.xml
-        vendor/google_nos/host/android/hals/keymaster/aidl/strongbox/android.hardware.security.rkp-service.citadel.xml
-        device/google/gs-common/audio/aidl/manifest.xml
-        device/google/gs-common/pixel_ril/manifest_ril_ds.xml
-        device/google/gs-common/touch/twoshay/aidl/manifest_zuma.xml
-        device/google/gs-common/touch/twoshay/aidl/manifest_fragment_foldable.xml
-        device/google/gs-common/bcmbt/manifest_bluetooth.xml
-        device/google/gs-common/input/gia/aidl/manifest.xml
-        vendor/samsung_slsi/telephony/s5400/common/device/samsung/manifests/aidl/2.1/manifest_radio_ds.xml
-        vendor/samsung_slsi/telephony/s5400/common/device/samsung/manifests/oem/hidl/manifest_radio_external.xml
-        vendor/samsung_slsi/telephony/s5400/common/device/samsung/manifests/secureelement/aidl/manifest_ds.xml
--->
+<?xml version='1.0' encoding='utf-8'?>
 <manifest version="9.0" type="device" target-level="8">
     <hal format="aidl">
         <name>android.hardware.bluetooth</name>
@@ -26,10 +12,6 @@
         <name>android.hardware.bluetooth.ranging</name>
         <version>2</version>
         <fqname>IBluetoothChannelSounding/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.boot</name>
-        <fqname>IBootControl/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.media.c2</name>
@@ -89,11 +71,6 @@
         <name>android.hardware.secure_element</name>
         <fqname>ISecureElement/SIM1</fqname>
         <fqname>ISecureElement/SIM2</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>android.hardware.security.keymint</name>
-        <version>3</version>
-        <fqname>IRemotelyProvisionedComponent/strongbox</fqname>
     </hal>
     <hal format="aidl">
         <name>com.google.input</name>
