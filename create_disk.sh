@@ -1,3 +1,4 @@
+#!/bin/bash	
 SUPER_IMAGE=super_alos.img
 read -p "Start? It will ocuppy in the process +20gb" -n1
 dd if=/dev/zero of=super_disk.img bs=1M count=13000

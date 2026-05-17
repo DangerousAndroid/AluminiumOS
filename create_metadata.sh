@@ -1,3 +1,4 @@
+#!/bin/bash
 dd if=/dev/zero of=metadata.img bs=1M count=64
 mkfs.ext4 metadata.img
 mkdir -p mnt_metadata
