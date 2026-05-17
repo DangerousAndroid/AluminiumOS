@@ -12,3 +12,6 @@ super_alos.img
 backup
 super_disk.img
 system_mount
+trusty
+gsi_aosp/
+secure/lk.bin
