@@ -1,4 +1,0 @@
-service vendor.weaver_hal_aidl /vendor/bin/hw/android.hardware.weaver-service.citadel
-    class hal
-    user hsm
-    group hsm
