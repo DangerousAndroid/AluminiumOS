@@ -1,3 +1,4 @@
+#!/bin/bash
 VENDOR_FILES=p9pf/vendor
 if [ -f p9pf/vendor.img ]; then
  if [ ! -d backup ]; then
