@@ -8,4 +8,5 @@ fi
 sudo dd if=super_alos.img of="${LOOP_DEV}p5" bs=4M status=progress
 sync
 sudo losetup -d "$LOOP_DEV"
+rm -rf super_alos.img
 echo "Super updated in disk!"
