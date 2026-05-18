@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+if [ -f secure/lk.bin.zip ]; then
+ echo "Extracting lk zip"
+ cd secure
+ unzip lk.bin.zip
+ cd ..
+ rm -rf lk.bin.zip
+fi
+for i in bl1.bin bl2.bin bl31.bin bl33.bin lk.bin RMPB_DATA tos_fw_config.dtb; do
+ if [ -f $i ]; then
+  echo "$i already copied!"
+  continue
+ elif [ -f lk.bin ]; then
+  continue
+ else
+  cp secure/$i .
+ fi
+done
+if [ -f lk.bin ]; then
+ mv lk.bin b32.bin 
+fi
