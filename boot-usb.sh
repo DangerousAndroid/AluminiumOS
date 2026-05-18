@@ -1,11 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/bash
 DISK="super_disk.img"
 KERNEL="./p9pf/boot/kernel"
 RAMDISK="./p9pf/vendor_boot/alos.cpio"
 DTB="./dtb/alos.dtb"
 CORES="12"
 MEM="16G"
-
+TRUSTY_BOOT="bl1.bin"
+#######TODO, move this block ouside this file###########
+if [ ! -d logs ]; then
+ echo "Logs dir not created"
+ mkdir -p logs
+fi
+rm -f ./logs/tee.log
+touch ./logs/tee.log
+#########################################################
 echo "Launching AluminiumOS (Build CP1A.260305.018) with Trusty TEE..."
 qemu-system-aarch64 \
   -M virt,gic-version=3,secure=on,virtualization=on \
@@ -13,12 +21,12 @@ qemu-system-aarch64 \
   -smp $CORES \
   -m $MEM \
   -accel tcg,thread=multi \
-  -bios ./secure/bl1.bin \
+  -bios $TRUSTY_BOOT \
   -semihosting-config enable=on,target=native \
   -kernel "$KERNEL" \
   -initrd "$RAMDISK" \
   -dtb "$DTB" \
-  -drive file=./secure/RPMB_DATA,if=none,id=rpmb_drive,format=raw \
+  -drive file=./RPMB_DATA,if=none,id=rpmb_drive,format=raw \
   -device virtio-blk-pci,drive=rpmb_drive,id=rpmb-disk \
   -device qemu-xhci,id=xhci,addr=05.0 \
   -drive file="$DISK",if=none,id=super_drive,format=raw \
@@ -31,6 +39,7 @@ qemu-system-aarch64 \
   -netdev user,id=net0 \
   -device virtio-net-pci,netdev=net0 \
   -serial stdio \
+  -serial file:./logs/tee.log \
   -device virtio-serial-pci,id=virtio-serial0 \
   -device virtserialport,name=com.android.emulator.secure_env,id=vc_secure_env \
   -monitor none
