@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
-if [ -f secure/lk.bin.zip ]; then
+if [ -f trusty/lk.bin.zip ]; then
  echo "Extracting lk zip"
- cd secure
+ cd trusty
  unzip lk.bin.zip
  cd ..
  rm -rf lk.bin.zip
@@ -14,7 +14,7 @@ for i in bl1.bin bl2.bin bl31.bin bl33.bin lk.bin RMPB_DATA tos_fw_config.dtb; d
  elif [ -f lk.bin ]; then
   continue
  else
-  cp secure/$i .
+  cp trusty/$i .
  fi
 done
 if [ -f lk.bin ]; then
