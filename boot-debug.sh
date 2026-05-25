@@ -20,6 +20,8 @@ qemu-system-aarch64 \
   -cpu max \
   -smp $CORES \
   -m $MEM \
+  -S \
+  -s \
   -accel tcg,thread=multi \
   -bios $TRUSTY_BOOT \
   -semihosting-config enable=on,target=native \
