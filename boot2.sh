@@ -1,5 +1,5 @@
 #!/bin/bash
-GSI="super_alos.img"
+SUPER="super_disk.img"
 KERNEL="./p9pf/boot/kernel"
 RAMDISK="./p9pf/vendor_boot/alos.cpio"
 DTB="./dtb/alos.dtb"
@@ -16,7 +16,7 @@ qemu-system-aarch64 \
   -kernel "$KERNEL" \
   -initrd "$RAMDISK" \
   -dtb "$DTB" \
-  -drive file="$GSI",if=virtio,format=raw,readonly=on \
+  -drive file="$SUPER",if=virtio,format=raw,readonly=on \
   -append "earlycon=pl011,0x09000000 console=ttyAMA0 root=/dev/vda rw init=/init androidboot.hardware=zumapro androidboot.boot_devices=4010000000.pcie androidboot.boot_devices=pci0000:00/0000:00:05.0 androidboot.selinux=permissive androidboot.lcd_density=160 androidboot.super_partition=vda androidboot.force_normal_boot=1 androidboot.vbmeta.device_state=unlocked androidboot.verifiedbootstate=orange" \
   -device virtio-gpu-gl-pci \
   -display gtk,gl=on \
