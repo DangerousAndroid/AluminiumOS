@@ -1,13 +1,26 @@
-### IN DEVELOPMENT
+# AluminiumOS
 
-This project aims to boot leaked ALOS gsi image by Mystic Leaks into X64/X86 pcs via qemu and hopefully in a future natively (i dont have hope)
+![Language: Bash](https://img.shields.io/badge/Language-Bash-blue?logo=GNU%20Bash)
+![Platform: QEMU](https://img.shields.io/badge/Platform-QEMU-orange?logo=qemu&logoColor=white)
+![Status: WIP](https://img.shields.io/badge/Status-Work_In_Progress-red)
 
-# TODO
-- Actually booting
-- Fix this ugly readme
-- Fix everything :)
-- Share it
-- Converting it to native
-- Idk what else
+## 📌 About the Project
 
-[XDA POST](https://xdaforums.com/t/aluminiumos-in-x86-x64-pcs-wip.4789078/)
+**AluminiumOS** is an experimental project aimed at booting the leaked ALOS GSI image (by Mystic Leaks) onto x64/x86 architectures using QEMU. While the immediate focus is achieving a stable emulated boot, the long-term vision explores the possibility of native hardware booting.
+
+## 🚀 Key Features & Development Focus
+
+* **QEMU Emulation:** Adapting the environment to successfully emulate the GSI image on x86/x64 systems.
+* **Trusty OS Integration:** Compiling and establishing communication with Trusty OS.
+* **GICv3 Support:** Handling GICv3 driver initialization and related system interrupts.
+
+## 📋 TODO
+
+- [X] Achieve a successful, fully stable boot.
+- [X] Complete Trusty OS and GICv3 driver initialization.
+- [ ] Clean up scripts and fix remaining bugs.
+- [ ] Make the system native
+
+## 🔗 Resources
+
+* **XDA Thread:** [AluminiumOS in x86/x64 PCs (WIP)](https://xdaforums.com/t/aluminiumos-in-x86-x64-pcs-wip.4789078/)
