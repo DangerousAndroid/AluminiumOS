@@ -1,4 +1,5 @@
 #!/bin/bash
+update_super_disk() {
 sudo losetup -Pf super_disk.img
 LOOP_DEV=$(losetup -a | grep "super_disk.img" | awk -F: '{print $1}' | head -n 1)
 if [ -z "$LOOP_DEV" ]; then
@@ -10,3 +11,8 @@ sync
 sudo losetup -d "$LOOP_DEV"
 rm -rf super_alos.img
 echo "Super updated in disk!"
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    update_super_disk
+fi
