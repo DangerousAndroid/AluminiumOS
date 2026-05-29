@@ -1,4 +1,5 @@
-
+#!/bin/bash
+sed_keystore() {
 KEYSTORE_RC="system/system/etc/init/keystore2.rc"
 
 if [ -f "$KEYSTORE_RC" ]; then
@@ -6,4 +7,9 @@ if [ -f "$KEYSTORE_RC" ]; then
     echo "keystore2.rc successfully sedded"
 else
     echo "Could not locate keystore2.rc"
+fi
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    sed_keystore
 fi
