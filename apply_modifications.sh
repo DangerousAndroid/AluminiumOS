@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-
+modify_trusty() {
 echo "Applying Trusty TEE modifications..."
 
 # 1. Modify qemu-atf-inc.mk in Trusty source
@@ -135,3 +134,8 @@ else
 fi
 
 echo "All modifications applied successfully!"
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    modify_trusty
+fi
