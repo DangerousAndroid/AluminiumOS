@@ -1,4 +1,5 @@
 #!/bin/bash
+move_keymint() {
 if [ ! -f keymint/android.hardware.gatekeeper-service.trusty ] || [ ! -f keymint/android.hardware.keymaster@4.0-service.rc ] || [ ! -f keymint/android.hardware.gatekeeper-service.trusty ]; then
  echo "Files missing!"
  exit 255
@@ -14,3 +15,8 @@ else
 fi
 done
 echo "Files copied!"
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    move_keymint
+fi
