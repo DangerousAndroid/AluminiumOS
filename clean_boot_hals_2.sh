@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+clean_boot_hals_2() {
 VENDOR_DIR="p9pf/vendor"
 echo "Locating Boot APEX"
 APEX_PATH=$(ls "$VENDOR_DIR/apex/"*boot*.apex* "$VENDOR_DIR/apex/"*boot*.capex* 2>/dev/null | head -n 1)
@@ -44,3 +44,8 @@ echo "Change paths"
 sed -i 's|/apex/com\.[^/]*/|/vendor/|g' "$VENDOR_DIR/etc/init/"*boot*.rc
 
 echo "Finish!"
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    clean_boot_hals_2
+fi

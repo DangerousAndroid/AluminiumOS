@@ -1,4 +1,5 @@
 #!/bin/bash
+clean_boot_hals_1() {
 echo "Finding boot HALs in vendor folder"
 python3 -c "
 import os
@@ -25,3 +26,8 @@ for root, dirs, files in os.walk(vintf_dir):
                 pass
 "
 echo "Boot HALs deleted!"
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    clean_boot_hals_1
+fi
