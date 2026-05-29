@@ -1,4 +1,5 @@
 #!/bin/bash
+boot_debug() {
 DISK="super_disk.img"
 KERNEL="./p9pf/boot/kernel"
 RAMDISK="./p9pf/vendor_boot/alos.cpio"
@@ -30,3 +31,8 @@ qemu-system-aarch64 \
   -device virtio-serial-pci,id=virtio-serial0 \
   -device virtserialport,name=com.android.emulator.secure_env,id=vc_secure_env \
   -monitor none
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    boot_debug
+fi
