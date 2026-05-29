@@ -1,4 +1,5 @@
 #!/bin/bash
+boot_with_trusty() {
 DISK="super_disk.img"
 KERNEL="./p9pf/boot/kernel"
 RAMDISK="./p9pf/vendor_boot/alos.cpio"
@@ -7,8 +8,7 @@ CORES="12"
 MEM="16G"
 TRUSTY_BOOT="bl1.bin"
 echo "Launching AluminiumOS (Build CP1A.260305.018) with Trusty TEE..."
-########### TODO change path from temp bianry to final binary ########################
-/home/DangerousAndroid/ALOS/trusty_source/build-root/build-qemu-generic-arm64-gicv3-test-debug/qemu-build/bin/qemu-system-aarch64 \
+$ROOT_DIR/bin/qemu-system-aarch64 \
   -M virt,gic-version=3,secure=on,virtualization=on \
   -cpu max,sve=off \
   -smp $CORES \
@@ -36,8 +36,8 @@ echo "Launching AluminiumOS (Build CP1A.260305.018) with Trusty TEE..."
   -device virtio-serial-pci,id=virtio-serial0 \
   -device virtserialport,name=com.android.emulator.secure_env,id=vc_secure_env \
   -monitor none
-  
-  
-##########################DEBUG FLAGS NOT IN USE#############################################
-# loglevel=8 init_debug_loglevel=8 androidboot.init_rc_debug=1 androidboot.logd.kernel=true #
-#############################################################################################
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    boot_with_trusty
+fi
