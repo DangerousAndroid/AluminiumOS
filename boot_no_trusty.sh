@@ -1,4 +1,5 @@
 #!/bin/bash
+boot_without_trusty() {
 DISK="super_disk.img"
 KERNEL="./p9pf/boot/kernel"
 RAMDISK="./p9pf/vendor_boot/alos.cpio"
@@ -6,6 +7,7 @@ DTB="./dtb/alos.dtb"
 CORES="12"
 MEM="16G"
 echo "Launching AluminiumOS (Build CP1A.260305.018) without Trusty TEE..."
+# This version uses the general qemu bin from the package manager
 qemu-system-aarch64 \
   -M virt,gic-version=3 \
   -cpu max,sve=off \
@@ -30,3 +32,8 @@ qemu-system-aarch64 \
   -device virtio-serial-pci,id=virtio-serial0 \
   -device virtserialport,name=com.android.emulator.secure_env,id=vc_secure_env \
   -monitor none
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    boot_without_trusty
+fi
