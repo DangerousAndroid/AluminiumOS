@@ -1,4 +1,5 @@
-#!/bin/bash	
+#!/bin/bash
+create_disk() {
 SUPER_IMAGE=super_alos.img
 read -p "Start? It will ocuppy in the process +20gb" -n1
 dd if=/dev/zero of=super_disk.img bs=1M count=13000
@@ -13,3 +14,8 @@ echo "Disk mapped to $LOOP_DEV."
 sudo dd if=$SUPER_IMAGE of="${LOOP_DEV}p5" bs=4M status=progress
 sudo losetup -d "$LOOP_DEV"
 echo "Done!"
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    create_disk
+fi
