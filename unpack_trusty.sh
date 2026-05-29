@@ -1,7 +1,5 @@
 #!/bin/bash
-
-set -e
-
+unpack_trusty() {
 if [ -f secure/lk.bin ]; then
  echo "File already extracted"
  exit
@@ -16,4 +14,9 @@ cd ..
 if [ ! -f secure/lk.bin ]; then
  echo "Unkown error during the extraction!"
  exit
+fi
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    unpack_trusty
 fi
