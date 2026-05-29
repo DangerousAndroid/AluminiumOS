@@ -1,4 +1,5 @@
 #!/bin/bash
+make_super() {
 if [ -f super_alos.img ]; then
  if [ ! -d backup ]; then
    mkdir backup
@@ -21,3 +22,8 @@ lpmake \
     --partition system_dlkm:readonly:0:google_dynamic_partitions \
     --partition vendor_dlkm:readonly:0:google_dynamic_partitions \
     --output super_alos.img
+}
+# If the script is not sourced from the main script still can be executed as an individual file
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    make_super
+fi
