@@ -33,7 +33,7 @@ date >> logs/script.log
 . create_disk.sh || exit 255
 . create_metadata.sh || exit 255
 . create_userdata.sh || exit 255
-. create_vendor.sh || exit 255
+. make_vendor.sh || exit 255
 . make_super.sh || exit 255
 . mount_alos.sh || exit 255
 . move_keymint.sh || exit 255
@@ -44,6 +44,11 @@ date >> logs/script.log
 . update_metadata.sh || exit 255
 . update_super_disk.sh || exit 255
 . update_userdata.sh || exit 255
+. update_modules.sh || exit 255
+. update_system_dlkm.sh || exit 255
+. create_system_dlkm.sh || exit 255
+. make_system_dlkm.sh || exit 255
+. update_modules.sh || exit 255
 
 # Colors section
 blue() {
