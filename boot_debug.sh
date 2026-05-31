@@ -1,8 +1,8 @@
 #!/bin/bash
 boot_debug() {
 DISK="super_disk.img"
-KERNEL="./p9pf/boot/kernel"
-RAMDISK="./p9pf/vendor_boot/alos.cpio"
+KERNEL="./comet/boot/kernel"
+RAMDISK="./comet/vendor_boot/alos.cpio"
 DTB="./dtb/alos.dtb"
 CORES="12"
 MEM="16G"
