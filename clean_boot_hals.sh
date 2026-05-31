@@ -5,7 +5,7 @@ python3 -c "
 import os
 import xml.etree.ElementTree as ET
 
-vintf_dir = 'p9pf/vendor/etc/vintf/'
+vintf_dir = 'comet/vendor/etc/vintf/'
 for root, dirs, files in os.walk(vintf_dir):
     for file in files:
         if file.endswith('.xml'):

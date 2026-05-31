@@ -1,6 +1,6 @@
 #!/bin/bash
 clean_boot_hals_2() {
-VENDOR_DIR="p9pf/vendor"
+VENDOR_DIR="comet/vendor"
 echo "Locating Boot APEX"
 APEX_PATH=$(ls "$VENDOR_DIR/apex/"*boot*.apex* "$VENDOR_DIR/apex/"*boot*.capex* 2>/dev/null | head -n 1)
 
