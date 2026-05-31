@@ -1,0 +1,1 @@
+/dev/block/vda /system ext4 ro wait,logical,first_stage_mount
