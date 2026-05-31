@@ -1,6 +1,6 @@
 #!/bin/bash
 create_vendor() {
-VENDOR_FILES=p9pf/vendor
+VENDOR_FILES=comet/vendor
 if [ -f p9pf/vendor.img ]; then
  if [ ! -d backup ]; then
   mkdir backup
