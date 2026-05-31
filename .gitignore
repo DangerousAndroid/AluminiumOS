@@ -8,6 +8,15 @@ p9pf/vendor_boot.img
 p9pf/vendor_stock
 p9pf/vendor.img
 p9pf/vendor/firmware
+comet/image-comet-cp1a.260305.018.zip
+comet/magiskboot
+comet/fstab.virtio
+comet/tmp_ramdisk
+comet/ramdisk.cpio.img.old
+comet/vendor_boot.img
+comet/vendor_stock
+comet/vendor.img
+comet/vendor/firmware
 super_alos.img
 backup
 super_disk.img
