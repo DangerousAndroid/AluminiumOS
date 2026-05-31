@@ -6,9 +6,9 @@ if [ ! -f keymint/android.hardware.gatekeeper-service.trusty ] || [ ! -f keymint
 fi
 for i in android.hardware.gatekeeper-service.trusty android.hardware.keymaster@4.0-service.rc android.hardware.security.keymint-service.rc; do
 if [ $i = "android.hardware.gatekeeper-service.trusty" ]; then
- cp $i p9pf/vendor/bin/hw
+ cp $i comet/vendor/bin/hw
 elif [ $i = "android.hardware.keymaster@4.0-service.rc" ] || [ $i = "android.hardware.security.keymint-service.rc" ]; then
- cp $i p9pf/vendor/init
+ cp $i comet/vendor/init
 else
  echo "Error copying files!"
  exit 255
