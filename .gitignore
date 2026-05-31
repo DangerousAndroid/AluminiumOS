@@ -35,3 +35,12 @@ lk.elf
 metadata.img
 tos_fw_config.dtb
 kernelmod-goldfish
+cuttlefish/system_dlkm.img
+cuttlefish/product.img
+cuttlefish/vendor_dlkm.img
+cuttlefish/system_ext.img
+modules
+comet/vendor_boot/stock.cpio
+placeholder_script.sh
+akita
+cuttlefish/product/app/webview/webview.apk
