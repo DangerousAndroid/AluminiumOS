@@ -1,0 +1,38 @@
+#line 1 "system/sepolicy/flagging/flagging_macros"
+####################################
+# is_flag_enabled(flag, rules)
+# SELinux rules which apply only if given feature is turned on
+
+
+####################################
+# is_flag_disabled(flag, rules)
+# SELinux rules which apply only if given feature is turned off
+
+
+####################################
+# starting_at_board_api(api_level, rules_if_api_level)
+#
+# This macro conditionally exposes SELinux rules ensuring they are available
+# only when the board API level is at or above the specified 'api_level'.
+
+
+####################################
+# until_board_api(api_level, rules_if_lower_api_level)
+#
+# This macro conditionally exposes SELinux rules ensuring they are available
+# only when the board API level is below the specified 'api_level'.
+
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts/android_common/vsoc_arm64_only/newline"
+
+#line 1 "device/google/cuttlefish/shared/sepolicy/system_ext/private/property_contexts"
+ro.vendor.aware_available  u:object_r:vendor_aware_available_prop:s0
+persist.vendor.radio.RATE_ADAPT_ENABLE          u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.ROTATION_ENABLE            u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.VT_ENABLE                  u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.VT_HYBRID_ENABLE           u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.videopause.mode            u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.smlog_switch               u:object_r:vendor_radio_prop:s0
+ro.vendor.radio.log_loc                         u:object_r:vendor_radio_prop:s0
+ro.vendor.radio.log_prefix                      u:object_r:vendor_radio_prop:s0
+#line 1 "out/soong/.intermediates/system/sepolicy/contexts/system_ext_property_contexts/android_common/vsoc_arm64_only/newline"
+
