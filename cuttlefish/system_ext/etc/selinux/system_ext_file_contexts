@@ -1,0 +1,22 @@
+/data/vendor/radio(/.*)?               u:object_r:radio_vendor_data_file:s0
+/(system_ext|system/system_ext)/bin/hw/android\.hardware\.audio\.parameter_parser\.example_service u:object_r:audio_vendor_parameter_parser_exec:s0
+/(system_ext|system/system_ext)/bin/hw/android\.hardware\.security\.keymint-service\.rust\.trusty\.system\.nonsecure  u:object_r:hal_keymint_system_exec:s0
+/(system_ext|system/system_ext)/bin/hw/android\.hardware\.security\.keymint-service\.trusty_system_vm  u:object_r:hal_keymint_system_exec:s0
+    /(system_ext|system/system_ext)/bin/trusty_security_vm_launcher u:object_r:trusty_security_vm_launcher_exec:s0
+/(system_ext|system/system_ext)/bin/rpmb_dev\.system   u:object_r:rpmb_dev_system_exec:s0
+/(system_ext|system/system_ext)/bin/rpmb_dev\.test\.system   u:object_r:rpmb_dev_system_exec:s0
+/(system_ext|system/system_ext)/bin/storageproxyd\.system     u:object_r:storageproxyd_system_exec:s0
+/(system_ext|system/system_ext)/bin/rpmb_dev\.wv\.system   u:object_r:rpmb_dev_wv_system_exec:s0
+/(system_ext|system/system_ext)/bin/set_adb.sh u:object_r:set_adb_exec:s0
+/dev/socket/rpmb_mock_system  u:object_r:rpmb_dev_system_socket:s0
+/dev/socket/rpmb_mock_test_system  u:object_r:rpmb_dev_system_socket:s0
+/dev/socket/rpmb_mock_wv_system  u:object_r:rpmb_dev_system_socket:s0
+/mnt/secure_storage_rpmb_system(/.*)?  u:object_r:secure_storage_rpmb_system_file:s0
+/mnt/secure_storage_persist_system(/.*)?  u:object_r:secure_storage_persist_system_file:s0
+/mnt/secure_storage_rpmb_test_system(/.*)?  u:object_r:secure_storage_rpmb_system_file:s0
+/mnt/secure_storage_persist_test_system(/.*)?  u:object_r:secure_storage_persist_system_file:s0
+/mnt/secure_storage_rpmb_wv_system(/.*)?  u:object_r:secure_storage_rpmb_system_file:s0
+/mnt/secure_storage_persist_wv_system(/.*)?  u:object_r:secure_storage_persist_system_file:s0
+/data/secure_storage_system(/.*)?        u:object_r:secure_storage_system_file:s0
+/data/secure_storage_test_system(/.*)?        u:object_r:secure_storage_system_file:s0
+/data/secure_storage_wv_system(/.*)?        u:object_r:secure_storage_system_file:s0

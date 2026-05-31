@@ -1,0 +1,5 @@
+<!--
+    Input:
+        device/google/cuttlefish/shared/config/product_manifest.xml
+-->
+<manifest version="9.0" type="framework"/>
