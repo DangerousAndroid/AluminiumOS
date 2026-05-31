@@ -34,3 +34,4 @@ RPMB_DATA
 lk.elf
 metadata.img
 tos_fw_config.dtb
+kernelmod-goldfish
