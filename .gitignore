@@ -44,3 +44,10 @@ comet/vendor_boot/stock.cpio
 placeholder_script.sh
 akita
 cuttlefish/product/app/webview/webview.apk
+todo.txt
+modules
+alos
+cuttlefish/*.img
+*.img
+cuttlefish/vendor_boot/stock.cpio
+cuttlefish/vendor_boot/alos
