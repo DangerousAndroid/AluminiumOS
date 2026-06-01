@@ -1,9 +1,10 @@
 #<src>                                                   <mnt_point>                 <type>  <mnt_flags and options>  <fs_mgr_flags>
-/dev/block/vda                                           /super                      emmc    defaults                         defaults
 system                                                   /system                     ext4    noatime,ro                       wait,logical,first_stage_mount,readahead_size_kb=128
 # During compliance testing, the previous line would fail (because GSI is ext4), and the next line would be used to mount GSI.
 system                                                   /system                     ext4    noatime,ro                       wait,logical,first_stage_mount,readahead_size_kb=128
 vendor                                                   /vendor                     ext4    noatime,ro                       wait,logical,first_stage_mount
 system_dlkm                                              /system_dlkm                ext4    noatime,ro                       wait,logical,first_stage_mount
+vendor_dlkm                                              /vendor_dlkm                ext4    noatime,ro                       wait,logical,first_stage_mount
+system_ext                                               /system_ext                 ext4    noatime,ro                       wait,logical,first_stage_mount
 /dev/block/by-name/metadata                              /metadata                   ext4    noatime,nosuid,nodev             wait,first_stage_mount
 /dev/block/by-name/userdata                              /data                       ext4    noatime,nosuid,nodev             wait
