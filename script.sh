@@ -4,6 +4,9 @@
 # Init comprobations
 TRUSTY=0
 DEBUG=0
+ROOT_DIR=$(pwd)
+MAGISKBOOT=bin/magiskboot
+
 if [ "$1" = "-d" ] || [ "$2" = "-d" ]; then
  DEBUG=1
 fi
@@ -44,32 +47,22 @@ date >> logs/script.log
 . update_metadata.sh || exit 255
 . update_super_disk.sh || exit 255
 . update_userdata.sh || exit 255
-. update_modules.sh || exit 255
 . update_system_dlkm.sh || exit 255
-. create_system_dlkm.sh || exit 255
 . make_system_dlkm.sh || exit 255
+. make_system_ext.sh || exit 255
+. make_vendor_dlkm.sh || exit 255
+. make_product.sh || exit 255
 . update_modules.sh || exit 255
+. colors.sh || exit 255
 
-# Colors section
-blue() {
- echo -ne "\033[0;34m"
- echo -n
- echo -e "\033[0m"
-}
-red() {
- echo -ne "\033[0;31m"
- echo -n "$1"
- echo -e "\033[0m"
-}
-green() {
- echo -ne "\033[0;32m"
- echo -n "$1"
- echo -e "\033[0m"
-}
-yellow() {
- echo -ne "\033[1;33m"
- echo -n "$1"
- echo -e "\033[0m"
+# Init scripts for the first time running it
+
+init() {
+ QEMU=$(which qemu-system-aarch64)
+ if [ -z $QEMU ]; then
+  #TODO install qemu via package manager
+  echo "QEMU not installed, installing it"
+ fi
 }
 
 #WIP, rest of the code will be added soon
