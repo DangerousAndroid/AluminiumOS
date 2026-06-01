@@ -6,7 +6,7 @@ if [ -f cuttlefish/system_dlkm.img ]; then
  fi
  mv cuttlefish/system_dlkm.img backup/system_dlkm.img.old
 fi
-mke2fs -t ext2 -d cuttlefish/system_dlkm cuttlefish/system_dlkm.img 300M
+mke2fs -t ext2 -d cuttlefish/system_dlkm cuttlefish/system_dlkm.img 20M
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

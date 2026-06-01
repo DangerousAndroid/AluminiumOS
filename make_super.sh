@@ -27,7 +27,7 @@ lpmake \
     --image vendor_dlkm=cuttlefish/vendor_dlkm.img \
     --output super_alos.img
 if [ $? != 0 ]; then
- for i in vendor_dlkm.img comet/vendor.img system_dlkm.img product.img system_ext.img; do
+ for i in cuttlefish/vendor_dlkm.img comet/vendor.img cuttlefish/system_dlkm.img cuttlefish/product.img cuttlefish/system_ext.img; do
   rm -rf $i
  done
 fi
