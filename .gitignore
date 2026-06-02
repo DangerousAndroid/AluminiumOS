@@ -51,3 +51,5 @@ cuttlefish/*.img
 *.img
 cuttlefish/vendor_boot/stock.cpio
 cuttlefish/vendor_boot/alos
+comet/vendor_boot/debug
+comet/vendor_boot/debug.cpio
