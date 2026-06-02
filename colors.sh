@@ -3,7 +3,7 @@ blue() {
  echo -n
  echo -e "\033[0m"
 }
-red() {
+error() {
  echo -ne "\033[0;31m"
  echo -n "$1"
  echo -e "\033[0m"
@@ -13,7 +13,7 @@ green() {
  echo -n "$1"
  echo -e "\033[0m"
 }
-yellow() {
+info() {
  echo -ne "\033[1;33m"
  echo -n "$1"
  echo -e "\033[0m"
