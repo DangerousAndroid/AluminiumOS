@@ -12,7 +12,7 @@ MAGISKBOOT=bin/magiskboot
 . boot_debug.sh || exit 255
 . boot_no_trusty.sh || exit 255
 . boot_trusty.sh || exit 255
-. celan_boot_hals.sh || exit 255
+. clean_boot_hals.sh || exit 255
 . clean_boot_hals_2.sh || exit 255
 . create_disk.sh || exit 255
 . create_metadata.sh || exit 255
@@ -28,12 +28,10 @@ MAGISKBOOT=bin/magiskboot
 . update_metadata.sh || exit 255
 . update_super_disk.sh || exit 255
 . update_userdata.sh || exit 255
-. update_system_dlkm.sh || exit 255
 . make_system_dlkm.sh || exit 255
 . make_system_ext.sh || exit 255
 . make_vendor_dlkm.sh || exit 255
 . make_product.sh || exit 255
-. update_modules.sh || exit 255
 . colors.sh || exit 255
 
 # Help menu
@@ -91,8 +89,10 @@ init_first_time() {
   	log_error "Unkown package manager"
   ;;
   esac
-  touch logs/init_first_time
+ fi
+ touch logs/init_first_time
 }
+
 create_logs() {
 if [ ! -d logs ]; then
  mkdir logs
@@ -102,51 +102,12 @@ if [ ! -f logs/script.log ]; then
 fi
 }
 
-# Init everything
-if [ -f logs/init_first_time ]; then
- continue
-else
- init_first_time
-fi
-create_logs
-echo "-----------INIT ALOS SCRIPT-----------" >> logs/script.log
-date >> logs/script.log
-
-# Get user options
-while getopts "plbtndvu" OPTION; do
-    case "$OPTION" in
-        p) apply_patches 
-        ;;
-        l) DOWNLOAD_PREMAKE=1 
-        ;;
-        b) build_stuff
-        ;;
-        t) use_trusty
-        ;;
-        n) no_trusty
-        ;;
-        d) use_debug_boot
-        ;;
-        u) update_stuff
-        ;;
-        v) DOWNLOAD_PREMAKE=0
-        ;;
-        *) log_error "$OPTION"; show_help; exit 1 
-        ;;
-    esac
-done
-if [ $OPTIND -eq 1 ]; then
-    log_error "No flags provided."
-    show_help
-    exit
-fi
+# Main functions
 
 use_debug_boot() {
 if [ ! -f super_disk.img ] || [ ! -f boot_debug.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
-else
- continue
 fi
 boot_debug
 }
@@ -155,8 +116,6 @@ no_trusty() {
 if [ ! -f super_disk.img ] || [ ! -f boot_no_trusty.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
-else
- continue
 fi
 boot_without_trusty
 }
@@ -165,8 +124,6 @@ use_trusty() {
 if [ ! -f super_disk.img ] || [ ! -f boot_trusty.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
-else
- continue
 fi
 if [ $DOWNLOAD_PREMAKE = 1 ]; then
  unpack_trusty
@@ -257,7 +214,7 @@ build_stuff() {
    build_stuff
  ;;
  n|N)
-   continue
+   echo ""
  ;;
  *)
   error_log "Unkown option, assuming no"
@@ -291,6 +248,7 @@ update_stuff() {
   4)
    log "Updating Userdata"
    update_userdata
+  ;;
   *)
    error_log "Unkown option: $UPDATE_SELECTION, use number from 1-6"
    exit 255
@@ -299,10 +257,10 @@ update_stuff() {
  read -p "Do you want to build another one? [y/n]" BUILD_ANOTHER
  case $BUILD_ANOTHER in
  y|Y)
-   build_stuff
+   update_stuff
  ;;
  n|N)
-   continue
+   echo ""
  ;;
  *)
   error_log "Unkown option, assuming no"
@@ -316,5 +274,44 @@ apply_patches() {
  clean_boot_hals_2
  sed_keystore
 }
+
+# Init everything
+if [ -f logs/init_first_time ]; then
+ echo ""
+else
+ init_first_time
+fi
+create_logs
+echo "-----------INIT ALOS SCRIPT-----------" >> logs/script.log
+date >> logs/script.log
+
+# Get user options
+while getopts "plbtndvu" OPTION; do
+    case "$OPTION" in
+        p) apply_patches 
+        ;;
+        l) DOWNLOAD_PREMAKE=1 
+        ;;
+        b) build_stuff
+        ;;
+        t) use_trusty
+        ;;
+        n) no_trusty
+        ;;
+        d) use_debug_boot
+        ;;
+        u) update_stuff
+        ;;
+        v) DOWNLOAD_PREMAKE=0
+        ;;
+        *) log_error "$OPTION"; show_help; exit 1 
+        ;;
+    esac
+done
+if [ $OPTIND -eq 1 ]; then
+    log_error "No flags provided."
+    show_help
+    exit
+fi
 
 # still WIP, will be updated soon
