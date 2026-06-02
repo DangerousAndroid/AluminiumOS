@@ -38,7 +38,7 @@ MAGISKBOOT=bin/magiskboot
 show_help() {
  echo "--HELP MENU--"
  echo "USAGE: $0 [-p] [-t]"
- echo "-i shows this menu"
+ echo "-h shows this menu"
  # echo "-l downloads the premake files" Will downlaod by default
  echo "-b builds the files locally"
  echo "-t boot with trusty"
@@ -286,7 +286,7 @@ echo "-----------INIT ALOS SCRIPT-----------" >> logs/script.log
 date >> logs/script.log
 
 # Get user options
-while getopts "plbtndvu" OPTION; do
+while getopts "plbtndvuh" OPTION; do
     case "$OPTION" in
         p) apply_patches 
         ;;
@@ -304,12 +304,14 @@ while getopts "plbtndvu" OPTION; do
         ;;
         v) DOWNLOAD_PREMAKE=0
         ;;
-        *) log_error "$OPTION"; show_help; exit 1 
+        h) show_help
+        ;;
+        *) log_error "$OPTION";  exit 1 
         ;;
     esac
 done
 if [ $OPTIND -eq 1 ]; then
-    log_error "No flags provided."
+    log "No flags provided."
     show_help
     exit
 fi
