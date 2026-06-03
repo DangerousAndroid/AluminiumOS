@@ -1,8 +1,11 @@
 #!/bin/bash
 ## This script its the main script that will execute everything in the project ##
+
+# Default values
 DOWNLOAD_PREMAKE=1
 ROOT_DIR=$(pwd)
 MAGISKBOOT=bin/magiskboot
+LOGGER=1
 
 # load helper scripts WITHOUT loops
 . get_info.sh || exit 255
@@ -36,18 +39,18 @@ MAGISKBOOT=bin/magiskboot
 
 # Help menu
 show_help() {
- echo "--HELP MENU--"
- echo "USAGE: $0 [-p] [-t]"
- echo "-h shows this menu"
- # echo "-l downloads the premake files" Will downlaod by default
- echo "-b builds the files locally"
- echo "-t boot with trusty"
- echo "-n boots without trusty"
- echo "-d use debug boot"
- echo "-v builds images"
- echo "-p applies paches"
- echo "-u update images"
- echo "-------------"
+ info "---------HELP MENU----------"
+ info "USAGE: $0 [-p] [-t]"
+ info_continue "-h" " shows this menu"
+ info_continue "-l" " will use the logger"
+ info_continue "-b" " builds the files locally"
+ info_continue "-t" " boot with trusty"
+ info_continue '-n' " boots without trusty"
+ info_continue "-d" " use debug boot"
+ info_continue "-v" " builds images"
+ info_continue "-p" " applies paches"
+ info_continue "-u" " update images"
+ info "---------------------------"
 }
 
 # Init scripts for the first time running it
@@ -93,18 +96,29 @@ init_first_time() {
  touch logs/init_first_time
 }
 
+# Log functions
 create_logs() {
 if [ ! -d logs ]; then
  mkdir logs
 fi
 if [ ! -f logs/script.log ]; then
  touch logs/script.log
+ log "Hii, logs are created, enjoy the project!"
 fi
 }
 
+make_logger() {
+ if [ "$LOGGER" = "1" ]; then
+  echo 'log() {\necho ""\necho ""\ninfo "$1"\necho "[INFO]: $1" >> logs/script.log\n}\nlog_error() {\necho ""\necho ""\nerror "$1"\necho "[ERROR]: $1" >> logs/script.log\n}\n' > logger.sh
+ else
+  echo 'log() {\necho ""\n}\nlog_error() {\necho ""\n}' > logger.sh
+ fi
+}
+# I
 # Main functions
 
 use_debug_boot() {
+log "Booting in debug mode"
 if [ ! -f super_disk.img ] || [ ! -f boot_debug.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
@@ -113,6 +127,7 @@ boot_debug
 }
 
 no_trusty() {
+log "Booting without trusty"
 if [ ! -f super_disk.img ] || [ ! -f boot_no_trusty.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
@@ -121,6 +136,7 @@ boot_without_trusty
 }
 
 use_trusty() {
+log "Booting with trusty"
 if [ ! -f super_disk.img ] || [ ! -f boot_trusty.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
@@ -167,16 +183,16 @@ boot_with_trusty
 }
 
 build_stuff() {
- echo "--BUILD MENU--"
- echo "Select the number of the image you want to build"
- echo "1) Disk (needs super)"
- echo "2) Super (needs system, vendor, system_dlkm and vendor_dlkm)"
- echo "3) System (ALOS gsi)"
- echo "4) Vendor"
- echo "5) System_dlkm"
- echo "6) Vendor_dlkm"
- echo "Once the image finished building you can build other"
- echo "---------------"
+ info "--BUILD MENU--"
+ info_continue "Select the number of the image you want to build"
+ info_continue "1)" "Disk (needs super)"
+ info_continue "2)" "Super (needs system, vendor, system_dlkm and vendor_dlkm)"
+ info_continue "3)" "System (ALOS gsi)"
+ info_continue "4)" "Vendor"
+ info_continue "5)" "System_dlkm"
+ info_continue "6)" "Vendor_dlkm"
+ info "Once the image finished building you can build other"
+ info "---------------"
  read -n 1 IMAGE_SELECTION
  case $IMAGE_SELECTION in
   1)
@@ -204,7 +220,7 @@ build_stuff() {
    make_vendor_dlkm
   ;;
   *)
-   error_log "Unkown option: $IMAGE_SELECTION, use number from 1-6"
+   log_error "Unkown option: $IMAGE_SELECTION, use number from 1-6"
    exit 255
   ;;
  esac
@@ -223,14 +239,15 @@ build_stuff() {
 }
 
 update_stuff() {
- echo "--UPDATE MENU--"
- echo "Select the number of the image you want to update"
- echo "1) Super"
- echo "2) Fstab"
- echo "3) Metadata"
- echo "4) Userdata"
- echo "Once the image finished building you can build other"
- echo "---------------"
+ log "Opening update menu"
+ info "--UPDATE MENU--"
+ info_continue "Select the number of the image you want to update"
+ info_continue "1)" " Super"
+ info_continue "2)" " Fstab"
+ info_continue "3)" " Metadata"
+ info_continue "4)" " Userdata"
+ info "Once the image finished building you can build other"
+ info "---------------"
  read -n 1 UPDATE_SELECTION
  case $UPDATE_SELECTION in
   1)
@@ -250,7 +267,7 @@ update_stuff() {
    update_userdata
   ;;
   *)
-   error_log "Unkown option: $UPDATE_SELECTION, use number from 1-6"
+   log_error "Unkown option: "$UPDATE_SELECTION", use number from 1-6"
    exit 255
   ;;
  esac
@@ -281,9 +298,6 @@ if [ -f logs/init_first_time ]; then
 else
  init_first_time
 fi
-create_logs
-echo "-----------INIT ALOS SCRIPT-----------" >> logs/script.log
-date >> logs/script.log
 
 # Get user options
 while getopts "plbtndvuh" OPTION; do
@@ -302,6 +316,8 @@ while getopts "plbtndvuh" OPTION; do
         ;;
         u) update_stuff
         ;;
+        l) LOGGER=0
+        ;;
         v) DOWNLOAD_PREMAKE=0
         ;;
         h) show_help
@@ -310,10 +326,22 @@ while getopts "plbtndvuh" OPTION; do
         ;;
     esac
 done
-if [ $OPTIND -eq 1 ]; then
-    log "No flags provided."
+make_logger
+if [ "$LOGGER" = 1 ]; then
+ if [ $OPTIND -eq 1 ]; then
+    error_log "No flags provided."
     show_help
     exit
+ fi
+ create_logs
+ echo "-----------INIT ALOS SCRIPT-----------" >> logs/script.log
+ date >> logs/script.log
+else
+  if [ $OPTIND -eq 1 ]; then
+    error "No flags provided."
+    show_help
+    exit
+ fi
 fi
 
 # still WIP, will be updated soon
