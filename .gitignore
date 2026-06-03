@@ -53,3 +53,13 @@ cuttlefish/vendor_boot/stock.cpio
 cuttlefish/vendor_boot/alos
 comet/vendor_boot/debug
 comet/vendor_boot/debug.cpio
+alos/system/product/apex/com.google.android.gmssystem.prodvic.apex
+alos/system/product/priv-app/DevicePersonalizationAiAiPrebuiltPixel2025/DevicePersonalizationAiAiPrebuiltPixel2025.apk
+alos/system/product/priv-app/PrebuiltBugle/PrebuiltBugle.apk
+alos/system/product/priv-app/Satin/Satin.apk
+alos/system/product/app/Photos/Photos.apk
+alos/system/product/app/YouTube/YouTube.apk
+alos/system/product/app/TrichromeLibrary/TrichromeLibrary.apk
+alos/system/product/app/WebViewGoogle/WebViewGoogle.apk
+alos/system/product/app/Maps/Maps.apk
+
