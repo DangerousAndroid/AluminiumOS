@@ -36,6 +36,7 @@ LOGGER=1
 . make_vendor_dlkm.sh || exit 255
 . make_product.sh || exit 255
 . colors.sh || exit 255
+. unpack_alos_files.sh || exit 255
 
 # Help menu
 show_help() {
