@@ -18,4 +18,6 @@ info() {
  echo -n "$1"
  echo -e "\033[0m"
 }
-
+info_continue() {
+ printf "\033[1;33m%s\033[0m %s\n" "$1" "$2"
+}
