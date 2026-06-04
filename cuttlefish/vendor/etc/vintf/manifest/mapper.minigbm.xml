@@ -1,0 +1,10 @@
+<!--
+    Input:
+        external/minigbm/cros_gralloc/mapper_stablec/mapper.minigbm.xml
+-->
+<manifest version="9.0" type="device">
+    <hal format="native">
+        <name>mapper</name>
+        <fqname>@5.0/minigbm</fqname>
+    </hal>
+</manifest>
