@@ -1,0 +1,8 @@
+service vendor.face-default /vendor/bin/hw/android.hardware.biometrics.face-service.default default
+    class hal
+    user nobody
+    group nobody
+    interface aidl android.hardware.biometrics.face.IFace/default
+    oneshot
+    disabled
+

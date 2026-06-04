@@ -1,0 +1,138 @@
+####################################
+# from generate-common-build-props
+# These properties identify this partition image.
+####################################
+ro.product.vendor.brand=generic
+ro.product.vendor.device=vsoc_arm64_only
+ro.product.vendor.manufacturer=Google
+ro.product.vendor.model=Cuttlefish arm64 phone 64-bit only
+ro.product.vendor.name=aosp_cf_arm64_only_phone
+ro.vendor.product.cpu.abilist=arm64-v8a
+ro.vendor.product.cpu.abilist32=
+ro.vendor.product.cpu.abilist64=arm64-v8a
+ro.vendor.build.date=Wed May  6 15:36:35 UTC 2026
+ro.vendor.build.date.utc=1778081795
+ro.vendor.build.fingerprint=generic/aosp_cf_arm64_only_phone/vsoc_arm64_only:16/BP4A.251205.006/15357239:userdebug/test-keys
+ro.vendor.build.id=BP4A.251205.006
+ro.vendor.build.tags=test-keys
+ro.vendor.build.type=userdebug
+ro.vendor.build.version.incremental=15357239
+ro.vendor.build.version.release=16
+ro.vendor.build.version.release_or_codename=16
+ro.vendor.build.version.sdk=36
+ro.vendor.build.version.sdk_full=36.1
+####################################
+# from device/google/cuttlefish/shared/phone/vendor.prop
+####################################
+# Enable LE Audio and its related profiles
+bluetooth.profile.bap.broadcast.assist.enabled=false
+bluetooth.profile.bap.unicast.client.enabled=true
+bluetooth.profile.bas.client.enabled=true
+bluetooth.profile.ccp.server.enabled=true
+bluetooth.profile.csip.set_coordinator.enabled=true
+bluetooth.profile.hap.client.enabled=true
+bluetooth.profile.mcp.server.enabled=true
+bluetooth.profile.vcp.controller.enabled=true
+####################################
+# from android-info.prop
+####################################
+####################################
+# from variable ADDITIONAL_VENDOR_PROPERTIES
+####################################
+ro.bionic.arch=arm64
+ro.bionic.cpu_variant=cortex-a53
+ro.bionic.2nd_arch=
+ro.bionic.2nd_cpu_variant=
+persist.sys.dalvik.vm.lib.2=libart.so
+dalvik.vm.isa.arm64.variant=cortex-a53
+dalvik.vm.isa.arm64.features=default
+ro.minui.pixel_format=ABGR_8888
+ro.boot.dynamic_partitions=true
+ro.product.first_api_level=36
+ro.product.debugfs_restrictions.enabled=true
+ro.board.api_level=202504
+ro.board.api_frozen=true
+ro.vendor.build.security_patch=2025-12-05
+ro.product.board=cutf
+ro.board.platform=vsoc_arm64
+ro.hwui.use_vulkan=
+ro.build.ab_update=true
+ro.vendor.build.ab_ota_partitions=boot,init_boot,odm,odm_dlkm,product,system,system_dlkm,system_ext,vbmeta,vbmeta_system,vbmeta_system_dlkm,vbmeta_vendor_dlkm,vendor,vendor_boot,vendor_dlkm
+####################################
+# from variable PRODUCT_VENDOR_PROPERTIES
+####################################
+ro.zygote=zygote64
+dalvik.vm.dex2oat64.enabled=true
+# Removed by post_process_props.py because overridden by tombstoned.max_tombstone_count=100
+#tombstoned.max_tombstone_count?=50
+ro.logd.size.stats=64K
+log.tag.stats_log=I
+# Removed by post_process_props.py because overridden by ro.carrier=unknown
+#ro.carrier?=unknown
+ro.config.notification_sound=OnTheHunt.ogg
+ro.config.alarm_alert=Alarm_Classic.ogg
+ro.recovery.usb.vid=18D1
+ro.recovery.usb.adb.pid=D001
+ro.recovery.usb.fastboot.pid=4EE0
+# Removed by post_process_props.py because overridden by ro.zygote=zygote64
+#ro.zygote?=zygote32
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
+vendor.ser.bt-uart=/dev/hvc5
+ro.vendor.hwcomposer.pmem=/dev/block/pmem1
+ro.vendor.hwc.drm.present_fence_not_reliable=true
+vendor.hwc.drm.device=/dev/dri/card0
+ro.rebootescrow.device=/dev/block/pmem0
+ro.vendor.boot_security_patch=2025-12-05
+ro.virtual_ab.enabled=true
+ro.virtual_ab.compression.enabled=true
+ro.virtual_ab.userspace.snapshots.enabled=true
+ro.virtual_ab.batch_writes=true
+ro.virtual_ab.io_uring.enabled=true
+ro.virtual_ab.compression.xor.enabled=true
+ro.virtual_ab.compression.threads=true
+ro.virtual_ab.batch_writes=true
+external_storage.projid.enabled=1
+external_storage.casefold.enabled=1
+external_storage.sdcardfs.enabled=0
+media.c2.hal.selection=aidl
+tombstoned.max_tombstone_count=100
+ro.carrier=unknown
+ro.com.android.dataroaming=false
+ro.hardware.virtual_device=1
+ro.logd.size=1M
+wifi.interface=wlan0
+wifi.direct.interface=p2p-dev-wlan0
+persist.sys.zram_enabled=1
+ro.hardware.keystore_desede=true
+ro.incremental.enable=1
+debug.c2.use_dmabufheaps=1
+wlan.driver.status=ok
+debug.stagefright.c2inputsurface=-1
+ro.control_privapp_permissions=enforce
+ro.cp_system_other_odex=1
+drm.service.enabled=true
+ro.crypto.metadata_init_delete_all_keys.enabled=true
+ro.oem_unlock_supported=1
+ro.vendor.virtwifi.port=eth2
+ro.surface_flinger.running_without_sync_framework=true
+ro.surface_flinger.supports_background_blur=1
+ro.vendor.fingerprint_virtual_hal_start=true
+ro.vendor.uwb.dev=/dev/hvc9
+ro.vendor.init_dev_config.path=/vendor/bin/init_dev_config
+ro.camerax.extensions.enabled=true
+ro.frp.pst=/dev/block/by-name/frp
+ro.soc.manufacturer=Google
+ro.soc.model=vsoc_arm64_only
+####################################
+# from variable PRODUCT_DEFAULT_PROPERTY_OVERRIDES
+####################################
+ro.surface_flinger.game_default_frame_rate_override=60
+####################################
+# from variable PRODUCT_PROPERTY_OVERRIDES
+####################################
+# end of file

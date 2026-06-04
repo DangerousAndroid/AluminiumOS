@@ -1,6 +1,5 @@
 #!/bin/bash
 make_product() {
-. unpack_webview.sh || exit 255
 if [ -f cuttlefish/product.img ]; then
  if [ ! -d backup ]; then
   mkdir backup
@@ -12,5 +11,6 @@ mke2fs -t ext2 -d ./cuttlefish/product cuttlefish/product.img 360M
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    . unpack_webview.sh || exit 255
     make_product
 fi

@@ -1,0 +1,7 @@
+service vendor.fingerprint-default /vendor/bin/hw/android.hardware.biometrics.fingerprint-service.default default
+    class hal
+    user nobody
+    group nobody
+    interface aidl android.hardware.biometrics.fingerprint.IFingerprint/default
+    oneshot
+    disabled
