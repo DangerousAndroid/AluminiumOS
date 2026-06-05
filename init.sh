@@ -94,7 +94,7 @@ init_first_time() {
   ;;
   esac
  fi
- touch logs/init_first_time
+ touch logs/.init_first_time
 }
 
 # Log functions
