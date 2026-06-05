@@ -1,0 +1,3 @@
+[submodule "alos-gsi"]
+	path = alos-gsi
+	url = https://gitlab.com/DangerousAndroid/alos-gsi.git
