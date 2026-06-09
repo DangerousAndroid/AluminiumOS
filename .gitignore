@@ -64,3 +64,4 @@ alos/system/product/app/WebViewGoogle/WebViewGoogle.apk
 alos/system/product/app/Maps/Maps.apk
 alos
 comet/vendor_boot/alos.cpio.bak
+boot_test.sh
