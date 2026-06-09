@@ -136,3 +136,9 @@ on early-init
 
 on early-init && property:ro.boot.enable_bootanimation=0
     setprop debug.sf.nobootanimation 1
+
+on post-fs
+    mount ext4 /dev/block/mapper/vendor /vendor remount rw
+    restorecon_recursive /vendor
+    mount ext4 /dev/block/mapper/system_ext /system_ext remount rw
+    restorecon_recursive /system_ext
