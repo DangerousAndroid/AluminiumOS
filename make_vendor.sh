@@ -6,7 +6,7 @@ if [ -f cuttlefish/vendor.img ]; then
  fi
  mv cuttlefish/vendor.img backup/vendor.img.old
 fi
-mke2fs -t ext2 -d ./cuttlefish/vendor cuttlefish/vendor.img 1300M
+mke2fs -t ext4 -O ext_attr,has_journal,dir_index,sparse_super -d ./cuttlefish/vendor cuttlefish/vendor.img 1300M
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
