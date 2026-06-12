@@ -7,10 +7,13 @@ cd comet/vendor_boot
 magiskboot cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/fstab.zuma fstab.zuma" && magiskboot cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/fstab.zuma-fips fstab.zuma-fips" && magiskboot cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/fstab.zumapro fstab.zumapro" && magiskboot cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/fstab.zumapro-fips fstab.zumapro-fips" && magiskboot cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/recovery.fstab recovery.fstab"
 # Cuttelefish fstabs (modified ones)
 magiskboot cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/fstab.vsoc_arm64 fstab.vsoc_arm64"
+log_success "Fstab updated"
 cd $ROOT_DIR
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     ROOT_DIR=$(pwd)
+    . colors.sh || exir 255
+    . logger.sh || exit 255
     update_fstab
 fi
