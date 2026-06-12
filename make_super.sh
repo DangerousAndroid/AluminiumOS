@@ -15,7 +15,7 @@ lpmake \
     --group google_dynamic_partitions:12884901888 \
     --partition system:readonly:$(stat -c%s alos.img):google_dynamic_partitions \
     --image system=./alos.img \
-    --partition vendor:readonly:$(stat -c%s comet/vendor.img):google_dynamic_partitions \
+    --partition vendor:readonly:$(stat -c%s cuttlefish/vendor.img):google_dynamic_partitions \
     --image vendor=cuttlefish/vendor.img \
     --partition product:readonly:0:google_dynamic_partitions \
     --partition system_ext:readonly:0:google_dynamic_partitions \
