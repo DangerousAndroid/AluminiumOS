@@ -58,26 +58,26 @@ show_help() {
 init_first_time() {
  QEMU=$(which qemu-system-aarch64 2>/dev/null)
  if [ -z $QEMU ]; then
-  log "QEMU not installed, installing it"
+  log_error "QEMU not installed, installing it"
   case $MANAGER in 
   apt)
-  	log "Installing qemu via apt"
+  	log_info "Installing qemu via apt"
  	sudo apt install qemu-system-arm qemu-efi-aarch64 
   ;;
   pacman)
-  	log "Installing qemu via pacman"
+  	log_info "Installing qemu via pacman"
  	sudo pacman -S qemu-system-aarch64 
   ;;
   yum)
-  	log "Installing qemu via yum"
+  	log_info "Installing qemu via yum"
  	sudo yum install qemu
   ;;
   dnf)
-  	log "Installing qemu via dnf"
+  	log_info "Installing qemu via dnf"
  	sudo dnf install qemu
   ;;
   zypper)
-  	log "Installing qemu via zypper"
+  	log_info "Installing qemu via zypper"
   	# This commands are from the opensuse official page (https://software.opensuse.org/download/package?package=qemu-guest-agent&project=Virtualization)
  	sudo zypper addrepo https://download.opensuse.org/repositories/Virtualization/openSUSE_Slowroll/Virtualization.repo
 	sudo zypper refresh
@@ -104,22 +104,21 @@ if [ ! -d logs ]; then
 fi
 if [ ! -f logs/script.log ]; then
  touch logs/script.log
- log "Hii, logs are created, enjoy the project!"
+ log_info "Hii, logs are created, enjoy the project!"
 fi
 }
 
 make_logger() {
  if [ "$LOGGER" = "1" ]; then
-  echo 'log() {\necho ""\necho ""\ninfo "$1"\necho "[INFO]: $1" >> logs/script.log\n}\nlog_error() {\necho ""\necho ""\nerror "$1"\necho "[ERROR]: $1" >> logs/script.log\n}\n' > logger.sh
+  echo 'log_info() {\necho ""\necho ""\ninfo "$1"\necho "[INFO]: $1" >> logs/script.log\n}\nlog_error() {\necho ""\necho ""\nerror "$1"\necho "[ERROR]: $1" >> logs/script.log\n}\n log_green() {\necho ""\necho ""\nsuccess "$1"\necho "[SUCCESS]: $1" >> logs/script.log\n}' > logger.sh
  else
-  echo 'log() {\necho ""\n}\nlog_error() {\necho ""\n}' > logger.sh
+  echo 'log_info() {\necho ""\n}\nlog_error() {\necho ""\n}\nlog_success() {\necho ""\n}' > logger.sh
  fi
 }
-# I
 # Main functions
 
 use_debug_boot() {
-log "Booting in debug mode"
+log_info "Booting in debug mode"
 if [ ! -f super_disk.img ] || [ ! -f boot_debug.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
@@ -128,7 +127,7 @@ boot_debug
 }
 
 no_trusty() {
-log "Booting without trusty"
+log_info "Booting without trusty"
 if [ ! -f super_disk.img ] || [ ! -f boot_no_trusty.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
@@ -137,7 +136,7 @@ boot_without_trusty
 }
 
 use_trusty() {
-log "Booting with trusty"
+log_info "Booting with trusty"
 if [ ! -f super_disk.img ] || [ ! -f boot_trusty.sh ]; then
  log_error "Images or script are missing in the project root folder"
  exit 255
@@ -169,14 +168,14 @@ else
  read -p "Compilation completed, delete source code? [y/n]" ANSWER -n 1
  case $ANSWER in
  y|Y)
-  log "Deleting trusty source code"
+  log_info "Deleting trusty source code"
   rm -rf trusty_source
  ;;
  n|N)
-  log "Not deleting trusty source code"
+  log_info "Not deleting trusty source code"
   ;;
  *)
-  log "Answer unrecognized, not deleting trusty source code"
+  log_error "Answer unrecognized, not deleting trusty source code"
   ;;
  esac
 fi
@@ -198,34 +197,34 @@ build_stuff() {
  case $IMAGE_SELECTION in
   1)
    if [ -f super_alos.img ]; then
-    log "Building disk"
+    log_info "Building disk"
     create_disk
    else 
-    error_log "Super alos not found in the root dir, please build it"
+    log_error "Super alos not found in the root dir, please build it"
    fi
   ;;
   2)
    if [ ! -f cuttlefish/system_dlkm.img ] || [ ! -f cuttlefish/vendor_dlkm.img ] || [ ! -f comet/vendor.img ] || [ ! -f alos.img ]; then
-    error_log "Some files are missing for building super, check for the imgs in cuttlefish/, comet/ and root dir or build them"
+    log_error "Some files are missing for building super, check for the imgs in cuttlefish/, comet/ and root dir or build them"
    else
-    log "Building super"
+    log_info "Building super"
     make_super
    fi
   ;;
   3)
-   log "Building system"
+   log_info "Building system"
    make_system
   ;;
   4)
-   log "Building vendor"
+   log_info "Building vendor"
    make_vendor
   ;;
   5)
-   log "Building system_dlkm"
+   log_info "Building system_dlkm"
    make_system_dlkm
   ;;
   6)
-   log "Building vendor_dlkm"
+   log_info "Building vendor_dlkm"
    make_vendor_dlkm
   ;;
   *)
@@ -242,13 +241,13 @@ build_stuff() {
    echo ""
  ;;
  *)
-  error_log "Unkown option, assuming no"
+  log_error "Unkown option, assuming no"
  ;;
  esac
 }
 
 update_stuff() {
- log "Opening update menu"
+ log_info "Opening update menu"
  info "--UPDATE MENU--"
  info_continue "Select the number of the image you want to update"
  info_continue "1)" " Super"
@@ -261,22 +260,22 @@ update_stuff() {
  case $UPDATE_SELECTION in
   1)
    if [ -f super_alos.img ]; then
-    log "Updating super in disk"
+    log_info "Updating super in disk"
     update_super_disk
    else
-    error_log "Super Alos not found in root dir, please build it"
+    log_error "Super Alos not found in root dir, please build it"
    fi
   ;;
   2)
-   log "Building fstab"
+   log_info "Building fstab"
    update_fstab
   ;;
   3)
-   log "Updating metadata"
+   log_info "Updating metadata"
    update_metadata
   ;;
   4)
-   log "Updating Userdata"
+   log_info "Updating Userdata"
    update_userdata
   ;;
   *)
@@ -293,13 +292,13 @@ update_stuff() {
    echo ""
  ;;
  *)
-  error_log "Unkown option, assuming no"
+  log_error "Unkown option, assuming no"
  ;;
  esac
 }
 
 apply_patches() {
- log "Applying patches"
+ log_info "Applying patches"
  clean_boot_hals
  clean_boot_hals_2
  sed_keystore
