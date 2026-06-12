@@ -66,3 +66,4 @@ alos
 comet/vendor_boot/alos.cpio.bak
 boot_test.sh
 cuttlefish/vendor_boot/init
+comet/vendor_boot/bak.cpio
