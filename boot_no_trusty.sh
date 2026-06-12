@@ -19,10 +19,10 @@ qemu-system-aarch64 \
   -device qemu-xhci,id=xhci,addr=05.0 \
   -drive file="$DISK",if=none,id=super_drive,format=raw \
   -device virtio-blk-pci,drive=super_drive,id=super-disk,addr=04.0 \
-  -append "earlycon=pl011,0x09000000 console=ttyAMA0 rw init=/init androidboot.boot_devices=4010000000.pcie,pci0000:00/0000:00:04.0,virtio3 androidboot.selinux=permissive androidboot.lcd_density=160 androidboot.super_partition=super androidboot.hardware=zuma loglevel=3 androidboot.force_normal_boot=1 androidboot.vbmeta.device_state=unlocked androidboot.verifiedbootstate=orange kvm-arm.mode=none androidboot.first_stage_console=1 printk.devkmsg=on androidboot.veritymode=enforcing loop.max_loop=256 ro.apex.updatable=true androidboot.vendor.apex.com.android.hardware.graphics.composer=com.android.hardware.graphics.composer.drm_hwcomposer.apex stack_depot_disable=on cgroup_disable=pressure kasan.stacktrace=off androidboot.vendor.apex.com.android.hardware.keymint=com.android.hardware.keymint.rust_nonsecure.apex androidboot.vendor.apex.com.android.hardware.gatekeeper=com.android.hardware.gatekeeper.nonsecure.apex androidboot.vendor.apex.com.google.emulated.camera.provider.hal=com.google.emulated.camera.provider.hal.apex" \
+  -append "persist.sys.angle.backend=2 persist.graphics.egl=emulation ro.hardware.egl=emulation ro.board.platform=android earlycon=pl011,0x09000000 console=ttyAMA0 rw init=/init androidboot.boot_devices=4010000000.pcie,pci0000:00/0000:00:04.0,virtio3 androidboot.selinux=permissive androidboot.lcd_density=160 androidboot.super_partition=super androidboot.hardware=zuma loglevel=0 androidboot.force_normal_boot=1 androidboot.vbmeta.device_state=unlocked androidboot.verifiedbootstate=orange kvm-arm.mode=none androidboot.first_stage_console=1 printk.devkmsg=on androidboot.veritymode=enforcing loop.max_loop=256 ro.apex.updatable=true androidboot.vendor.apex.com.android.hardware.graphics.composer=com.android.hardware.graphics.composer.drm_hwcomposer.apex stack_depot_disable=on cgroup_disable=pressure kasan.stacktrace=off androidboot.vendor.apex.com.android.hardware.keymint=com.android.hardware.keymint.rust_nonsecure.apex androidboot.vendor.apex.com.android.hardware.gatekeeper=com.android.hardware.gatekeeper.nonsecure.apex androidboot.vendor.apex.com.google.emulated.camera.provider.hal=com.google.emulated.camera.provider.hal.apex" \
   -device virtio-tablet-pci \
-  -device virtio-gpu-gl-pci \
-  -display gtk,gl=on \
+  -device virtio-gpu-gl-pci,id=gpu0,addr=06.0,blob=true,max_outputs=1 \
+  -display sdl,gl=on,show-cursor=on \
   -device virtio-keyboard-pci \
   -serial mon:stdio \
   -device virtio-serial-pci,id=virtio-serial0 \
