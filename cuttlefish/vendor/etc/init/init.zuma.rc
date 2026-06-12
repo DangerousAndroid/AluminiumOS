@@ -19,6 +19,11 @@ com.android.hardware.keymint.rust_cf_guest_trusty_nonsecure
     setprop trusty.security_vm.enabled 1
     # Enable KeyMint that connects to the Trusty Security VM
     setprop trusty.security_vm.keymint.enabled 1
+    # Override the default Pixel graphics configuration completely
+    setprop ro.hardware.egl emulation
+    setprop ro.hardware.gralloc minigbm
+    setprop ro.hardware.hwcomposer ranchu
+    setprop ro.opengles.version 196608
 
 on init
     # ZRAM setup
