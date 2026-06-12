@@ -8,7 +8,7 @@ error() {
  echo -n "$1"
  echo -e "\033[0m"
 }
-green() {
+success() {
  echo -ne "\033[0;32m"
  echo -n "$1"
  echo -e "\033[0m"
