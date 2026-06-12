@@ -67,3 +67,8 @@ comet/vendor_boot/alos.cpio.bak
 boot_test.sh
 cuttlefish/vendor_boot/init
 comet/vendor_boot/bak.cpio
+cutftest/
+make_super_test.sh
+make_system_test.sh
+make_vendor_test.sh
+update_super_test.sh
