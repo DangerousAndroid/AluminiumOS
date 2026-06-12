@@ -14,6 +14,7 @@ log_success "Super updated in disk!"
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    ROOT_DIR=$(pwd)
     . colors.sh || exit 255
     . logger.sh || exit 255
     update_super_disk
