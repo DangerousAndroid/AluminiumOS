@@ -1,6 +1,6 @@
 #!/bin/bash
 make_super() {
-log "Searching for backup"
+log_info "Searching for backup"
 if [ -f super_alos.img ]; then
  if [ ! -d backup ]; then
    mkdir backup
@@ -33,5 +33,6 @@ log_sucess "Super image built"
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     . colors.sh || exit 255
+    . logger.sh || exit 255
     make_super
 fi
