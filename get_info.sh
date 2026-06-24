@@ -1,7 +1,5 @@
 #!/bin/bash
 get_info() {
-X86=0
-ARM=0
  ARCH=$(uname -m)
  case $ARCH in
  "x86_64")
@@ -47,5 +45,6 @@ ARM=0
 DISTRO=$(source /etc/os-release && echo "$NAME")
 }
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+   . vars.sh || exit 255
    get_info
 fi
