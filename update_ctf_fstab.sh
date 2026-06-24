@@ -9,7 +9,7 @@ $MAGISKBOOT cpio alos.cpio "add 0750 first_stage_ramdisk/system/etc/fstab.vsoc_a
 #magiskboot cpio alos.cpio "add 0750 prop.default prop.default"
 # Add comet default.prop
 $MAGISKBOOT cpio alos.cpio "add 0750 prop.default prop.comet.default"
-cd $ROOT_DIR
+cd $ROOT
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
