@@ -1,13 +1,8 @@
 #!/bin/bash
 ## This script its the main script that will execute everything in the project ##
 
-# Default values
-DOWNLOAD_PREMAKE=1
-ROOT_DIR=$(pwd)
-MAGISKBOOT=bin/magiskboot
-LOGGER=1
-
 # load helper scripts WITHOUT loops
+. vars.sh || exit 255
 . get_info.sh || exit 255
 . logger.sh || exit 255
 . create_disk.sh || exit 255
