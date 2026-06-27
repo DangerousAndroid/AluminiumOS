@@ -135,4 +135,9 @@ ro.surface_flinger.game_default_frame_rate_override=60
 ####################################
 # from variable PRODUCT_PROPERTY_OVERRIDES
 ####################################
+# Graphics emulation fallback
+ro.hardware.egl=angle
+persist.graphics.egl=angle
+ro.hardware.vulkan=pastel
+ro.hw_timeout_multiplier=10
 # end of file
