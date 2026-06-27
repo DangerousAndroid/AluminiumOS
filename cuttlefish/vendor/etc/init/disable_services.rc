@@ -1,0 +1,15 @@
+service vendor.uwb_hal /apex/com.android.hardware.uwb/bin/hw/android.hardware.uwb-service
+    override
+    disabled
+
+service vendor.oemlock_default /apex/com.google.cf.oemlock/bin/hw/android.hardware.oemlock-service.remote
+    override
+    disabled
+
+service vendor.threadnetwork_hal /apex/com.android.hardware.threadnetwork/bin/hw/android.hardware.threadnetwork-service
+    override
+    disabled
+
+service vendor.light-cuttlefish /apex/com.google.cf.light/bin/hw/android.hardware.light-service.cuttlefish
+    override
+    disabled
