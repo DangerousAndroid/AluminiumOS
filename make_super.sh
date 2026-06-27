@@ -21,6 +21,8 @@ lpmake \
     --image vendor=cuttlefish/vendor.img \
     --partition product:readonly:0:google_dynamic_partitions \
     --partition system_ext:readonly:0:google_dynamic_partitions \
+    --partition odm:readonly:$(stat -c%s cuttlefish/odm.img):google_dynamic_partitions \
+    --image odm=cuttlefish/odm.img \
     --partition odm_dlkm:readonly:$(stat -c%s cuttlefish/odm_dlkm.img):google_dynamic_partitions \
     --image odm_dlkm=cuttlefish/odm_dlkm.img \
     --partition system_dlkm:readonly:$(stat -c%s cuttlefish/system_dlkm.img):google_dynamic_partitions \
@@ -28,7 +30,7 @@ lpmake \
     --partition vendor_dlkm:readonly:$(stat -c%s cuttlefish/vendor_dlkm.img):google_dynamic_partitions \
     --image vendor_dlkm=cuttlefish/vendor_dlkm.img \
     --output super_alos.img
-log_sucess "Super image built"
+log_success "Super image built"
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
