@@ -1,7 +1,14 @@
 on early-init
 #    loglevel 8
 
-    setprop ro.hw_timeout_multiplier ${ro.boot.hw_timeout_multiplier}
+    setprop ro.hardware.egl angle
+    setprop ro.hardware.gralloc minigbm
+    setprop ro.hardware.hwcomposer drm_hwcomposer
+    setprop ro.hardware.vulkan pastel
+    setprop ro.opengles.version 196608
+    setprop persist.graphics.egl angle
+
+    setprop ro.hw_timeout_multiplier 10
     setprop hypervisor.memory_reclaim.supported ${ro.boot.hypervisor.vm.supported}
 
     start metrics_helper
@@ -20,9 +27,10 @@ com.android.hardware.keymint.rust_cf_guest_trusty_nonsecure
     # Enable KeyMint that connects to the Trusty Security VM
     setprop trusty.security_vm.keymint.enabled 1
     # Override the default Pixel graphics configuration completely
-    setprop ro.hardware.egl emulation
+    setprop ro.hardware.egl angle
     setprop ro.hardware.gralloc minigbm
     setprop ro.hardware.hwcomposer ranchu
+    setprop ro.hardware.vulkan pastel
     setprop ro.opengles.version 196608
 
 on init
@@ -71,6 +79,13 @@ on post-fs-data && property:ro.boot.wifi_impl=virt_wifi
 on post-fs-data
     mkdir /data/vendor/modem_dump 0777 system system
     mkdir /data/vendor/radio 0777 system system
+    # Setup dummy FRP partition using loop99 to prevent PersistentDataBlockService timeout
+    mkdir /data/vendor/frp 0775 system system
+    exec -- /system/bin/dd if=/dev/zero of=/data/vendor/frp/frp.img bs=1024 count=1024
+    exec -- /system/bin/losetup /dev/block/loop99 /data/vendor/frp/frp.img
+    symlink /dev/block/loop99 /dev/block/by-name/frp
+    chmod 0660 /dev/block/loop99
+    chown system system /dev/block/loop99
 
 on late-fs
     # Mount RW partitions which need run fsck
