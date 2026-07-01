@@ -18,8 +18,8 @@
 > [!IMPORTANT]
 > **What Works:** The image boots flawlessl in terminal and has video output!
 > 
-> **Bugs** 
-> 3. **RILd:** Host features like wifi or bluetooth are very probably unfunctional, but is untested
+> **Bugs**    
+> 1. **RILd:** Host features like wifi or bluetooth are very probably unfunctional, but is untested
 
 ---
 
