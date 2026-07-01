@@ -16,12 +16,10 @@
 
 ### ⚡ Current Status
 > [!IMPORTANT]
-> **What Works:** The image boots flawlessl in terminal!
+> **What Works:** The image boots flawlessl in terminal and has video output!
 > 
 > **Bugs** 
-> 1. **Graphics:** Display output is currently unavailable due to missing `virtio` drivers in the kernel (fixing it rn!)
-> 2. **Cuttlefish kernel/ramdisk:** For injecting the drivers the ramdisk and kernel of cuttlefish are needed, but 'init' its rejecting its fstabs
-> 3. **Audio:** Probably due to the same error as graphics, sound isnt avaliable right now
+> 3. **RILd:** Host features like wifi or bluetooth are very probably unfunctional, but is untested
 
 ---
 
@@ -44,8 +42,9 @@
 
 - [x]  Achieve a successful boot
 - [x]  Build with trusty and GICv3
-- [ ]  Eliminate all the bugs (video, audio, keymint, etc)
-- [ ]  Boot with cuttlefish ramdisk and kernel
+- [X]  Eliminate video bug
+- [ ]  ELiminate all the rest of bugs (bt, wifi, ...)
+- [X]  Boot with cuttlefish ramdisk and kernel
 - [ ]  Execute it natively without a host OS (impossible??)
 
 ---
