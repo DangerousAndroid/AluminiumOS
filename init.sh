@@ -346,7 +346,7 @@ done
 make_logger
 if [ "$LOGGER" = 1 ]; then
  if [ $OPTIND -eq 1 ]; then
-    error_log "No flags provided."
+    log_error "No flags provided."
     show_help
     exit
  fi
