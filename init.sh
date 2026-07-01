@@ -48,7 +48,15 @@ show_help() {
  info_continue "-u" " update images"
  info "---------------------------"
 }
-
+# Title function
+title() {
+echo ""                                                                        
+info "  ▄▄▄▄   ▄▄                                               ▄▄▄▄▄    ▄▄▄▄▄▄▄ "
+error "▄██▀▀██▄ ██                ▀▀        ▀▀                 ▄███████▄ █████▀▀▀ "
+success "███  ███ ██ ██ ██ ███▄███▄ ██  ████▄ ██  ██ ██ ███▄███▄ ███   ███  ▀████▄  "
+info "███▀▀███ ██ ██ ██ ██ ██ ██ ██  ██ ██ ██  ██ ██ ██ ██ ██ ███▄▄▄███    ▀████ "
+error "███  ███ ██ ▀██▀█ ██ ██ ██ ██▄ ██ ██ ██▄ ▀██▀█ ██ ██ ██  ▀█████▀  ███████▀ "                                                                                             
+}
 # Init scripts for the first time running it
 init_first_time() {
  QEMU=$(which qemu-system-aarch64 2>/dev/null)
@@ -299,7 +307,9 @@ apply_patches() {
  sed_keystore
 }
 
-# Init everything
+#########################################################
+
+title
 if [ -f logs/init_first_time ]; then
  echo ""
 else
@@ -350,5 +360,3 @@ else
     exit
  fi
 fi
-
-# still WIP, will be updated soon
