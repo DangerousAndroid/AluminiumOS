@@ -72,3 +72,5 @@ make_super_test.sh
 make_system_test.sh
 make_vendor_test.sh
 update_super_test.sh
+*.ppm
+*.png
