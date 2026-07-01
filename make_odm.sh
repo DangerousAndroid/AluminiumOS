@@ -6,7 +6,10 @@ if [ -f cuttlefish/odm.img ]; then
  fi
  mv cuttlefish/odm.img backup/odm.img.old
 fi
-mke2fs -t ext2 -d ./cuttlefish/odm cuttlefish/odm.img 360M
+cat ./alos-gsi/system/etc/selinux/plat_file_contexts ./cuttlefish/odm/etc/selinux/odm_file_contexts > combined_odm_fc.tmp
+mke2fs -t ext4 -O ext_attr,has_journal,dir_index,sparse_super cuttlefish/odm.img 360M
+e2fsdroid -e -S combined_odm_fc.tmp -f ./cuttlefish/odm -a /odm cuttlefish/odm.img
+rm -f combined_odm_fc.tmp
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

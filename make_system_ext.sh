@@ -6,7 +6,8 @@ if [ -f cuttlefish/system_ext.img ]; then
  fi
  mv cuttlefish/system_ext.img backup/vendor.img.old
 fi
-mke2fs -t ext2 -d ./cuttlefish/system_ext cuttlefish/system_ext.img 600M
+mke2fs -t ext4 -O ext_attr,has_journal,dir_index,sparse_super cuttlefish/system_ext.img 600M
+e2fsdroid -e -S ./cuttlefish/system_ext/etc/selinux/system_ext_file_contexts -f ./cuttlefish/system_ext -a /system_ext cuttlefish/system_ext.img
 }
 # If the script is not sourced from the main script still can be executed as an individual file
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
