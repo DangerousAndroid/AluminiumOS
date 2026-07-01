@@ -47,9 +47,11 @@ clone_repo() {
 if [ -d AluminiumOS ]; then
  info "Cloning on ALOS folder due to stock folder being occupied"
  git clone --recurse-submodules https://github.com/DangerousAndroid/AluminiumOS.git ALOS --depth=1
+ DIR=alos
 else
  info "Cloning from github"
  git clone --recurse-submodules https://github.com/DangerousAndroid/AluminiumOS.git --depth=1
+ DIR=AluminiumOS
 fi
 }
 check_git() {
@@ -117,4 +119,19 @@ install_qemu
 check_if_cloned
 check_git
 clone_repo
-success "All done, exiting"
+success "All done!"
+read -p "Do you want to init the init script now? [y/N]" OPTION
+case $OPTION in 
+y|Y)
+ info "Selected yes, Executing init script now"
+ ./$DIR/init.sh
+;;
+n|N)
+ info "Selected no, exiting now"
+ exit
+;;
+*)
+ error "Unrecognized option, assuming no"
+ exit
+;;
+esac
