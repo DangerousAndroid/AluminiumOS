@@ -116,7 +116,6 @@ install_qemu() {
 title
 check_manager
 install_qemu
-check_if_cloned
 check_git
 clone_repo
 success "All done!"
