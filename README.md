@@ -49,6 +49,14 @@
 
 ---
 
+
+## 📥 Installation
+
+* Copy or download the [install.sh file](https://raw.githubusercontent.com/DangerousAndroid/AluminiumOS/refs/heads/DEV/install.sh) and execute it or clone the repo with submodules and install qemu manually
+
+---
+
+
 ## 🔗 Links
 
 * **XDA Thread:** [AluminiumOS in x86/x64 PCs (WIP)](https://xdaforums.com/t/aluminiumos-in-x86-x64-pcs-wip.4789078/) - For bug reports, questions or any information. Any contribution its appreciated!
