@@ -13,3 +13,19 @@ service vendor.threadnetwork_hal /apex/com.android.hardware.threadnetwork/bin/hw
 service vendor.light-cuttlefish /apex/com.google.cf.light/bin/hw/android.hardware.light-service.cuttlefish
     override
     disabled
+
+on early-init
+    setprop ctl.stop keystore2
+
+on post-fs-data
+    setprop ctl.stop keystore2
+    mkdir /data/misc 0771 system system
+    mkdir /data/misc/keystore 0700 1017 1017
+    restorecon /data/misc/keystore
+    mkdir /data/system 0775 system system
+    mkdir /data/system/users 0775 system system
+    setprop vold.post_fs_data_done 1
+    class_start main
+    class_start late_start
+
+
