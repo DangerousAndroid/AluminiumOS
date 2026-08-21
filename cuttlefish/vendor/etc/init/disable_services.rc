@@ -16,6 +16,7 @@ service vendor.light-cuttlefish /apex/com.google.cf.light/bin/hw/android.hardwar
 
 on early-init
     setprop ctl.stop keystore2
+    setprop trusty.security_vm.nonsecure_vm_ready 0
 
 on post-fs-data
     setprop ctl.stop keystore2
@@ -27,5 +28,25 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
     class_start main
     class_start late_start
+
+on boot
+    setprop vold.decrypt trigger_restart_framework
+    setprop ctl.start zygote
+    setprop ctl.start surfaceflinger
+    class_start main
+    class_start late_start
+    setprop sys.boot_completed 1
+
+on late-init
+    setprop vold.decrypt trigger_restart_framework
+    setprop ctl.start zygote
+    setprop ctl.start surfaceflinger
+    class_start main
+    class_start late_start
+    setprop sys.boot_completed 1
+
+
+
+
 
 
