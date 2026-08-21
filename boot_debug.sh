@@ -1,6 +1,6 @@
 #!/bin/bash
 boot_debug() {
-log "Launching AluminiumOS (Build CP1A.260305.018) without Trusty TEE..."
+echo "Launching AluminiumOS (Build CP1A.260305.018) without Trusty TEE..."
 qemu-system-aarch64 \
   -M virt,gic-version=3 \
   -cpu max,sve=off \
