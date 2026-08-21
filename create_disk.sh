@@ -3,11 +3,24 @@ create_disk() {
 echo "Creating empty disk image..."
 dd if=/dev/zero of=super_disk.img bs=1M count=13000 status=progress
 echo "Partitioning disk..."
-sgdisk -n 1:2048:+64M   -c 1:"boot"          super_disk.img
-sgdisk -n 2:0:+16M      -c 2:"dtbo"          super_disk.img
-sgdisk -n 3:0:+8M       -c 3:"vbmeta"        super_disk.img
-sgdisk -n 4:0:+8M       -c 4:"vbmeta_system" super_disk.img
-sgdisk -n 5:0:0         -c 5:"super"         super_disk.img
+if command -v sgdisk >/dev/null 2>&1; then
+  sgdisk -n 1:2048:+64M   -c 1:"boot"          super_disk.img
+  sgdisk -n 2:0:+16M      -c 2:"dtbo"          super_disk.img
+  sgdisk -n 3:0:+8M       -c 3:"vbmeta"        super_disk.img
+  sgdisk -n 4:0:+8M       -c 4:"vbmeta_system" super_disk.img
+  sgdisk -n 5:0:0         -c 5:"super"         super_disk.img
+else
+  sfdisk super_disk.img <<EOF
+label: gpt
+unit: sectors
+
+super_disk.img1 : start=2048, size=131072, name="boot"
+super_disk.img2 : size=32768, name="dtbo"
+super_disk.img3 : size=16384, name="vbmeta"
+super_disk.img4 : size=16384, name="vbmeta_system"
+super_disk.img5 : name="super"
+EOF
+fi
 echo "Writing super image to disk (offset 97M)..."
 dd if=super_alos.img of=super_disk.img bs=1M seek=97 conv=notrunc status=progress
 log_success "Done!"
