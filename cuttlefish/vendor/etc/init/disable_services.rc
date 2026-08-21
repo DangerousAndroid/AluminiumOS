@@ -35,7 +35,6 @@ on boot
     setprop ctl.start surfaceflinger
     class_start main
     class_start late_start
-    setprop sys.boot_completed 1
 
 on late-init
     setprop vold.decrypt trigger_restart_framework
@@ -43,7 +42,7 @@ on late-init
     setprop ctl.start surfaceflinger
     class_start main
     class_start late_start
-    setprop sys.boot_completed 1
+
 
 
 
