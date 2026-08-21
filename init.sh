@@ -113,9 +113,29 @@ fi
 
 make_logger() {
  if [ "$LOGGER" = "1" ]; then
-  echo 'log_info() {\necho ""\necho ""\ninfo "$1"\necho "[INFO]: $1" >> logs/script.log\n}\nlog_error() {\necho ""\necho ""\nerror "$1"\necho "[ERROR]: $1" >> logs/script.log\n}\n log_green() {\necho ""\necho ""\nsuccess "$1"\necho "[SUCCESS]: $1" >> logs/script.log\n}' > logger.sh
+  cat <<'EOF' > logger.sh
+log_info() {
+  echo ""
+  info "$1"
+  [ -d logs ] && echo "[INFO]: $1" >> logs/script.log
+}
+log_error() {
+  echo ""
+  error "$1"
+  [ -d logs ] && echo "[ERROR]: $1" >> logs/script.log
+}
+log_success() {
+  echo ""
+  success "$1"
+  [ -d logs ] && echo "[SUCCESS]: $1" >> logs/script.log
+}
+EOF
  else
-  echo 'log_info() {\necho ""\n}\nlog_error() {\necho ""\n}\nlog_success() {\necho ""\n}' > logger.sh
+  cat <<'EOF' > logger.sh
+log_info() { echo ""; }
+log_error() { echo ""; }
+log_success() { echo ""; }
+EOF
  fi
 }
 # Main functions
