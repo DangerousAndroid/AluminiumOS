@@ -17,6 +17,11 @@ sed -i 's@^/product/@/(product|system/product)/@' ./cuttlefish/unified_plat_file
 echo "/(system_ext|system/system_ext)/bin/rpmb_dev\.desktop\.system u:object_r:rpmb_dev_system_exec:s0" >> ./cuttlefish/unified_plat_file_contexts
 echo "/(system_ext|system/system_ext)/bin/rpmb_dev\.system u:object_r:rpmb_dev_system_exec:s0" >> ./cuttlefish/unified_plat_file_contexts
 echo "/(system_ext|system/system_ext)/bin/storageproxyd\.system u:object_r:storageproxyd_system_exec:s0" >> ./cuttlefish/unified_plat_file_contexts
+echo "/\.git.* u:object_r:rootfs:s0" >> ./cuttlefish/unified_plat_file_contexts
+echo "/\.gitignore u:object_r:rootfs:s0" >> ./cuttlefish/unified_plat_file_contexts
+echo "/git\.sh u:object_r:rootfs:s0" >> ./cuttlefish/unified_plat_file_contexts
+echo "/README\.md u:object_r:rootfs:s0" >> ./cuttlefish/unified_plat_file_contexts
+echo "/.* u:object_r:system_file:s0" >> ./cuttlefish/unified_plat_file_contexts
 e2fsdroid -e -S ./cuttlefish/unified_plat_file_contexts -f ./alos-gsi -a / alos.img
 log_success "System image built"
 }
