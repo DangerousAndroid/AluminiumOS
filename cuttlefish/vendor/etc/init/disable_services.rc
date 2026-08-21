@@ -16,32 +16,32 @@ service vendor.light-cuttlefish /apex/com.google.cf.light/bin/hw/android.hardwar
 
 on early-init
     setprop ctl.stop keystore2
+    setprop ctl.stop storageproxyd_system
     setprop trusty.security_vm.nonsecure_vm_ready 0
 
 on post-fs-data
     setprop ctl.stop keystore2
+    setprop ctl.stop storageproxyd_system
     mkdir /data/misc 0771 system system
     mkdir /data/misc/keystore 0700 1017 1017
     restorecon /data/misc/keystore
     mkdir /data/system 0775 system system
     mkdir /data/system/users 0775 system system
     setprop vold.post_fs_data_done 1
-    class_start main
-    class_start late_start
+    trigger zygote-start
 
 on boot
     setprop vold.decrypt trigger_restart_framework
-    setprop ctl.start zygote
-    setprop ctl.start surfaceflinger
+    trigger zygote-start
     class_start main
     class_start late_start
 
 on late-init
     setprop vold.decrypt trigger_restart_framework
-    setprop ctl.start zygote
-    setprop ctl.start surfaceflinger
+    trigger zygote-start
     class_start main
     class_start late_start
+
 
 
 
