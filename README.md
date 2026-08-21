@@ -37,7 +37,7 @@
 
 ---
 
-## 📋 TODO list
+## TODO list
 
 - [x]  Achieve a successful boot
 - [x]  Build with trusty and GICv3
@@ -49,19 +49,23 @@
 ---
 
 
-## 📥 Installation
+## Installation
 
 * Copy or download the [install.sh file](https://raw.githubusercontent.com/DangerousAndroid/AluminiumOS/refs/heads/DEV/install.sh) and execute it or clone the repo with submodules and install qemu manually
 
 ---
 
 
-## 🔗 Links
+## Links
 
 * **XDA Thread:** [AluminiumOS in x86/x64 PCs (WIP)](https://xdaforums.com/t/aluminiumos-in-x86-x64-pcs-wip.4789078/) - For bug reports, questions or any information. Any contribution its appreciated!
 * **My contact:** [my telegram](https://t.me/@DangerousAndroid) or my [group chat]()- For errors or info that cannot be published on the main XDA thread
 
-## ❤️ Credits
+## Disclaimer
+* The submodule in [GitLab](https://gitlab.com/DangerousAndroid/alos-gsi) has been obtained from MysticLeaks on Telegram and its property of him or Google INC, the creator of this module denieds any credit or responsability over them
+* The scripts or files on this repo like `init.sh` or `create_disk.sh` are 
+---
+## Credits <3
 * **Mystic Leaks** for the leaked ALOS image
 * **AOSP** for trusty source code and qemu for trusty binary 
 * **Magisk** for the magiskboot binary
@@ -69,3 +73,4 @@
 * **Android CI** for cuttlefish files
 * **Google** for comet files
 * **All the XDA threads and web pages about documenting ARM64 in QEMU, GICv3 and android boot process** for their amazing info
+* **Waveipfy Vercel** for the animated logo
