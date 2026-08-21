@@ -74,3 +74,4 @@ make_vendor_test.sh
 update_super_test.sh
 *.ppm
 *.png
+*out

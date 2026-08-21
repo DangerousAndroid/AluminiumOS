@@ -12,16 +12,16 @@ qemu-system-aarch64 \
   -cpu max,sve=off \
   -smp $CORES \
   -m $MEM \
-  -accel tcg,thread=multi \
+  -accel tcg,thread=multi,tb-size=1024 \
   -kernel "$KERNEL" \
   -initrd "$RAMDISK" \
   -dtb "$DTB" \
   -device qemu-xhci,id=xhci,addr=05.0 \
-  -drive file="$DISK",if=none,id=super_drive,format=raw \
+  -drive file="$DISK",if=none,id=super_drive,format=raw,cache=unsafe,aio=threads \
   -device virtio-blk-pci,drive=super_drive,id=super-disk,addr=04.0 \
-  -append "earlycon=pl011,0x09000000 console=ttyAMA0 rw init=/init androidboot.boot_devices=4010000000.pcie,pci0000:00/0000:00:04.0,virtio3 androidboot.selinux=permissive androidboot.lcd_density=160 androidboot.super_partition=super androidboot.hardware=zuma loglevel=3 androidboot.force_normal_boot=1 androidboot.vbmeta.device_state=unlocked androidboot.verifiedbootstate=orange kvm-arm.mode=none androidboot.first_stage_console=2" \
+  -append "earlycon=pl011,0x09000000 console=ttyAMA0 rw init=/init androidboot.boot_devices=4010000000.pcie,pci0000:00/0000:00:04.0,virtio3 androidboot.selinux=permissive androidboot.lcd_density=160 androidboot.super_partition=super androidboot.hardware=zuma loglevel=0 androidboot.force_normal_boot=1 androidboot.vbmeta.device_state=unlocked androidboot.verifiedbootstate=orange kvm-arm.mode=none androidboot.first_stage_console=2" \
   -device virtio-tablet-pci \
-  -device virtio-gpu-gl-pci \
+  -device virtio-gpu-gl-pci,id=gpu0,addr=06.0,blob=true,max_outputs=1 \
   -display gtk,gl=on \
   -device virtio-keyboard-pci \
   -serial mon:stdio \

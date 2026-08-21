@@ -12,7 +12,7 @@ DISK="super_disk.img"
 KERNEL="./cuttlefish/boot/kernel"
 RAMDISK="./comet/vendor_boot/alos.cpio"
 DTB="./dtb/alos.dtb"
-CORES="12"
+CORES="8"
 MEM="16G"
 # Super building vars
 SUPER_IMAGE=super_alos.img

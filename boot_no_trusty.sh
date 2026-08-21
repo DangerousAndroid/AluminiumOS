@@ -6,12 +6,12 @@ qemu-system-aarch64 \
   -cpu max,sve=off \
   -smp $CORES \
   -m $MEM \
-  -accel tcg,thread=multi \
+  -accel tcg,thread=multi,tb-size=1024 \
   -kernel "$KERNEL" \
   -initrd "$RAMDISK" \
   -dtb "$DTB" \
   -device qemu-xhci,id=xhci,addr=05.0 \
-  -drive file="$DISK",if=none,id=super_drive,format=raw \
+  -drive file="$DISK",if=none,id=super_drive,format=raw,cache=unsafe,aio=threads \
   -device virtio-blk-pci,drive=super_drive,id=super-disk,addr=04.0 \
   -append $CMDLINE \
   -device virtio-tablet-pci \
