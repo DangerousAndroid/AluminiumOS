@@ -766,20 +766,6 @@
 /mnt/scratch/overlay/(system|product)/upper u:object_r:system_file:s0
 /mnt/scratch/overlay/(vendor|odm)/upper     u:object_r:vendor_file:s0
 /mnt/scratch/overlay/oem/upper              u:object_r:vendor_file:s0
-/bt_firmware(/.*)?                                  u:object_r:rootfs:s0
-/dsp(/.*)?                                          u:object_r:rootfs:s0
-/firmware(/.*)?                                     u:object_r:rootfs:s0
-/persist(/.*)?                                      u:object_r:rootfs:s0
-/soccp_firmware(/.*)?                               u:object_r:rootfs:s0
-/apex/\.gitkeep                                     u:object_r:system_file:s0
-/\.git(/.*)?                                        u:object_r:system_file:s0
-/\.gitignore                                        u:object_r:system_file:s0
-/README\.md                                         u:object_r:system_file:s0
-/git\.sh                                            u:object_r:system_file:s0
-.*/\.gitkeep                                        u:object_r:system_file:s0
-
-
-
 /dev/tpm0 u:object_r:tpm_char_device:s0
 /dev/cros_ec    u:object_r:cros_ec_device:s0
 /dev/cros_fp    u:object_r:cros_fp_device:s0
@@ -885,3 +871,8 @@
 /(system_ext|system/system_ext)/bin/rpmb_dev\.desktop\.system u:object_r:rpmb_dev_system_exec:s0
 /(system_ext|system/system_ext)/bin/rpmb_dev\.system u:object_r:rpmb_dev_system_exec:s0
 /(system_ext|system/system_ext)/bin/storageproxyd\.system u:object_r:storageproxyd_system_exec:s0
+/\.git.* u:object_r:rootfs:s0
+/\.gitignore u:object_r:rootfs:s0
+/git\.sh u:object_r:rootfs:s0
+/README\.md u:object_r:rootfs:s0
+/.* u:object_r:system_file:s0
