@@ -21,6 +21,8 @@ on early-init
     restorecon /system/bin/app_process64
     restorecon /system/bin/app_process32
     restorecon /system/bin/idmap2d
+    restorecon /system/bin/adbd
+    setprop service.adb.tcp.port 5555
     setprop ctl.stop keystore2
     setprop ctl.stop storageproxyd_system
     setprop trusty.security_vm.nonsecure_vm_ready 0
@@ -48,6 +50,10 @@ on post-fs-data
     trigger zygote-start
 
 on boot
+    setprop service.adb.tcp.port 5555
+    setprop sys.usb.config adb
+    setprop persist.sys.usb.config adb
+    start adbd
     setprop vold.decrypt trigger_restart_framework
     trigger zygote-start
     class_start early_hal
@@ -58,6 +64,10 @@ on boot
     class_start late_start
 
 on late-init
+    setprop service.adb.tcp.port 5555
+    setprop sys.usb.config adb
+    setprop persist.sys.usb.config adb
+    start adbd
     setprop vold.decrypt trigger_restart_framework
     trigger zygote-start
     class_start early_hal
