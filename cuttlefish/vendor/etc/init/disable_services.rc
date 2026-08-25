@@ -116,6 +116,7 @@ on post-fs-data
     mkdir /data/system/users 0775 system system
     start surfaceflinger
     setprop vold.post_fs_data_done 1
+    setprop ctl.stop vold
     trigger zygote-start
 
 on boot
