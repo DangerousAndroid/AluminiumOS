@@ -19,8 +19,10 @@ lpmake \
     --image system=./alos.img \
     --partition vendor:readonly:$(stat -c%s cuttlefish/vendor.img):google_dynamic_partitions \
     --image vendor=cuttlefish/vendor.img \
-    --partition product:readonly:0:google_dynamic_partitions \
-    --partition system_ext:readonly:0:google_dynamic_partitions \
+    --partition product:readonly:$(stat -c%s cuttlefish/product.img):google_dynamic_partitions \
+    --image product=cuttlefish/product.img \
+    --partition system_ext:readonly:$(stat -c%s cuttlefish/system_ext.img):google_dynamic_partitions \
+    --image system_ext=cuttlefish/system_ext.img \
     --partition odm:readonly:$(stat -c%s cuttlefish/odm.img):google_dynamic_partitions \
     --image odm=cuttlefish/odm.img \
     --partition odm_dlkm:readonly:$(stat -c%s cuttlefish/odm_dlkm.img):google_dynamic_partitions \
