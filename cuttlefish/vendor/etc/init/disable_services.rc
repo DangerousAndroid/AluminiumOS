@@ -79,7 +79,7 @@ service media /system/bin/media
     override
     disabled
 
-service vold /system/bin/vold
+service vold /system/bin/toybox true
     override
     disabled
 
