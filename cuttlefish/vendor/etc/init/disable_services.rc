@@ -95,6 +95,9 @@ service profcollectd /system/bin/profcollectd
     disabled
 
 on post-fs-data
+    setprop ctl.stop vendor.boot-default
+    setprop ctl.stop mediaextractor
+    setprop ctl.stop credstore
     setprop ctl.stop keystore2
     setprop ctl.stop storageproxyd_system
     restorecon /data
@@ -109,6 +112,9 @@ on post-fs-data
     trigger zygote-start
 
 on boot
+    setprop ctl.stop vendor.boot-default
+    setprop ctl.stop mediaextractor
+    setprop ctl.stop credstore
     setprop service.adb.tcp.port 5555
     setprop sys.usb.config adb
     setprop persist.sys.usb.config adb
@@ -123,6 +129,9 @@ on boot
     class_start late_start
 
 on late-init
+    setprop ctl.stop vendor.boot-default
+    setprop ctl.stop mediaextractor
+    setprop ctl.stop credstore
     setprop service.adb.tcp.port 5555
     setprop sys.usb.config adb
     setprop persist.sys.usb.config adb
