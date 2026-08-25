@@ -13,7 +13,7 @@ $ROOT_DIR/bin/qemu-system-aarch64 \
   -cpu max,sve=off \
   -smp $CORES \
   -m $MEM \
-  -accel tcg,thread=multi,tb-size=1024 \
+  -accel tcg,thread=multi,tb-size=4096 \
   -bios $TRUSTY_BOOT \
   -semihosting-config enable=on,target=native \
   -kernel "$KERNEL" \

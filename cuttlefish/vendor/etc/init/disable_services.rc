@@ -14,6 +14,12 @@ service vendor.light-cuttlefish /apex/com.google.cf.light/bin/hw/android.hardwar
     override
     disabled
 
+service netd /system/bin/netd
+    override
+    class main
+    user root
+    group root net_admin
+
 on early-init
     exec u:r:init:s0 root root -- /system/bin/toybox mknod /dev/loop-control c 10 237
     chmod 0660 /dev/loop-control
@@ -32,7 +38,35 @@ on early-init
 
 
 on post-fs-data
-    exec_background u:r:init:s0 root root -- /system/bin/sh -c "/system/bin/logcat -v time > /dev/kmsg"
+    exec_background u:r:init:s0 root root -- /system/bin/logcat -b main,system,crash -f /dev/kmsg
+
+service storaged /system/bin/storaged
+    override
+    disabled
+
+service dumpstate /system/bin/dumpstate
+    override
+    disabled
+
+service incidentd /system/bin/incidentd
+    override
+    disabled
+
+service statsd /system/bin/statsd
+    override
+    disabled
+
+service traced /system/bin/traced
+    override
+    disabled
+
+service heapprofd /system/bin/heapprofd
+    override
+    disabled
+
+service profcollectd /system/bin/profcollectd
+    override
+    disabled
 
 on post-fs-data
     setprop ctl.stop keystore2
@@ -45,7 +79,6 @@ on post-fs-data
     restorecon /data/misc/keystore
     mkdir /data/system 0775 system system
     mkdir /data/system/users 0775 system system
-    restorecon_recursive /data
     setprop vold.post_fs_data_done 1
     trigger zygote-start
 

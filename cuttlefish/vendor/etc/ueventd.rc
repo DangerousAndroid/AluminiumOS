@@ -66,3 +66,7 @@
 
 # v4l2loopback and virtio-media devices
 /dev/video*   0660 system    camera
+
+# loop devices for apexd
+/dev/loop-control 0660 root system
+/dev/loop* 0660 root system
