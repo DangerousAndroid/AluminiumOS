@@ -21,6 +21,7 @@ service netd /system/bin/netd
     group root net_admin
 
 on early-init
+    setprop ro.boot.dynamic_partitions 1
     setprop ro.boot.bootcontrol none
     setprop ro.boot.slot_suffix ""
     exec u:r:init:s0 root root -- /system/bin/toybox mkdir -p /dev/socket
