@@ -16,12 +16,15 @@ qemu-system-aarch64 \
   -device virtio-gpu-gl-pci,id=gpu0,addr=06.0,blob=true,max_outputs=1 \
   -append "$CMDLINE_DEBUG" \
   -device virtio-tablet-pci \
-  -display gtk \
+  -display egl-headless \
   -device virtio-keyboard-pci \
   -serial stdio \
   -device virtio-serial-pci,id=virtio-serial0 \
   -device virtserialport,name=com.android.emulator.secure_env,id=vc_secure_env \
-  -monitor telnet:127.0.0.1:4444,server,nowait
+  -netdev user,id=net0,hostfwd=tcp::5557-:5555 \
+  -device virtio-net-pci,netdev=net0 \
+  -monitor telnet:127.0.0.1:4444,server,nowait \
+  -monitor unix:/tmp/qemu-mon.sock,server,nowait
 }
 
 # If the script is not sourced from the main script still can be executed as an individual file
