@@ -151,6 +151,9 @@ on late-init
     setprop vold.decrypt trigger_restart_framework
     trigger zygote-start
 
+on property:init.svc.vold=running
+    stop vold
+
 on property:init.svc.vendor.boot-default=running
     stop vendor.boot-default
 
