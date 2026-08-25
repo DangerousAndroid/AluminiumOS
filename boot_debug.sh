@@ -16,6 +16,7 @@ qemu-system-aarch64 \
   -device virtio-gpu-gl-pci,id=gpu0,addr=06.0,blob=true,max_outputs=1 \
   -append "$CMDLINE_DEBUG" \
   -device virtio-tablet-pci \
+  -display egl-headless \
   -display vnc=:1 \
   -device virtio-keyboard-pci \
   -serial stdio \
