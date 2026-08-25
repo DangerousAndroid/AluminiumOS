@@ -21,6 +21,8 @@ service netd /system/bin/netd
     group root net_admin
 
 on early-init
+    exec u:r:init:s0 root root -- /system/bin/toybox mkdir -p /dev/block/by-name
+    exec u:r:init:s0 root root -- /system/bin/toybox dd if=/dev/zero of=/dev/block/by-name/misc bs=1024 count=4
     exec u:r:init:s0 root root -- /system/bin/toybox mknod /dev/loop-control c 10 237
     chmod 0660 /dev/loop-control
     chown root system /dev/loop-control
@@ -32,10 +34,6 @@ on early-init
     setprop ctl.stop keystore2
     setprop ctl.stop storageproxyd_system
     setprop trusty.security_vm.nonsecure_vm_ready 0
-
-
-
-
 
 on post-fs-data
     exec_background u:r:init:s0 root root -- /system/bin/logcat -b main,system,crash -f /dev/kmsg
@@ -61,6 +59,22 @@ service traced /system/bin/traced
     disabled
 
 service heapprofd /system/bin/heapprofd
+    override
+    disabled
+
+service credstore /system/bin/credstore
+    override
+    disabled
+
+service media /system/bin/media
+    override
+    disabled
+
+service cameraserver /system/bin/cameraserver
+    override
+    disabled
+
+service audioserver /system/bin/audioserver
     override
     disabled
 
