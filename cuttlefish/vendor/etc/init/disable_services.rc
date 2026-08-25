@@ -79,6 +79,10 @@ service media /system/bin/media
     override
     disabled
 
+service vold /system/bin/vold
+    override
+    disabled
+
 service cameraserver /system/bin/cameraserver
     override
     disabled
