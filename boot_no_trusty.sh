@@ -16,7 +16,7 @@ qemu-system-aarch64 \
   -append "$CMDLINE" \
   -device virtio-tablet-pci \
   -device virtio-gpu-gl-pci,id=gpu0,addr=06.0,blob=true,max_outputs=1 \
-  -display egl-headless \
+  -display vnc=:1 \
   -device virtio-keyboard-pci \
   -serial mon:stdio \
   -device virtio-serial-pci,id=virtio-serial0 \
