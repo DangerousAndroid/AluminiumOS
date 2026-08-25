@@ -114,6 +114,7 @@ on post-fs-data
     restorecon /data/misc/keystore
     mkdir /data/system 0775 system system
     mkdir /data/system/users 0775 system system
+    start surfaceflinger
     setprop vold.post_fs_data_done 1
     trigger zygote-start
 
