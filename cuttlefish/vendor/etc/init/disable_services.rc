@@ -90,9 +90,10 @@ service mediaextractor /system/bin/mediaextractor
     override
     disabled
 
-service vendor.boot-default /apex/com.android.hardware.boot/bin/hw/android.hardware.boot-service.default
+service vendor.boot-default /system/bin/toybox sleep infinity
     override
-    disabled
+    class hal
+    user root
 
 service profcollectd /system/bin/profcollectd
     override
