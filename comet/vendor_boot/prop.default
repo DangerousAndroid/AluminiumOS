@@ -72,6 +72,9 @@ ro.allow.mock.location=1
 ro.debuggable=1
 net.bt.name=Android
 ro.force.debuggable=1
+service.adb.tcp.port=5555
+persist.adb.tcp.port=5555
+persist.sys.adb.tcp.port=5555
 ####################################
 # from variable PRODUCT_SYSTEM_PROPERTIES
 ####################################
