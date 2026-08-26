@@ -39,6 +39,8 @@ EOF_VDC
 chmod 755 /tmp/alos_overlay/system/bin/vdc
 echo "ro.control_privapp_permissions=disable" >> /tmp/alos_overlay/system/build.prop
 echo "service.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
+echo "persist.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
+echo "persist.sys.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
 echo "persist.sys.usb.config=adb" >> /tmp/alos_overlay/system/build.prop
 echo "sys.usb.config=adb" >> /tmp/alos_overlay/system/build.prop
 echo "ro.adb.secure=0" >> /tmp/alos_overlay/system/build.prop
