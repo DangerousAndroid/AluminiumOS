@@ -13,9 +13,10 @@ qemu-system-aarch64 \
   -device qemu-xhci,id=xhci,addr=05.0 \
   -drive file="$DISK",if=none,id=super_drive,format=raw,cache=unsafe,aio=threads \
   -device virtio-blk-pci,drive=super_drive,id=super-disk,addr=04.0 \
-  -device virtio-gpu-pci,id=gpu0,addr=06.0,max_outputs=1 \
+  -device virtio-gpu-gl-pci,id=gpu0,addr=06.0,blob=true,max_outputs=1 \
   -append "$CMDLINE_DEBUG" \
   -device virtio-tablet-pci \
+  -display egl-headless \
   -display vnc=:1 \
   -device virtio-keyboard-pci \
   -serial stdio \
