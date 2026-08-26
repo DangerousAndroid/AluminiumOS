@@ -27,7 +27,9 @@ rsync -a ./alos-gsi/ /tmp/alos_overlay/
 
 # Inject mknod /dev/loop-control before apexd-bootstrap in init.rc
 sed -i '/exec_start apexd-bootstrap/i \    exec u:r:init:s0 root root -- /system/bin/bootstrap/linker64 /system/bin/toybox mknod /dev/loop-control c 10 237\n    exec u:r:init:s0 root root -- /system/bin/bootstrap/linker64 /system/bin/toybox chmod 0660 /dev/loop-control' /tmp/alos_overlay/system/etc/init/hw/init.rc
-sed -i '/onrestart restart zygote/d' /tmp/alos_overlay/system/etc/init/netd.rc
+sed -i '/onrestart restart zygote/d' /tmp/alos_overlay/system/etc/init/hw/netd.rc /tmp/alos_overlay/system/etc/init/netd.rc 2>/dev/null || true
+sed -i 's@/system/bin/vold@/system/bin/toybox true@' /tmp/alos_overlay/system/etc/init/vold.rc 2>/dev/null || true
+sed -i '/service vold/a \    oneshot' /tmp/alos_overlay/system/etc/init/vold.rc 2>/dev/null || true
 
 e2fsdroid -e -S ./cuttlefish/unified_plat_file_contexts -f /tmp/alos_overlay -a / alos.img
 rm -rf /tmp/alos_overlay
