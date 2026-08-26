@@ -31,6 +31,7 @@ sed -i '/onrestart restart zygote/d' /tmp/alos_overlay/system/etc/init/hw/netd.r
 sed -i 's@/system/bin/vold@/system/bin/toybox true@' /tmp/alos_overlay/system/etc/init/vold.rc 2>/dev/null || true
 sed -i '/service vold/a \    oneshot' /tmp/alos_overlay/system/etc/init/vold.rc 2>/dev/null || true
 sed -i 's@/system/bin/apexd --snapshotde@/system/bin/toybox true@' /tmp/alos_overlay/system/etc/init/apexd.rc 2>/dev/null || true
+sed -i 's@/system/bin/flags_health_check@/system/bin/toybox true@' /tmp/alos_overlay/system/etc/init/flags_health_check.rc 2>/dev/null || true
 cat << 'EOF_VDC' > /tmp/alos_overlay/system/bin/vdc
 #!/system/bin/sh
 exit 0
@@ -38,6 +39,9 @@ EOF_VDC
 chmod 755 /tmp/alos_overlay/system/bin/vdc
 echo "ro.control_privapp_permissions=disable" >> /tmp/alos_overlay/system/build.prop
 echo "service.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
+echo "persist.sys.usb.config=adb" >> /tmp/alos_overlay/system/build.prop
+echo "sys.usb.config=adb" >> /tmp/alos_overlay/system/build.prop
+echo "ro.adb.secure=0" >> /tmp/alos_overlay/system/build.prop
 mkdir -p /tmp/alos_overlay/system/etc/permissions
 cat << 'EOF_PERM' > /tmp/alos_overlay/system/etc/permissions/privapp-permissions-photos.xml
 <?xml version="1.0" encoding="utf-8"?>
