@@ -16,11 +16,11 @@ system /system ext4 noatime,ro,errors=panic wait,logical,first_stage_mount
 # Add all dynamic partitions except system, after this comment
 odm /odm erofs ro wait,logical,first_stage_mount
 odm /odm ext4 noatime,ro,errors=panic wait,logical,first_stage_mount
-# Do not fail on product and system_ext mount for any mixture with other products' system image
+## Do not fail on product and system_ext mount for any mixture with other products' system image
 product /product erofs ro wait,logical,first_stage_mount,nofail
 product /product ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,nofail
-system_ext /system_ext erofs ro wait,logical,first_stage_mount
-system_ext /system_ext ext4 noatime,ro,errors=panic wait,logical,first_stage_mount
+#system_ext /system_ext erofs ro wait,logical,first_stage_mount
+#system_ext /system_ext ext4 noatime,ro,errors=panic wait,logical,first_stage_mount
 vendor /vendor erofs ro wait,logical,first_stage_mount
 vendor /vendor ext4 noatime,ro,errors=panic wait,logical,first_stage_mount
 vendor_dlkm /vendor_dlkm erofs ro wait,logical,first_stage_mount
