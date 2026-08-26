@@ -133,7 +133,7 @@ on boot
     setprop sys.usb.config adb
     setprop persist.sys.usb.config adb
     start adbd
-    setprop vold.decrypt trigger_restart_framework
+    # vold decrypt trigger disabled
     exec u:r:init:s0 root root -- /system/bin/toybox pkill -9 vold
     trigger zygote-start
     class_start early_hal
@@ -151,7 +151,7 @@ on late-init
     setprop sys.usb.config adb
     setprop persist.sys.usb.config adb
     start adbd
-    setprop vold.decrypt trigger_restart_framework
+    # vold decrypt trigger disabled
     exec u:r:init:s0 root root -- /system/bin/toybox pkill -9 vold
     trigger zygote-start
 
