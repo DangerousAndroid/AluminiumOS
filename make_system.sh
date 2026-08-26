@@ -30,6 +30,11 @@ sed -i '/exec_start apexd-bootstrap/i \    exec u:r:init:s0 root root -- /system
 sed -i '/onrestart restart zygote/d' /tmp/alos_overlay/system/etc/init/hw/netd.rc /tmp/alos_overlay/system/etc/init/netd.rc 2>/dev/null || true
 sed -i 's@/system/bin/vold@/system/bin/toybox true@' /tmp/alos_overlay/system/etc/init/vold.rc 2>/dev/null || true
 sed -i '/service vold/a \    oneshot' /tmp/alos_overlay/system/etc/init/vold.rc 2>/dev/null || true
+cat << 'EOF_VDC' > /tmp/alos_overlay/system/bin/vdc
+#!/system/bin/sh
+exit 0
+EOF_VDC
+chmod 755 /tmp/alos_overlay/system/bin/vdc
 echo "ro.control_privapp_permissions=disable" >> /tmp/alos_overlay/system/build.prop
 mkdir -p /tmp/alos_overlay/system/etc/permissions
 cat << 'EOF_PERM' > /tmp/alos_overlay/system/etc/permissions/privapp-permissions-photos.xml
