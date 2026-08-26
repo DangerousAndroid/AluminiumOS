@@ -65,13 +65,13 @@ ro.treble.enabled=true
 ro.llndk.api_level=202504
 ro.actionable_compatible_property.enabled=true
 ro.postinstall.fstab.prefix=/system
-ro.secure=1
-security.perf_harden=1
-ro.adb.secure=1
-ro.allow.mock.location=0
-ro.debuggable=0
+ro.secure=0
+security.perf_harden=0
+ro.adb.secure=0
+ro.allow.mock.location=1
+ro.debuggable=1
 net.bt.name=Android
-ro.force.debuggable=0
+ro.force.debuggable=1
 ####################################
 # from variable PRODUCT_SYSTEM_PROPERTIES
 ####################################
