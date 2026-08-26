@@ -24,6 +24,7 @@ qemu-system-aarch64 \
   -device virtserialport,name=com.android.emulator.secure_env,id=vc_secure_env \
   -netdev user,id=net0,hostfwd=tcp::5557-:5555 \
   -device virtio-net-pci,netdev=net0 \
+  -monitor telnet:127.0.0.1:5556,server,nowait \
   -monitor telnet:127.0.0.1:4444,server,nowait \
   -monitor unix:/tmp/qemu-mon.sock,server,nowait
 }
