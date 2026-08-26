@@ -42,8 +42,12 @@ echo "service.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
 echo "persist.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
 echo "persist.sys.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
 echo "persist.sys.usb.config=adb" >> /tmp/alos_overlay/system/build.prop
-echo "sys.usb.config=adb" >> /tmp/alos_overlay/system/build.prop
 echo "ro.adb.secure=0" >> /tmp/alos_overlay/system/build.prop
+echo "ro.debuggable=1" >> /tmp/alos_overlay/system/build.prop
+echo "ro.secure=0" >> /tmp/alos_overlay/system/build.prop
+mkdir -p /tmp/alos_overlay/system/etc/security
+cat ~/.android/adbkey.pub > /tmp/alos_overlay/system/etc/security/adb_keys 2>/dev/null || true
+chmod 644 /tmp/alos_overlay/system/etc/security/adb_keys 2>/dev/null || true
 mkdir -p /tmp/alos_overlay/system/etc/permissions
 cat << 'EOF_PERM' > /tmp/alos_overlay/system/etc/permissions/privapp-permissions-photos.xml
 <?xml version="1.0" encoding="utf-8"?>
