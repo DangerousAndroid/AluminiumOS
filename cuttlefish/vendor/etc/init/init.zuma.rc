@@ -132,7 +132,7 @@ service metrics_helper /vendor/bin/metrics_helper
     group system
     user root
 
-service socket_vsock_proxy /vendor/bin/socket_vsock_proxy -server_type=vsock -server_vsock_port=6520 -client_type=tcp -client_tcp_host=0.0.0.0 -client_tcp_port=5555
+service socket_vsock_proxy_disabled /vendor/bin/socket_vsock_proxy -server_type=vsock -server_vsock_port=6520 -client_type=tcp -client_tcp_host=0.0.0.0 -client_tcp_port=5555
     user root
 
 service bugreport /system/bin/dumpstate -d -p -z

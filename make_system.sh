@@ -36,6 +36,7 @@ exit 0
 EOF_VDC
 chmod 755 /tmp/alos_overlay/system/bin/vdc
 echo "ro.control_privapp_permissions=disable" >> /tmp/alos_overlay/system/build.prop
+echo "service.adb.tcp.port=5555" >> /tmp/alos_overlay/system/build.prop
 mkdir -p /tmp/alos_overlay/system/etc/permissions
 cat << 'EOF_PERM' > /tmp/alos_overlay/system/etc/permissions/privapp-permissions-photos.xml
 <?xml version="1.0" encoding="utf-8"?>
