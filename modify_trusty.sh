@@ -3,7 +3,7 @@ modify_trusty() {
 echo "Applying Trusty TEE modifications..."
 
 # 1. Modify qemu-atf-inc.mk in Trusty source
-MK_FILE="/home/DangerousAndroid/ALOS/trusty_source/trusty/device/arm/generic-arm64/project/qemu-atf-inc.mk"
+MK_FILE="$HOME/ALOS/trusty_source/trusty/device/arm/generic-arm64/project/qemu-atf-inc.mk"
 if [ -f "$MK_FILE" ]; then
     if ! grep -q "ARM_LINUX_KERNEL_AS_BL33" "$MK_FILE"; then
         echo "Adding ATF_MAKE_ARGS += ARM_LINUX_KERNEL_AS_BL33=1 to qemu-atf-inc.mk..."

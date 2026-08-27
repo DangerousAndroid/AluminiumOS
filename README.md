@@ -59,7 +59,7 @@
 ## Links
 
 * **XDA Thread:** [AluminiumOS in x86/x64 PCs (WIP)](https://xdaforums.com/t/aluminiumos-in-x86-x64-pcs-wip.4789078/) - For bug reports, questions or any information. Any contribution its appreciated!
-* **My contact:** [my telegram](https://t.me/@DangerousAndroid) or my [group chat]()- For errors or info that cannot be published on the main XDA thread
+* **My contact:** my [group chat]()- For errors or info that cannot be published on the main XDA thread
 
 ## Disclaimer
 * The submodule in [GitLab](https://gitlab.com/DangerousAndroid/alos-gsi) has been obtained from MysticLeaks on Telegram and its property of him or Google INC, the creator of this module denieds any credit or responsability over them
