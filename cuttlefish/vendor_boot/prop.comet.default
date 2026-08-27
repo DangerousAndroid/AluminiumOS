@@ -739,7 +739,7 @@ ro.system_ext.build.version.sdk_full=36.1
 ####################################
 ro.camerax.extensions.enabled=true
 remote_provisioning.use_cert_processor=false
-ro.adb.secure=1
+ro.adb.secure=0
 ro.audio.ihaladaptervendorextension_enabled=true
 ro.config.isolated_compilation_enabled=true
 # end of file
